@@ -1,3 +1,5 @@
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/dropdown/option_dropdown/option_dropdown_widget.dart';
 import '/utils/dropdown/profile_dropdown/profile_dropdown_widget.dart';
@@ -6,8 +8,26 @@ import 'package:flutter/material.dart';
 
 class CreateDeviceProfileModel
     extends FlutterFlowModel<CreateDeviceProfileWidget> {
+  ///  Local state fields for this component.
+
+  List<DeviceVariableStruct> variableList = [];
+  void addToVariableList(DeviceVariableStruct item) => variableList.add(item);
+  void removeFromVariableList(DeviceVariableStruct item) =>
+      variableList.remove(item);
+  void removeAtIndexFromVariableList(int index) => variableList.removeAt(index);
+  void insertAtIndexInVariableList(int index, DeviceVariableStruct item) =>
+      variableList.insert(index, item);
+  void updateVariableListAtIndex(
+          int index, Function(DeviceVariableStruct) updateFn) =>
+      variableList[index] = updateFn(variableList[index]);
+
+  double windowWidth = 660.0;
+
+  double? windowHeight = 600.0;
+
   ///  State fields for stateful widgets in this component.
 
+  final formKey4 = GlobalKey<FormState>();
   final formKey3 = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
   final formKey1 = GlobalKey<FormState>();
@@ -23,81 +43,40 @@ class CreateDeviceProfileModel
   FocusNode? deviceNameFocusNode;
   TextEditingController? deviceNameTextController;
   String? Function(BuildContext, String?)? deviceNameTextControllerValidator;
-  String? _deviceNameTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Device Name is required';
-    }
-
-    return null;
-  }
-
   // State field(s) for Description widget.
   FocusNode? descriptionFocusNode;
   TextEditingController? descriptionTextController;
   String? Function(BuildContext, String?)? descriptionTextControllerValidator;
-  String? _descriptionTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Description is required';
-    }
-
-    return null;
-  }
-
   // Model for ProfileDropdown component.
   late ProfileDropdownModel profileDropdownModel;
   // Model for OptionDropdown component.
-  late OptionDropdownModel optionDropdownModel;
+  late OptionDropdownModel optionDropdownModel1;
   // State field(s) for ManualLink widget.
   FocusNode? manualLinkFocusNode;
   TextEditingController? manualLinkTextController;
   String? Function(BuildContext, String?)? manualLinkTextControllerValidator;
-  String? _manualLinkTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Device Name is required';
-    }
-
-    return null;
-  }
-
   // State field(s) for ModelNumber widget.
   FocusNode? modelNumberFocusNode;
   TextEditingController? modelNumberTextController;
   String? Function(BuildContext, String?)? modelNumberTextControllerValidator;
-  String? _modelNumberTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Description is required';
-    }
-
-    return null;
-  }
-
   // State field(s) for UDI widget.
-  FocusNode? udiFocusNode1;
-  TextEditingController? udiTextController1;
-  String? Function(BuildContext, String?)? udiTextController1Validator;
-  // Model for ProfileMode.
-  late OptionDropdownModel profileModeModel;
+  FocusNode? udiFocusNode;
+  TextEditingController? udiTextController;
+  String? Function(BuildContext, String?)? udiTextControllerValidator;
+  // Model for OptionDropdown component.
+  late OptionDropdownModel optionDropdownModel2;
   // Model for TransferType.
   late OptionDropdownModel transferTypeModel;
-  // State field(s) for UDI widget.
-  FocusNode? udiFocusNode2;
-  TextEditingController? udiTextController2;
-  String? Function(BuildContext, String?)? udiTextController2Validator;
+  // Model for OptionDropdown component.
+  late OptionDropdownModel optionDropdownModel3;
 
   @override
   void initState(BuildContext context) {
-    deviceNameTextControllerValidator = _deviceNameTextControllerValidator;
-    descriptionTextControllerValidator = _descriptionTextControllerValidator;
     profileDropdownModel = createModel(context, () => ProfileDropdownModel());
-    optionDropdownModel = createModel(context, () => OptionDropdownModel());
-    manualLinkTextControllerValidator = _manualLinkTextControllerValidator;
-    modelNumberTextControllerValidator = _modelNumberTextControllerValidator;
-    profileModeModel = createModel(context, () => OptionDropdownModel());
+    optionDropdownModel1 = createModel(context, () => OptionDropdownModel());
+    optionDropdownModel2 = createModel(context, () => OptionDropdownModel());
     transferTypeModel = createModel(context, () => OptionDropdownModel());
+    optionDropdownModel3 = createModel(context, () => OptionDropdownModel());
   }
 
   @override
@@ -109,19 +88,18 @@ class CreateDeviceProfileModel
     descriptionTextController?.dispose();
 
     profileDropdownModel.dispose();
-    optionDropdownModel.dispose();
+    optionDropdownModel1.dispose();
     manualLinkFocusNode?.dispose();
     manualLinkTextController?.dispose();
 
     modelNumberFocusNode?.dispose();
     modelNumberTextController?.dispose();
 
-    udiFocusNode1?.dispose();
-    udiTextController1?.dispose();
+    udiFocusNode?.dispose();
+    udiTextController?.dispose();
 
-    profileModeModel.dispose();
+    optionDropdownModel2.dispose();
     transferTypeModel.dispose();
-    udiFocusNode2?.dispose();
-    udiTextController2?.dispose();
+    optionDropdownModel3.dispose();
   }
 }

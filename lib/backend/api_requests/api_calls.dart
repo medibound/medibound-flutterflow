@@ -18,6 +18,7 @@ class APIForUCUMGroup {
       'https://clinicaltables.nlm.nih.gov/api/ucum/v3';
   static Map<String, String> headers = {};
   static GetUCUMUnitsCall getUCUMUnitsCall = GetUCUMUnitsCall();
+  static GetUCUMSingleUnitCall getUCUMSingleUnitCall = GetUCUMSingleUnitCall();
 }
 
 class GetUCUMUnitsCall {
@@ -38,6 +39,63 @@ class GetUCUMUnitsCall {
         'terms': terms,
         'count': 5,
         'sf': "name",
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List<String>? displays(dynamic response) => (getJsonField(
+        response,
+        r'''$[3][0:][0]''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? descriptions(dynamic response) => (getJsonField(
+        response,
+        r'''$[3][0:][1]''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? codes(dynamic response) => (getJsonField(
+        response,
+        r'''$[3][0:][2]''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+}
+
+class GetUCUMSingleUnitCall {
+  Future<ApiCallResponse> call({
+    String? terms = '',
+  }) async {
+    final baseUrl = APIForUCUMGroup.getBaseUrl(
+      terms: terms,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get UCUM Single Unit',
+      apiUrl: '$baseUrl/search',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'df': "name,guidance,cs_code",
+        'terms': terms,
+        'count': 1,
+        'sf': "cs_code",
       },
       returnBody: true,
       encodeBodyUtf8: false,

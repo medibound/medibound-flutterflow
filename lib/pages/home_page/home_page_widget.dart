@@ -1,11 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
-import '/components/dialog_box_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pages/device_profiles/components/component/component_widget.dart';
 import '/pages/organization/create_organization/create_organization_widget.dart';
+import '/utils/dialog_box/dialog_box_widget.dart';
 import '/utils/dropdown/component_profile_tile/component_profile_tile_widget.dart';
 import '/utils/dropdown/profile_dropdown/profile_dropdown_widget.dart';
 import '/utils/nav_bar/nav_bar_widget.dart';
@@ -140,183 +141,243 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               decoration: const BoxDecoration(),
                               child: Padding(
                                 padding: const EdgeInsets.all(20.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'My Organizations',
-                                          textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
-                                              .headlineMedium
-                                              .override(
-                                                fontFamily: 'Rubik',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        Builder(
-                                          builder: (context) => FFButtonWidget(
-                                            onPressed: () async {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (dialogContext) {
-                                                  return Dialog(
-                                                    elevation: 0,
-                                                    insetPadding:
-                                                        EdgeInsets.zero,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                                0.0, 0.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    child: GestureDetector(
-                                                      onTap: () {
-                                                        FocusScope.of(
-                                                                dialogContext)
-                                                            .unfocus();
-                                                        FocusManager.instance
-                                                            .primaryFocus
-                                                            ?.unfocus();
-                                                      },
-                                                      child: SizedBox(
-                                                        width: 660.0,
-                                                        child: DialogBoxWidget(
-                                                          widget: () =>
-                                                              const CreateOrganizationWidget(),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'My Organizations',
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineMedium
+                                                .override(
+                                                  fontFamily: 'Rubik',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                          Builder(
+                                            builder: (context) =>
+                                                FFButtonWidget(
+                                              onPressed: () async {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: GestureDetector(
+                                                        onTap: () {
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus();
+                                                          FocusManager.instance
+                                                              .primaryFocus
+                                                              ?.unfocus();
+                                                        },
+                                                        child: SizedBox(
+                                                          width: 660.0,
+                                                          child:
+                                                              DialogBoxWidget(
+                                                            widget: () =>
+                                                                const CreateOrganizationWidget(),
+                                                          ),
                                                         ),
                                                       ),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              text: 'New Organization',
+                                              icon: const FaIcon(
+                                                FontAwesomeIcons.plus,
+                                                size: 14.0,
+                                              ),
+                                              options: FFButtonOptions(
+                                                height: 40.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 0.0, 16.0, 0.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          fontSize: 14.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                elevation: 0.0,
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                hoverColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                hoverTextColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                hoverElevation: 0.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              width: 1.0,
+                                            ),
+                                          ),
+                                          child: Builder(
+                                            builder: (context) {
+                                              final organization =
+                                                  homePageOrganizationsRecordList
+                                                      .map((e) => e)
+                                                      .toList();
+
+                                              return ListView.builder(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount: organization.length,
+                                                itemBuilder: (context,
+                                                    organizationIndex) {
+                                                  final organizationItem =
+                                                      organization[
+                                                          organizationIndex];
+                                                  return Container(
+                                                    width: 100.0,
+                                                    decoration: const BoxDecoration(),
+                                                    child:
+                                                        ComponentProfileTileWidget(
+                                                      key: Key(
+                                                          'Keyisk_${organizationIndex}_of_${organization.length}'),
+                                                      display: organizationItem
+                                                          .displayName,
+                                                      subtitle: FFAppState()
+                                                          .UserRoles
+                                                          .where((e) =>
+                                                              e.code ==
+                                                              organizationItem
+                                                                  .members
+                                                                  .where((e) =>
+                                                                      e.user
+                                                                          ?.id ==
+                                                                      currentUserReference
+                                                                          ?.id)
+                                                                  .toList()
+                                                                  .firstOrNull
+                                                                  ?.role
+                                                                  .name)
+                                                          .toList()
+                                                          .firstOrNull!
+                                                          .display,
+                                                      photoUrl: organizationItem
+                                                          .photoUrl,
+                                                      titleSize: 16.0,
+                                                      photoSize: 32.0,
+                                                      height: 55.0,
                                                     ),
                                                   );
                                                 },
                                               );
                                             },
-                                            text: 'New Organization',
-                                            icon: const FaIcon(
-                                              FontAwesomeIcons.plus,
-                                              size: 14.0,
-                                            ),
-                                            options: FFButtonOptions(
-                                              height: 40.0,
-                                              padding: const EdgeInsets.all(20.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily: 'Rubik',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                              elevation: 0.0,
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                              hoverColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              hoverTextColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                              hoverElevation: 0.0,
-                                            ),
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          border: Border.all(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            width: 1.0,
-                                          ),
+                                      ),
+                                      wrapWithModel(
+                                        model: _model.profileDropdownModel,
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
+                                        child: ProfileDropdownWidget(
+                                          width:
+                                              MediaQuery.sizeOf(context).width,
+                                          label: 'Custom',
+                                          collectionType:
+                                              CollectionProfiles.USERS,
                                         ),
-                                        child: Builder(
-                                          builder: (context) {
-                                            final organization =
-                                                homePageOrganizationsRecordList
-                                                    .map((e) => e)
-                                                    .toList();
-
-                                            return ListView.builder(
-                                              padding: EdgeInsets.zero,
-                                              shrinkWrap: true,
-                                              scrollDirection: Axis.vertical,
-                                              itemCount: organization.length,
-                                              itemBuilder:
-                                                  (context, organizationIndex) {
-                                                final organizationItem =
-                                                    organization[
-                                                        organizationIndex];
-                                                return Container(
-                                                  width: 100.0,
-                                                  decoration: const BoxDecoration(),
-                                                  child:
-                                                      ComponentProfileTileWidget(
-                                                    key: Key(
-                                                        'Keyisk_${organizationIndex}_of_${organization.length}'),
-                                                    display: organizationItem
-                                                        .displayName,
-                                                    subtitle: FFAppState()
-                                                        .UserRoles
-                                                        .where((e) =>
-                                                            e.code ==
-                                                            organizationItem
-                                                                .members
-                                                                .where((e) =>
-                                                                    e.user
-                                                                        ?.id ==
-                                                                    currentUserReference
-                                                                        ?.id)
-                                                                .toList()
-                                                                .firstOrNull
-                                                                ?.role
-                                                                .name)
-                                                        .toList()
-                                                        .firstOrNull!
-                                                        .display,
-                                                    photoUrl: organizationItem
-                                                        .photoUrl,
-                                                    titleSize: 16.0,
-                                                    photoSize: 32.0,
-                                                    height: 55.0,
+                                      ),
+                                      FFButtonWidget(
+                                        onPressed: () {
+                                          print('Button pressed ...');
+                                        },
+                                        text: 'Button',
+                                        options: FFButtonOptions(
+                                          height: 40.0,
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 16.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Rubik',
+                                                    color: Colors.white,
+                                                    letterSpacing: 0.0,
                                                   ),
-                                                );
-                                              },
-                                            );
-                                          },
+                                          elevation: 0.0,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                         ),
                                       ),
-                                    ),
-                                    wrapWithModel(
-                                      model: _model.profileDropdownModel,
-                                      updateCallback: () => safeSetState(() {}),
-                                      child: ProfileDropdownWidget(
-                                        width: MediaQuery.sizeOf(context).width,
-                                        label: 'Custom',
-                                        collectionType:
-                                            CollectionProfiles.USERS,
+                                      wrapWithModel(
+                                        model: _model.componentModel1,
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
+                                        child: ComponentWidget(
+                                          totalHeight: 75.0,
+                                          block: FFAppState()
+                                              .ComponentExamples
+                                              .firstOrNull!,
+                                        ),
                                       ),
-                                    ),
-                                  ].divide(const SizedBox(height: 20.0)),
+                                      wrapWithModel(
+                                        model: _model.componentModel2,
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
+                                        child: ComponentWidget(
+                                          totalHeight: 75.0,
+                                          block: FFAppState()
+                                              .ComponentExamples
+                                              .elementAtOrNull(1)!,
+                                        ),
+                                      ),
+                                    ].divide(const SizedBox(height: 20.0)),
+                                  ),
                                 ),
                               ),
                             ),

@@ -44,7 +44,6 @@ class _DialogBoxWidgetState extends State<DialogBoxWidget> {
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints(
-        maxWidth: 660.0,
         maxHeight: 600.0,
       ),
       decoration: BoxDecoration(

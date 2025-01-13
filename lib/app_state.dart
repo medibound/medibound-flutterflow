@@ -269,7 +269,7 @@ class FFAppState extends ChangeNotifier {
     DropdownStruct.fromSerializableMap(jsonDecode(
         '{\"display\":\"String\",\"description\":\"A series of characters\",\"code\":\"STRING\"}')),
     DropdownStruct.fromSerializableMap(jsonDecode(
-        '{\"display\":\"Decimal\",\"description\":\"A series of numbers\",\"code\":\"DECIMAL\"}'))
+        '{\"display\":\"Number\",\"description\":\"A series of decimal numbers\",\"code\":\"NUMBER\"}'))
   ];
   List<DropdownStruct> get DeviceVariableTypes => _DeviceVariableTypes;
   set DeviceVariableTypes(List<DropdownStruct> value) {
@@ -328,18 +328,67 @@ class FFAppState extends ChangeNotifier {
     EmptyDropdown.insert(index, value);
   }
 
-  List<DropdownStruct> _DeviceVariablePresetIntegrations = [];
-  List<DropdownStruct> get DeviceVariablePresetIntegrations =>
+  List<DeviceVariableStruct> _DeviceVariablePresetIntegrations = [
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Active Energy Burned\\\",\\\"description\\\":\\\"The amount of active energy burned.\\\",\\\"code\\\":\\\"ACTIVE_ENERGY_BURNED\\\"}\",\"is_list\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"cal\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Basal Energy Burned\\\",\\\"description\\\":\\\"The amount of basal energy burned.\\\",\\\"code\\\":\\\"BASAL_ENERGY_BURNED\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"cal\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Blood Glucose\\\",\\\"description\\\":\\\"The user\'s blood glucose level.\\\",\\\"code\\\":\\\"BLOOD_GLUCOSE\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"true\",\"range\":\"{\\\"upper_bound\\\":\\\"200.0\\\",\\\"lower_bound\\\":\\\"70.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"mg/dL\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Blood Oxygen\\\",\\\"description\\\":\\\"The user\'s blood oxygen level.\\\",\\\"code\\\":\\\"BLOOD_OXYGEN\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"true\",\"range\":\"{\\\"upper_bound\\\":\\\"100.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"%\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Blood Pressure Diastolic\\\",\\\"description\\\":\\\"The user\'s diastolic blood pressure.\\\",\\\"code\\\":\\\"BLOOD_PRESSURE_DIASTOLIC\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"true\",\"range\":\"{\\\"upper_bound\\\":\\\"90.0\\\",\\\"lower_bound\\\":\\\"60.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"mm[Hg]\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Blood Pressure Systolic\\\",\\\"description\\\":\\\"The user\'s systolic blood pressure.\\\",\\\"code\\\":\\\"BLOOD_PRESSURE_SYSTOLIC\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"true\",\"range\":\"{\\\"upper_bound\\\":\\\"140.0\\\",\\\"lower_bound\\\":\\\"90.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"mm[Hg]\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Body Fat Percentage\\\",\\\"description\\\":\\\"The user\'s body fat percentage.\\\",\\\"code\\\":\\\"BODY_FAT_PERCENTAGE\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"true\",\"range\":\"{\\\"upper_bound\\\":\\\"100.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"%\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Body Mass Index\\\",\\\"description\\\":\\\"The user\'s body mass index (BMI).\\\",\\\"code\\\":\\\"BODY_MASS_INDEX\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"true\",\"range\":\"{\\\"upper_bound\\\":\\\"30.0\\\",\\\"lower_bound\\\":\\\"18.5\\\"}\",\"type\":\"NUMBER\",\"unit\":\"{none}\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Body Temperature\\\",\\\"description\\\":\\\"The user\'s body temperature.\\\",\\\"code\\\":\\\"BODY_TEMPERATURE\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"true\",\"range\":\"{\\\"upper_bound\\\":\\\"50.0\\\",\\\"lower_bound\\\":\\\"30.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"Cel\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Flights Climbed\\\",\\\"description\\\":\\\"The number of flights of stairs climbed.\\\",\\\"code\\\":\\\"FLIGHTS_CLIMBED\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"{count}\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Heart Rate\\\",\\\"description\\\":\\\"The user\'s heart rate.\\\",\\\"code\\\":\\\"HEART_RATE\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"true\",\"range\":\"{\\\"upper_bound\\\":\\\"180.0\\\",\\\"lower_bound\\\":\\\"40.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"/min\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Height\\\",\\\"description\\\":\\\"The user\'s height.\\\",\\\"code\\\":\\\"HEIGHT\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"m\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Nutrition\\\",\\\"description\\\":\\\"The user\'s nutrition data.\\\",\\\"code\\\":\\\"NUTRITION\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"{none}\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Respiratory Rate\\\",\\\"description\\\":\\\"The user\'s respiratory rate.\\\",\\\"code\\\":\\\"RESPIRATORY_RATE\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"true\",\"range\":\"{\\\"upper_bound\\\":\\\"30.0\\\",\\\"lower_bound\\\":\\\"10.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"res/min\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Resting Heart Rate\\\",\\\"description\\\":\\\"The user\'s resting heart rate.\\\",\\\"code\\\":\\\"RESTING_HEART_RATE\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"true\",\"range\":\"{\\\"upper_bound\\\":\\\"100.0\\\",\\\"lower_bound\\\":\\\"40.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"/min\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Sleep Asleep\\\",\\\"description\\\":\\\"The time spent asleep.\\\",\\\"code\\\":\\\"SLEEP_ASLEEP\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"min\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Sleep Awake\\\",\\\"description\\\":\\\"The time spent awake.\\\",\\\"code\\\":\\\"SLEEP_AWAKE\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"min\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Sleep Deep\\\",\\\"description\\\":\\\"The time spent in deep sleep.\\\",\\\"code\\\":\\\"SLEEP_DEEP\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"min\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Sleep REM\\\",\\\"description\\\":\\\"The time spent in REM sleep.\\\",\\\"code\\\":\\\"SLEEP_REM\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"min\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Steps\\\",\\\"description\\\":\\\"The number of steps taken.\\\",\\\"code\\\":\\\"STEPS\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"{count}\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Water\\\",\\\"description\\\":\\\"The amount of water consumed.\\\",\\\"code\\\":\\\"WATER\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"L\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Weight\\\",\\\"description\\\":\\\"The user\'s weight.\\\",\\\"code\\\":\\\"WEIGHT\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"kg\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Workout\\\",\\\"description\\\":\\\"The user\'s workout data.\\\",\\\"code\\\":\\\"WORKOUT\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"NUMBER\",\"unit\":\"{none}\"}')),
+    DeviceVariableStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Custom Profile\\\",\\\"description\\\":\\\"The user\'s custom data with more options.\\\",\\\"code\\\":\\\"CUSTOM_PROFILE\\\"}\",\"is_list\":\"false\",\"is_ranged\":\"false\",\"range\":\"{\\\"upper_bound\\\":\\\"0.0\\\",\\\"lower_bound\\\":\\\"0.0\\\"}\",\"type\":\"CUSTOM\",\"unit\":\"{none}\"}'))
+  ];
+  List<DeviceVariableStruct> get DeviceVariablePresetIntegrations =>
       _DeviceVariablePresetIntegrations;
-  set DeviceVariablePresetIntegrations(List<DropdownStruct> value) {
+  set DeviceVariablePresetIntegrations(List<DeviceVariableStruct> value) {
     _DeviceVariablePresetIntegrations = value;
   }
 
-  void addToDeviceVariablePresetIntegrations(DropdownStruct value) {
+  void addToDeviceVariablePresetIntegrations(DeviceVariableStruct value) {
     DeviceVariablePresetIntegrations.add(value);
   }
 
-  void removeFromDeviceVariablePresetIntegrations(DropdownStruct value) {
+  void removeFromDeviceVariablePresetIntegrations(DeviceVariableStruct value) {
     DeviceVariablePresetIntegrations.remove(value);
   }
 
@@ -349,14 +398,160 @@ class FFAppState extends ChangeNotifier {
 
   void updateDeviceVariablePresetIntegrationsAtIndex(
     int index,
-    DropdownStruct Function(DropdownStruct) updateFn,
+    DeviceVariableStruct Function(DeviceVariableStruct) updateFn,
   ) {
     DeviceVariablePresetIntegrations[index] =
         updateFn(_DeviceVariablePresetIntegrations[index]);
   }
 
   void insertAtIndexInDeviceVariablePresetIntegrations(
-      int index, DropdownStruct value) {
+      int index, DeviceVariableStruct value) {
     DeviceVariablePresetIntegrations.insert(index, value);
+  }
+
+  List<DropdownStruct> _BlockSize = [
+    DropdownStruct.fromSerializableMap(jsonDecode(
+        '{\"display\":\"Quarter Block\",\"description\":\"Quarter-Sized Block Component\",\"code\":\"QUARTER\"}')),
+    DropdownStruct.fromSerializableMap(jsonDecode(
+        '{\"display\":\"Half Block\",\"description\":\"Half-Sized Block Component\",\"code\":\"HALF\"}')),
+    DropdownStruct.fromSerializableMap(jsonDecode(
+        '{\"display\":\"FULL BLOCK\",\"description\":\"Full-Sized Block Component\",\"code\":\"FULL\"}'))
+  ];
+  List<DropdownStruct> get BlockSize => _BlockSize;
+  set BlockSize(List<DropdownStruct> value) {
+    _BlockSize = value;
+  }
+
+  void addToBlockSize(DropdownStruct value) {
+    BlockSize.add(value);
+  }
+
+  void removeFromBlockSize(DropdownStruct value) {
+    BlockSize.remove(value);
+  }
+
+  void removeAtIndexFromBlockSize(int index) {
+    BlockSize.removeAt(index);
+  }
+
+  void updateBlockSizeAtIndex(
+    int index,
+    DropdownStruct Function(DropdownStruct) updateFn,
+  ) {
+    BlockSize[index] = updateFn(_BlockSize[index]);
+  }
+
+  void insertAtIndexInBlockSize(int index, DropdownStruct value) {
+    BlockSize.insert(index, value);
+  }
+
+  List<DropdownStruct> _BlockColors = [
+    DropdownStruct.fromSerializableMap(jsonDecode(
+        '{\"display\":\"Crayola\",\"description\":\"Bright Pink #EF476F\",\"code\":\"EF476F\"}')),
+    DropdownStruct.fromSerializableMap(jsonDecode(
+        '{\"display\":\"Amber\",\"description\":\"Sunset Orange #FFC43D\",\"code\":\"FFC43D\"}')),
+    DropdownStruct.fromSerializableMap(jsonDecode(
+        '{\"display\":\"Emerald\",\"description\":\"Medibound Green #00D6A1\",\"code\":\"00D6A1\"}')),
+    DropdownStruct.fromSerializableMap(jsonDecode(
+        '{\"display\":\"Munsell\",\"description\":\"Blue #1B9AAA\",\"code\":\"1B9AAA\"}')),
+    DropdownStruct.fromSerializableMap(jsonDecode(
+        '{\"display\":\"Murrey\",\"description\":\"Purple #87255B\",\"code\":\"87255B\"}'))
+  ];
+  List<DropdownStruct> get BlockColors => _BlockColors;
+  set BlockColors(List<DropdownStruct> value) {
+    _BlockColors = value;
+  }
+
+  void addToBlockColors(DropdownStruct value) {
+    BlockColors.add(value);
+  }
+
+  void removeFromBlockColors(DropdownStruct value) {
+    BlockColors.remove(value);
+  }
+
+  void removeAtIndexFromBlockColors(int index) {
+    BlockColors.removeAt(index);
+  }
+
+  void updateBlockColorsAtIndex(
+    int index,
+    DropdownStruct Function(DropdownStruct) updateFn,
+  ) {
+    BlockColors[index] = updateFn(_BlockColors[index]);
+  }
+
+  void insertAtIndexInBlockColors(int index, DropdownStruct value) {
+    BlockColors.insert(index, value);
+  }
+
+  List<BlockComponentStruct> _ComponentExamples = [
+    BlockComponentStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Test\\\",\\\"description\\\":\\\"test\\\",\\\"code\\\":\\\"test\\\"}\",\"required_vars\":\"[\\\"NUMBER_ARRAY\\\"]\",\"size\":\"HALF\",\"layout\":\"HSPLIT\",\"color\":\"#01775a\",\"graphs\":\"[\\\"TREND\\\",\\\"COLUMN\\\"]\",\"variables\":\"[\\\"{\\\\\\\"info\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"display\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Test\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"description\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"test\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"code\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"test2\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"is_list\\\\\\\":\\\\\\\"true\\\\\\\",\\\\\\\"is_ranged\\\\\\\":\\\\\\\"false\\\\\\\",\\\\\\\"range\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"upper_bound\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"lower_bound\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"20\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"type\\\\\\\":\\\\\\\"NUMBER\\\\\\\",\\\\\\\"unit\\\\\\\":\\\\\\\"m\\\\\\\",\\\\\\\"data\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"string\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"[\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"Hello World\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"number\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"[\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"5\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"7\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"9\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"8\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"14\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"17\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"3\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"15\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\\\\\\\\"}\\\\\\\"}\\\"]\"}')),
+    BlockComponentStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"ejhufu\\\",\\\"description\\\":\\\"Hello Worldfef\\\",\\\"code\\\":\\\"efef\\\"}\",\"required_vars\":\"[\\\"NUMBER_ARRAY\\\"]\",\"size\":\"QUARTER\",\"layout\":\"WHOLE\",\"color\":\"#01bcf6\",\"graphs\":\"[\\\"RADIAL\\\"]\",\"variables\":\"[\\\"{\\\\\\\"info\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"display\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Hello eefeWorld\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"description\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"efef\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"code\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"efefef\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"is_list\\\\\\\":\\\\\\\"false\\\\\\\",\\\\\\\"is_ranged\\\\\\\":\\\\\\\"false\\\\\\\",\\\\\\\"range\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"upper_bound\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"lower_bound\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"50\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"type\\\\\\\":\\\\\\\"NUMBER\\\\\\\",\\\\\\\"unit\\\\\\\":\\\\\\\"m\\\\\\\",\\\\\\\"data\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"string\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"[]\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"number\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"[\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"45\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\\\\\\\\"}\\\\\\\"}\\\"]\"}'))
+  ];
+  List<BlockComponentStruct> get ComponentExamples => _ComponentExamples;
+  set ComponentExamples(List<BlockComponentStruct> value) {
+    _ComponentExamples = value;
+  }
+
+  void addToComponentExamples(BlockComponentStruct value) {
+    ComponentExamples.add(value);
+  }
+
+  void removeFromComponentExamples(BlockComponentStruct value) {
+    ComponentExamples.remove(value);
+  }
+
+  void removeAtIndexFromComponentExamples(int index) {
+    ComponentExamples.removeAt(index);
+  }
+
+  void updateComponentExamplesAtIndex(
+    int index,
+    BlockComponentStruct Function(BlockComponentStruct) updateFn,
+  ) {
+    ComponentExamples[index] = updateFn(_ComponentExamples[index]);
+  }
+
+  void insertAtIndexInComponentExamples(int index, BlockComponentStruct value) {
+    ComponentExamples.insert(index, value);
+  }
+
+  List<RuleStruct> _BlockLayouts = [
+    RuleStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Whole Layout\\\",\\\"description\\\":\\\"Covers the whole component\\\",\\\"code\\\":\\\"WHOLE\\\"}\",\"links\":\"[\\\"QUARTER\\\",\\\"HALF\\\"]\"}')),
+    RuleStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Horizontal Split Layout\\\",\\\"description\\\":\\\"Splits a component in half on the horizontal axis.\\\",\\\"code\\\":\\\"HSPLIT\\\"}\",\"links\":\"[\\\"HALF\\\"]\"}')),
+    RuleStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Vertical Split Layout\\\",\\\"description\\\":\\\"Splits a component in half on the vertical axis.\\\",\\\"code\\\":\\\"VSPLIT\\\"}\",\"links\":\"[\\\"HALF\\\"]\"}'))
+  ];
+  List<RuleStruct> get BlockLayouts => _BlockLayouts;
+  set BlockLayouts(List<RuleStruct> value) {
+    _BlockLayouts = value;
+  }
+
+  void addToBlockLayouts(RuleStruct value) {
+    BlockLayouts.add(value);
+  }
+
+  void removeFromBlockLayouts(RuleStruct value) {
+    BlockLayouts.remove(value);
+  }
+
+  void removeAtIndexFromBlockLayouts(int index) {
+    BlockLayouts.removeAt(index);
+  }
+
+  void updateBlockLayoutsAtIndex(
+    int index,
+    RuleStruct Function(RuleStruct) updateFn,
+  ) {
+    BlockLayouts[index] = updateFn(_BlockLayouts[index]);
+  }
+
+  void insertAtIndexInBlockLayouts(int index, RuleStruct value) {
+    BlockLayouts.insert(index, value);
   }
 }

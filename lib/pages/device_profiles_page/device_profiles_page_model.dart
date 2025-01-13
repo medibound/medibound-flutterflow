@@ -1,6 +1,6 @@
-import '/components/loading_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/dropdown/option_dropdown/option_dropdown_widget.dart';
+import '/utils/loading/loading_widget.dart';
 import '/utils/nav_bar/nav_bar_widget.dart';
 import 'device_profiles_page_widget.dart' show DeviceProfilesPageWidget;
 import 'package:flutter/material.dart';

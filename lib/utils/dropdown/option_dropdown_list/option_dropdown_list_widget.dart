@@ -2,10 +2,10 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/loading_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/dropdown/component_profile_tile/component_profile_tile_widget.dart';
+import '/utils/loading/loading_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -304,43 +304,51 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                 Builder(
                   builder: (context) {
                     if (_model.isLoading == false) {
-                      return Builder(
-                        builder: (context) {
-                          final lists =
-                              _model.compOptionsList.map((e) => e).toList();
+                      return ClipRRect(
+                        child: Container(
+                          constraints: const BoxConstraints(
+                            maxHeight: 250.0,
+                          ),
+                          decoration: const BoxDecoration(),
+                          child: Builder(
+                            builder: (context) {
+                              final lists =
+                                  _model.compOptionsList.map((e) => e).toList();
 
-                          return ListView.builder(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: lists.length,
-                            itemBuilder: (context, listsIndex) {
-                              final listsItem = lists[listsIndex];
-                              return Container(
-                                height: 50.0,
-                                decoration: const BoxDecoration(),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await widget.action?.call(
-                                      listsItem,
-                                    );
-                                    Navigator.pop(context);
-                                  },
-                                  child: ComponentProfileTileWidget(
-                                    key: Key(
-                                        'Key6mw_${listsIndex}_of_${lists.length}'),
-                                    display: listsItem.display,
-                                    subtitle: listsItem.description,
-                                  ),
-                                ),
+                              return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: lists.length,
+                                itemBuilder: (context, listsIndex) {
+                                  final listsItem = lists[listsIndex];
+                                  return Container(
+                                    height: 50.0,
+                                    decoration: const BoxDecoration(),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await widget.action?.call(
+                                          listsItem,
+                                        );
+                                        Navigator.pop(context);
+                                      },
+                                      child: ComponentProfileTileWidget(
+                                        key: Key(
+                                            'Key6mw_${listsIndex}_of_${lists.length}'),
+                                        display: listsItem.display,
+                                        subtitle: listsItem.description,
+                                      ),
+                                    ),
+                                  );
+                                },
                               );
                             },
-                          );
-                        },
+                          ),
+                        ),
                       );
                     } else {
                       return Container(

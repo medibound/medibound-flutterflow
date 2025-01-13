@@ -321,7 +321,9 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsets.all(20.0),
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
                                                     iconPadding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
@@ -334,9 +336,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                         .titleSmall
                                                         .override(
                                                           fontFamily: 'Rubik',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 0.0,
@@ -378,7 +378,9 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                             text: 'Already A User?',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsets.all(20.0),
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
                                               iconPadding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color: const Color(0x00E0E3E7),
@@ -391,6 +393,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .secondary,
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 0.0,
@@ -852,7 +855,9 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsets.all(20.0),
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
                                                     iconPadding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
@@ -866,6 +871,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondary,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 0.0,
@@ -914,7 +920,9 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsets.all(20.0),
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
                                                     iconPadding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
@@ -927,9 +935,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                         .titleSmall
                                                         .override(
                                                           fontFamily: 'Rubik',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 0.0,
@@ -1094,7 +1100,9 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsets.all(20.0),
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
                                                     iconPadding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
@@ -1108,6 +1116,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondary,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 0.0,
@@ -1151,7 +1160,9 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsets.all(20.0),
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
                                                     iconPadding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
@@ -1164,9 +1175,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                         .titleSmall
                                                         .override(
                                                           fontFamily: 'Rubik',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 0.0,
@@ -1499,7 +1508,9 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsets.all(20.0),
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
                                                     iconPadding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
@@ -1513,6 +1524,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondary,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 0.0,
@@ -1721,7 +1733,9 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsets.all(20.0),
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
                                                     iconPadding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
@@ -1735,6 +1749,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                         .override(
                                                           fontFamily: 'Rubik',
                                                           color: Colors.white,
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 0.0,

@@ -171,8 +171,11 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
               });
             }
             safeSetState(() {
-              _model.textController?.text =
-                  dateTimeFormat("yMd", _model.datePicked);
+              _model.textController?.text = dateTimeFormat(
+                "yMd",
+                _model.datePicked,
+                locale: FFLocalizations.of(context).languageCode,
+              );
             });
             _model.date = _model.datePicked;
             safeSetState(() {});

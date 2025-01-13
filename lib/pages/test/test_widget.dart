@@ -120,7 +120,8 @@ class _TestWidgetState extends State<TestWidget> {
                                 text: 'Button',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: const EdgeInsets.all(20.0),
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 0.0, 16.0, 0.0),
                                   iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).alternate,
@@ -128,8 +129,7 @@ class _TestWidgetState extends State<TestWidget> {
                                       .titleSmall
                                       .override(
                                         fontFamily: 'Rubik',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                                        fontSize: 14.0,
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 0.0,
@@ -153,7 +153,8 @@ class _TestWidgetState extends State<TestWidget> {
                                 text: 'Log Out',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: const EdgeInsets.all(20.0),
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 0.0, 16.0, 0.0),
                                   iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: const Color(0x00E0E3E7),
@@ -163,6 +164,7 @@ class _TestWidgetState extends State<TestWidget> {
                                         fontFamily: 'Rubik',
                                         color: FlutterFlowTheme.of(context)
                                             .secondary,
+                                        fontSize: 14.0,
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 0.0,

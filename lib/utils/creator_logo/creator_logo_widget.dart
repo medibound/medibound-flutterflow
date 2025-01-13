@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'creator_logo_model.dart';
 export 'creator_logo_model.dart';
 
@@ -88,7 +89,7 @@ class _CreatorLogoWidgetState extends State<CreatorLogoWidget> {
                       lineHeight: 1.0,
                     ),
               ),
-              Text(
+              GradientText(
                 'creator',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Rubik',
@@ -98,6 +99,12 @@ class _CreatorLogoWidgetState extends State<CreatorLogoWidget> {
                       fontWeight: FontWeight.w600,
                       lineHeight: 0.9,
                     ),
+                colors: [
+                  FlutterFlowTheme.of(context).primary,
+                  FlutterFlowTheme.of(context).secondary
+                ],
+                gradientDirection: GradientDirection.ttb,
+                gradientType: GradientType.linear,
               ),
             ].divide(const SizedBox(height: 0.0)),
           ),

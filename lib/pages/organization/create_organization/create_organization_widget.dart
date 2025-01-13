@@ -420,7 +420,8 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                     text: 'Next',
                                     options: FFButtonOptions(
                                       height: 40.0,
-                                      padding: const EdgeInsets.all(20.0),
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
                                       iconPadding:
                                           const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
@@ -430,8 +431,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                           .titleSmall
                                           .override(
                                             fontFamily: 'Rubik',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                            fontSize: 14.0,
                                             letterSpacing: 0.0,
                                           ),
                                       elevation: 0.0,
@@ -784,7 +784,8 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                   text: 'Back',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: const EdgeInsets.all(20.0),
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 0.0),
                                     iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: const Color(0x00E0E3E7),
@@ -794,6 +795,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                           fontFamily: 'Rubik',
                                           color: FlutterFlowTheme.of(context)
                                               .secondary,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 0.0,
@@ -964,7 +966,8 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                   text: 'Create Organization',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: const EdgeInsets.all(20.0),
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 0.0),
                                     iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
@@ -973,6 +976,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                         .override(
                                           fontFamily: 'Rubik',
                                           color: Colors.white,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 0.0,

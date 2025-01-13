@@ -60,3 +60,31 @@ String? toTitleCase(String input) {
 
   return titleCaseWords.join(' ');
 }
+
+List<DropdownStruct>? deviceVariablesToDropdowns(
+    List<DeviceVariableStruct>? vars) {
+  if (vars == null) return null; // Handle null input
+
+  return vars.map((variable) {
+    return DropdownStruct(
+      display: variable.info?.display ??
+          "", // Assuming 'display' exists in the struct
+      description:
+          variable.info?.description ?? "", // Assuming 'description' exists
+      code: variable.info?.code ?? "", // Assuming 'code' exists
+    );
+  }).toList();
+}
+
+double getBlockWidth(
+  double fullHeight,
+  String blockType,
+) {
+  if (blockType == "FULL") {
+    return fullHeight * 4.5;
+  } else if (blockType == "HALF") {
+    return fullHeight * 2.2;
+  } else {
+    return fullHeight;
+  }
+}

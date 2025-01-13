@@ -1,8 +1,8 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/loading_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/utils/loading/loading_widget.dart';
 import 'option_dropdown_list_widget.dart' show OptionDropdownListWidget;
 import 'package:flutter/material.dart';
 

@@ -320,7 +320,7 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
                                         .where((e) => e.code == listsItem.type)
                                         .toList()
                                         .firstOrNull!
-                                        .description,
+                                        .display,
                                     photoUrl: listsItem.photoUrl,
                                   ),
                                 ),
