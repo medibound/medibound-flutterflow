@@ -10,19 +10,15 @@ import '/flutter_flow/flutter_flow_util.dart';
 class BlockComponentStruct extends FFFirebaseStruct {
   BlockComponentStruct({
     DropdownStruct? info,
-    List<String>? requiredVars,
     String? size,
-    String? layout,
     Color? color,
-    List<String>? graphs,
+    String? subBlock,
     List<DeviceVariableStruct>? variables,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _info = info,
-        _requiredVars = requiredVars,
         _size = size,
-        _layout = layout,
         _color = color,
-        _graphs = graphs,
+        _subBlock = subBlock,
         _variables = variables,
         super(firestoreUtilData);
 
@@ -37,30 +33,12 @@ class BlockComponentStruct extends FFFirebaseStruct {
 
   bool hasInfo() => _info != null;
 
-  // "required_vars" field.
-  List<String>? _requiredVars;
-  List<String> get requiredVars => _requiredVars ?? const [];
-  set requiredVars(List<String>? val) => _requiredVars = val;
-
-  void updateRequiredVars(Function(List<String>) updateFn) {
-    updateFn(_requiredVars ??= []);
-  }
-
-  bool hasRequiredVars() => _requiredVars != null;
-
   // "size" field.
   String? _size;
   String get size => _size ?? '';
   set size(String? val) => _size = val;
 
   bool hasSize() => _size != null;
-
-  // "layout" field.
-  String? _layout;
-  String get layout => _layout ?? '';
-  set layout(String? val) => _layout = val;
-
-  bool hasLayout() => _layout != null;
 
   // "color" field.
   Color? _color;
@@ -69,16 +47,12 @@ class BlockComponentStruct extends FFFirebaseStruct {
 
   bool hasColor() => _color != null;
 
-  // "graphs" field.
-  List<String>? _graphs;
-  List<String> get graphs => _graphs ?? const [];
-  set graphs(List<String>? val) => _graphs = val;
+  // "sub_block" field.
+  String? _subBlock;
+  String get subBlock => _subBlock ?? '';
+  set subBlock(String? val) => _subBlock = val;
 
-  void updateGraphs(Function(List<String>) updateFn) {
-    updateFn(_graphs ??= []);
-  }
-
-  bool hasGraphs() => _graphs != null;
+  bool hasSubBlock() => _subBlock != null;
 
   // "variables" field.
   List<DeviceVariableStruct>? _variables;
@@ -96,11 +70,9 @@ class BlockComponentStruct extends FFFirebaseStruct {
         info: data['info'] is DropdownStruct
             ? data['info']
             : DropdownStruct.maybeFromMap(data['info']),
-        requiredVars: getDataList(data['required_vars']),
         size: data['size'] as String?,
-        layout: data['layout'] as String?,
         color: getSchemaColor(data['color']),
-        graphs: getDataList(data['graphs']),
+        subBlock: data['sub_block'] as String?,
         variables: getStructList(
           data['variables'],
           DeviceVariableStruct.fromMap,
@@ -113,11 +85,9 @@ class BlockComponentStruct extends FFFirebaseStruct {
 
   Map<String, dynamic> toMap() => {
         'info': _info?.toMap(),
-        'required_vars': _requiredVars,
         'size': _size,
-        'layout': _layout,
         'color': _color,
-        'graphs': _graphs,
+        'sub_block': _subBlock,
         'variables': _variables?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
@@ -127,27 +97,17 @@ class BlockComponentStruct extends FFFirebaseStruct {
           _info,
           ParamType.DataStruct,
         ),
-        'required_vars': serializeParam(
-          _requiredVars,
-          ParamType.String,
-          isList: true,
-        ),
         'size': serializeParam(
           _size,
-          ParamType.String,
-        ),
-        'layout': serializeParam(
-          _layout,
           ParamType.String,
         ),
         'color': serializeParam(
           _color,
           ParamType.Color,
         ),
-        'graphs': serializeParam(
-          _graphs,
+        'sub_block': serializeParam(
+          _subBlock,
           ParamType.String,
-          isList: true,
         ),
         'variables': serializeParam(
           _variables,
@@ -164,18 +124,8 @@ class BlockComponentStruct extends FFFirebaseStruct {
           false,
           structBuilder: DropdownStruct.fromSerializableMap,
         ),
-        requiredVars: deserializeParam<String>(
-          data['required_vars'],
-          ParamType.String,
-          true,
-        ),
         size: deserializeParam(
           data['size'],
-          ParamType.String,
-          false,
-        ),
-        layout: deserializeParam(
-          data['layout'],
           ParamType.String,
           false,
         ),
@@ -184,10 +134,10 @@ class BlockComponentStruct extends FFFirebaseStruct {
           ParamType.Color,
           false,
         ),
-        graphs: deserializeParam<String>(
-          data['graphs'],
+        subBlock: deserializeParam(
+          data['sub_block'],
           ParamType.String,
-          true,
+          false,
         ),
         variables: deserializeStructParam<DeviceVariableStruct>(
           data['variables'],
@@ -205,18 +155,8 @@ class BlockComponentStruct extends FFFirebaseStruct {
           false,
           structBuilder: DropdownStruct.fromAlgoliaData,
         ),
-        requiredVars: convertAlgoliaParam<String>(
-          data['required_vars'],
-          ParamType.String,
-          true,
-        ),
         size: convertAlgoliaParam(
           data['size'],
-          ParamType.String,
-          false,
-        ),
-        layout: convertAlgoliaParam(
-          data['layout'],
           ParamType.String,
           false,
         ),
@@ -225,10 +165,10 @@ class BlockComponentStruct extends FFFirebaseStruct {
           ParamType.Color,
           false,
         ),
-        graphs: convertAlgoliaParam<String>(
-          data['graphs'],
+        subBlock: convertAlgoliaParam(
+          data['sub_block'],
           ParamType.String,
-          true,
+          false,
         ),
         variables: convertAlgoliaParam<DeviceVariableStruct>(
           data['variables'],
@@ -250,24 +190,22 @@ class BlockComponentStruct extends FFFirebaseStruct {
     const listEquality = ListEquality();
     return other is BlockComponentStruct &&
         info == other.info &&
-        listEquality.equals(requiredVars, other.requiredVars) &&
         size == other.size &&
-        layout == other.layout &&
         color == other.color &&
-        listEquality.equals(graphs, other.graphs) &&
+        subBlock == other.subBlock &&
         listEquality.equals(variables, other.variables);
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([info, requiredVars, size, layout, color, graphs, variables]);
+  int get hashCode =>
+      const ListEquality().hash([info, size, color, subBlock, variables]);
 }
 
 BlockComponentStruct createBlockComponentStruct({
   DropdownStruct? info,
   String? size,
-  String? layout,
   Color? color,
+  String? subBlock,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -276,8 +214,8 @@ BlockComponentStruct createBlockComponentStruct({
     BlockComponentStruct(
       info: info ?? (clearUnsetFields ? DropdownStruct() : null),
       size: size,
-      layout: layout,
       color: color,
+      subBlock: subBlock,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

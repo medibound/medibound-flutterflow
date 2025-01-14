@@ -22,6 +22,7 @@ class OptionDropdownWidget extends StatefulWidget {
     this.optionType,
     this.initialOption,
     bool? disabled,
+    this.onSelected,
   })  : width = width ?? 600.0,
         disabled = disabled ?? false;
 
@@ -31,6 +32,7 @@ class OptionDropdownWidget extends StatefulWidget {
   final Options? optionType;
   final DropdownStruct? initialOption;
   final bool disabled;
+  final Future Function(DropdownStruct optionSelected)? onSelected;
 
   @override
   State<OptionDropdownWidget> createState() => _OptionDropdownWidgetState();
@@ -228,6 +230,9 @@ class _OptionDropdownWidgetState extends State<OptionDropdownWidget> {
                           );
                         });
                       });
+                      await widget.onSelected?.call(
+                        _model.option!,
+                      );
                     }
                   }
                 },

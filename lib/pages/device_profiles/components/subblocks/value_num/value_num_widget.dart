@@ -4,14 +4,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'svalue_model.dart';
-export 'svalue_model.dart';
+import 'value_num_model.dart';
+export 'value_num_model.dart';
 
-class SvalueWidget extends StatefulWidget {
-  const SvalueWidget({
+class ValueNumWidget extends StatefulWidget {
+  const ValueNumWidget({
     super.key,
     required this.variable,
-    required this.orientation,
+    this.orientation,
     required this.color,
   });
 
@@ -20,11 +20,11 @@ class SvalueWidget extends StatefulWidget {
   final Color? color;
 
   @override
-  State<SvalueWidget> createState() => _SvalueWidgetState();
+  State<ValueNumWidget> createState() => _ValueNumWidgetState();
 }
 
-class _SvalueWidgetState extends State<SvalueWidget> {
-  late SvalueModel _model;
+class _ValueNumWidgetState extends State<ValueNumWidget> {
+  late ValueNumModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -35,7 +35,7 @@ class _SvalueWidgetState extends State<SvalueWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SvalueModel());
+    _model = createModel(context, () => ValueNumModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -51,7 +51,10 @@ class _SvalueWidgetState extends State<SvalueWidget> {
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        if (widget.orientation == GraphOrientation.HORIZONTAL) {
+        if (valueOrDefault<bool>(
+          widget.orientation == GraphOrientation.HORIZONTAL,
+          false,
+        )) {
           return Container(
             width: MediaQuery.sizeOf(context).width * 1.0,
             height: MediaQuery.sizeOf(context).height * 1.0,
@@ -95,11 +98,9 @@ class _SvalueWidgetState extends State<SvalueWidget> {
                         flex: 2,
                         child: AutoSizeText(
                           valueOrDefault<String>(
-                            widget.variable?.data.string.lastOrNull,
-                            'String',
-                          ).maybeHandleOverflow(
-                            maxChars: 15,
-                            replacement: '…',
+                            widget.variable?.data.number.lastOrNull
+                                ?.toString(),
+                            '0.0',
                           ),
                           textAlign: TextAlign.center,
                           maxLines: 1,
@@ -113,6 +114,23 @@ class _SvalueWidgetState extends State<SvalueWidget> {
                                 letterSpacing: 0.0,
                                 lineHeight: 1.0,
                               ),
+                        ),
+                      ),
+                      Flexible(
+                        child: AutoSizeText(
+                          valueOrDefault<String>(
+                            widget.variable?.unit,
+                            '{none}',
+                          ),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          minFontSize: 4.0,
+                          style:
+                              FlutterFlowTheme.of(context).labelSmall.override(
+                                    fontFamily: 'Rubik',
+                                    fontSize: 10.0,
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                     ].divide(const SizedBox(width: 5.0)),
@@ -135,9 +153,6 @@ class _SvalueWidgetState extends State<SvalueWidget> {
                     valueOrDefault<String>(
                       widget.variable?.info.display,
                       'Name',
-                    ).maybeHandleOverflow(
-                      maxChars: 15,
-                      replacement: '…',
                     ),
                     textAlign: TextAlign.center,
                     maxLines: 1,
@@ -151,18 +166,32 @@ class _SvalueWidgetState extends State<SvalueWidget> {
                 Flexible(
                   child: AutoSizeText(
                     valueOrDefault<String>(
-                      widget.variable?.data.string.lastOrNull,
-                      'String',
-                    ).maybeHandleOverflow(
-                      maxChars: 10,
+                      widget.variable?.data.number.lastOrNull?.toString(),
+                      '0.0',
                     ),
                     textAlign: TextAlign.center,
                     maxLines: 1,
-                    minFontSize: 24.0,
+                    minFontSize: 30.0,
                     style: FlutterFlowTheme.of(context).headlineSmall.override(
                           fontFamily: 'Rubik',
                           color: widget.color,
-                          fontSize: 24.0,
+                          fontSize: 30.0,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ),
+                Flexible(
+                  child: AutoSizeText(
+                    valueOrDefault<String>(
+                      widget.variable?.unit,
+                      '{none}',
+                    ),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    minFontSize: 10.0,
+                    style: FlutterFlowTheme.of(context).labelSmall.override(
+                          fontFamily: 'Rubik',
+                          fontSize: 10.0,
                           letterSpacing: 0.0,
                         ),
                   ),

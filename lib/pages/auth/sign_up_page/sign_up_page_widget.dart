@@ -827,6 +827,8 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                             width: 400.0,
                                             label: 'Gender',
                                             optionsList: FFAppState().Genders,
+                                            onSelected:
+                                                (optionSelected) async {},
                                           ),
                                         ),
                                         Padding(

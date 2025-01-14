@@ -5,14 +5,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'trend_model.dart';
-export 'trend_model.dart';
+import 'value_trend_model.dart';
+export 'value_trend_model.dart';
 
-class TrendWidget extends StatefulWidget {
-  const TrendWidget({
+class ValueTrendWidget extends StatefulWidget {
+  const ValueTrendWidget({
     super.key,
     required this.variable,
-    required this.orientation,
+    this.orientation,
     required this.color,
   });
 
@@ -21,11 +21,11 @@ class TrendWidget extends StatefulWidget {
   final Color? color;
 
   @override
-  State<TrendWidget> createState() => _TrendWidgetState();
+  State<ValueTrendWidget> createState() => _ValueTrendWidgetState();
 }
 
-class _TrendWidgetState extends State<TrendWidget> {
-  late TrendModel _model;
+class _ValueTrendWidgetState extends State<ValueTrendWidget> {
+  late ValueTrendModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -36,7 +36,7 @@ class _TrendWidgetState extends State<TrendWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TrendModel());
+    _model = createModel(context, () => ValueTrendModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -52,7 +52,10 @@ class _TrendWidgetState extends State<TrendWidget> {
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        if (widget.orientation == GraphOrientation.HORIZONTAL) {
+        if (valueOrDefault<bool>(
+          widget.orientation == GraphOrientation.HORIZONTAL,
+          false,
+        )) {
           return Container(
             width: MediaQuery.sizeOf(context).width * 1.0,
             height: MediaQuery.sizeOf(context).height * 1.0,

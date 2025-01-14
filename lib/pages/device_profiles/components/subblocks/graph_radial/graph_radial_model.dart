@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'nvalue_widget.dart' show NvalueWidget;
+import 'graph_radial_widget.dart' show GraphRadialWidget;
 import 'package:flutter/material.dart';
 
-class NvalueModel extends FlutterFlowModel<NvalueWidget> {
+class GraphRadialModel extends FlutterFlowModel<GraphRadialWidget> {
   @override
   void initState(BuildContext context) {}
 

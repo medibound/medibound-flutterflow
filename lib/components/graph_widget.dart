@@ -55,9 +55,7 @@ class _GraphWidgetState extends State<GraphWidget> {
         width: double.infinity,
         height: double.infinity,
         color: widget.block!.color!,
-        graphIndex: widget.graphIndex!,
         block: widget.block!,
-        orientation: widget.orientation!,
       ),
     );
   }

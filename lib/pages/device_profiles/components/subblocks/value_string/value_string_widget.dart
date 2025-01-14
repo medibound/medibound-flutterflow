@@ -4,14 +4,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'nvalue_model.dart';
-export 'nvalue_model.dart';
+import 'value_string_model.dart';
+export 'value_string_model.dart';
 
-class NvalueWidget extends StatefulWidget {
-  const NvalueWidget({
+class ValueStringWidget extends StatefulWidget {
+  const ValueStringWidget({
     super.key,
     required this.variable,
-    required this.orientation,
+    this.orientation,
     required this.color,
   });
 
@@ -20,11 +20,11 @@ class NvalueWidget extends StatefulWidget {
   final Color? color;
 
   @override
-  State<NvalueWidget> createState() => _NvalueWidgetState();
+  State<ValueStringWidget> createState() => _ValueStringWidgetState();
 }
 
-class _NvalueWidgetState extends State<NvalueWidget> {
-  late NvalueModel _model;
+class _ValueStringWidgetState extends State<ValueStringWidget> {
+  late ValueStringModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -35,7 +35,7 @@ class _NvalueWidgetState extends State<NvalueWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NvalueModel());
+    _model = createModel(context, () => ValueStringModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -51,7 +51,10 @@ class _NvalueWidgetState extends State<NvalueWidget> {
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        if (widget.orientation == GraphOrientation.HORIZONTAL) {
+        if (valueOrDefault<bool>(
+          widget.orientation == GraphOrientation.HORIZONTAL,
+          false,
+        )) {
           return Container(
             width: MediaQuery.sizeOf(context).width * 1.0,
             height: MediaQuery.sizeOf(context).height * 1.0,
@@ -95,9 +98,11 @@ class _NvalueWidgetState extends State<NvalueWidget> {
                         flex: 2,
                         child: AutoSizeText(
                           valueOrDefault<String>(
-                            widget.variable?.data.number.lastOrNull
-                                ?.toString(),
-                            '0.0',
+                            widget.variable?.data.string.lastOrNull,
+                            'String',
+                          ).maybeHandleOverflow(
+                            maxChars: 15,
+                            replacement: '…',
                           ),
                           textAlign: TextAlign.center,
                           maxLines: 1,
@@ -111,23 +116,6 @@ class _NvalueWidgetState extends State<NvalueWidget> {
                                 letterSpacing: 0.0,
                                 lineHeight: 1.0,
                               ),
-                        ),
-                      ),
-                      Flexible(
-                        child: AutoSizeText(
-                          valueOrDefault<String>(
-                            widget.variable?.unit,
-                            '{none}',
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          minFontSize: 4.0,
-                          style:
-                              FlutterFlowTheme.of(context).labelSmall.override(
-                                    fontFamily: 'Rubik',
-                                    fontSize: 10.0,
-                                    letterSpacing: 0.0,
-                                  ),
                         ),
                       ),
                     ].divide(const SizedBox(width: 5.0)),
@@ -150,6 +138,9 @@ class _NvalueWidgetState extends State<NvalueWidget> {
                     valueOrDefault<String>(
                       widget.variable?.info.display,
                       'Name',
+                    ).maybeHandleOverflow(
+                      maxChars: 15,
+                      replacement: '…',
                     ),
                     textAlign: TextAlign.center,
                     maxLines: 1,
@@ -163,32 +154,18 @@ class _NvalueWidgetState extends State<NvalueWidget> {
                 Flexible(
                   child: AutoSizeText(
                     valueOrDefault<String>(
-                      widget.variable?.data.number.lastOrNull?.toString(),
-                      '0.0',
+                      widget.variable?.data.string.lastOrNull,
+                      'String',
+                    ).maybeHandleOverflow(
+                      maxChars: 10,
                     ),
                     textAlign: TextAlign.center,
                     maxLines: 1,
-                    minFontSize: 30.0,
+                    minFontSize: 24.0,
                     style: FlutterFlowTheme.of(context).headlineSmall.override(
                           fontFamily: 'Rubik',
                           color: widget.color,
-                          fontSize: 30.0,
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                ),
-                Flexible(
-                  child: AutoSizeText(
-                    valueOrDefault<String>(
-                      widget.variable?.unit,
-                      '{none}',
-                    ),
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    minFontSize: 10.0,
-                    style: FlutterFlowTheme.of(context).labelSmall.override(
-                          fontFamily: 'Rubik',
-                          fontSize: 10.0,
+                          fontSize: 24.0,
                           letterSpacing: 0.0,
                         ),
                   ),

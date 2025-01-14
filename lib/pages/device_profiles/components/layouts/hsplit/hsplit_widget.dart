@@ -44,39 +44,36 @@ class _HsplitWidgetState extends State<HsplitWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Expanded(
-            flex: 1,
-            child: Container(
-              width: MediaQuery.sizeOf(context).width * 1.0,
-              height: MediaQuery.sizeOf(context).height * 1.0,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-              child: Builder(builder: (_) {
-                return widget.graph1!();
-              }),
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          flex: 1,
+          child: Container(
+            width: MediaQuery.sizeOf(context).width * 1.0,
+            height: MediaQuery.sizeOf(context).height * 1.0,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
             ),
+            child: Builder(builder: (_) {
+              return widget.graph1!();
+            }),
           ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              width: MediaQuery.sizeOf(context).width * 1.0,
-              height: MediaQuery.sizeOf(context).height * 1.0,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-              child: Builder(builder: (_) {
-                return widget.graph2!();
-              }),
+        ),
+        Expanded(
+          flex: 2,
+          child: Container(
+            width: MediaQuery.sizeOf(context).width * 1.0,
+            height: MediaQuery.sizeOf(context).height * 1.0,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
             ),
+            child: Builder(builder: (_) {
+              return widget.graph2!();
+            }),
           ),
-        ].divide(const SizedBox(height: 10.0)),
-      ),
+        ),
+      ].divide(const SizedBox(height: 10.0)),
     );
   }
 }

@@ -385,6 +385,7 @@ class _DeviceProfilesPageWidgetState extends State<DeviceProfilesPageWidget> {
                                         width: MediaQuery.sizeOf(context).width,
                                         label: 'Unit',
                                         optionType: Options.UNITS,
+                                        onSelected: (optionSelected) async {},
                                       ),
                                     ),
                                     wrapWithModel(

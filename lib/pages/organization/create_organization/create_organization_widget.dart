@@ -390,6 +390,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                     width: MediaQuery.sizeOf(context).width,
                                     label: 'Organization Category',
                                     optionsList: FFAppState().OrganizationTypes,
+                                    onSelected: (optionSelected) async {},
                                   ),
                                 ),
                               ],

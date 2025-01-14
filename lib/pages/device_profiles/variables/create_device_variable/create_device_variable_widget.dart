@@ -262,6 +262,7 @@ class _CreateDeviceVariableWidgetState
                                         label: 'Type',
                                         optionsList:
                                             FFAppState().DeviceVariableTypes,
+                                        onSelected: (optionSelected) async {},
                                       ),
                                     ),
                                     Row(
@@ -349,6 +350,7 @@ class _CreateDeviceVariableWidgetState
                                             description: '',
                                             code: '',
                                           ),
+                                          onSelected: (optionSelected) async {},
                                         ),
                                       ),
                                   ],
@@ -1021,6 +1023,8 @@ class _CreateDeviceVariableWidgetState
                                                           description: '',
                                                           code: '',
                                                         ),
+                                                  onSelected:
+                                                      (optionSelected) async {},
                                                 ),
                                               ),
                                             ],

@@ -1,6 +1,7 @@
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/utils/dropdown/option_dropdown/option_dropdown_widget.dart';
 import '/utils/dropdown/profile_dropdown/profile_dropdown_widget.dart';
 import 'create_device_profile_widget.dart' show CreateDeviceProfileWidget;
@@ -69,6 +70,14 @@ class CreateDeviceProfileModel
   late OptionDropdownModel transferTypeModel;
   // Model for OptionDropdown component.
   late OptionDropdownModel optionDropdownModel3;
+  // Stores action output result for [Gemini - Generate Text] action in OptionDropdown widget.
+  String? resultGem;
+  // State field(s) for ChoiceChips widget.
+  FormFieldController<List<String>>? choiceChipsValueController;
+  String? get choiceChipsValue =>
+      choiceChipsValueController?.value?.firstOrNull;
+  set choiceChipsValue(String? val) =>
+      choiceChipsValueController?.value = val != null ? [val] : [];
 
   @override
   void initState(BuildContext context) {

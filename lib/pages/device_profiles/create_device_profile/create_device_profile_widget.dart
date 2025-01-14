@@ -1,7 +1,10 @@
+import '/backend/gemini/gemini.dart';
 import '/backend/schema/enums/enums.dart';
+import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/pages/device_profiles/variables/create_device_variable/create_device_variable_widget.dart';
 import '/utils/dropdown/option_dropdown/option_dropdown_widget.dart';
 import '/utils/dropdown/profile_dropdown/profile_dropdown_widget.dart';
@@ -378,6 +381,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         width: MediaQuery.sizeOf(context).width,
                                         label: 'Device Category',
                                         optionsList: FFAppState().DeviceTypes,
+                                        onSelected: (optionSelected) async {},
                                       ),
                                     ),
                                   ],
@@ -819,6 +823,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         disabled: false,
                                         optionsList:
                                             FFAppState().DeviceProfileModes,
+                                        onSelected: (optionSelected) async {},
                                       ),
                                     ),
                                     wrapWithModel(
@@ -829,6 +834,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         label: 'Transfer Type',
                                         optionsList:
                                             FFAppState().DeviceTransferTypes,
+                                        onSelected: (optionSelected) async {},
                                       ),
                                     ),
                                   ],
@@ -1561,9 +1567,98 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         optionsList: functions
                                             .deviceVariablesToDropdowns(
                                                 _model.variableList.toList()),
+                                        onSelected: (optionSelected) async {
+                                          await geminiGenerateText(
+                                            context,
+                                            'Given this variable: ${(_model.variableList.where((e) => e.info.code == optionSelected.code).toList().firstOrNull?.toMap())?.toString()}and that the size of the component must be:${_model.choiceChipsValue}and that the constraint of the following must be followed:${functions.rulesToString(FFAppState().BlockLayouts.toList())}and ${functions.rulesToString(FFAppState().BlockGraphs.toList())}generate the best component for this variable using the following as a template for componnet class (export json): ${(FFAppState().ComponentExamples.firstOrNull?.toMap())?.toString()}',
+                                          ).then((generatedText) {
+                                            safeSetState(() => _model
+                                                .resultGem = generatedText);
+                                          });
+
+                                          safeSetState(() {});
+                                        },
                                       ),
                                     ),
-                                  ],
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        FlutterFlowChoiceChips(
+                                          options: const [
+                                            ChipData('Quarter',
+                                                Icons.square_rounded),
+                                            ChipData(
+                                                'Half', Icons.rectangle_rounded)
+                                          ],
+                                          onChanged: (val) => safeSetState(() =>
+                                              _model.choiceChipsValue =
+                                                  val?.firstOrNull),
+                                          selectedChipStyle: ChipStyle(
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryBackground,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Rubik',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            iconColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
+                                            iconSize: 16.0,
+                                            elevation: 0.0,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          unselectedChipStyle: ChipStyle(
+                                            backgroundColor: const Color(0x00000000),
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Rubik',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            iconColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryText,
+                                            iconSize: 16.0,
+                                            elevation: 0.0,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          chipSpacing: 8.0,
+                                          rowSpacing: 8.0,
+                                          multiselect: false,
+                                          initialized:
+                                              _model.choiceChipsValue != null,
+                                          alignment: WrapAlignment.center,
+                                          controller: _model
+                                                  .choiceChipsValueController ??=
+                                              FormFieldController<List<String>>(
+                                            ['Quarter'],
+                                          ),
+                                          wrapped: false,
+                                        ),
+                                      ],
+                                    ),
+                                    ListView(
+                                      padding: EdgeInsets.zero,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      children: const [],
+                                    ),
+                                  ].divide(const SizedBox(height: 10.0)),
                                 ),
                               ),
                             ].divide(const SizedBox(width: 10.0)),

@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'radial_widget.dart' show RadialWidget;
+import 'value_string_widget.dart' show ValueStringWidget;
 import 'package:flutter/material.dart';
 
-class RadialModel extends FlutterFlowModel<RadialWidget> {
+class ValueStringModel extends FlutterFlowModel<ValueStringWidget> {
   @override
   void initState(BuildContext context) {}
 

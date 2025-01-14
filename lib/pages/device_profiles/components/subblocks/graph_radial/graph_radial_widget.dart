@@ -4,11 +4,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'radial_model.dart';
-export 'radial_model.dart';
+import 'graph_radial_model.dart';
+export 'graph_radial_model.dart';
 
-class RadialWidget extends StatefulWidget {
-  const RadialWidget({
+class GraphRadialWidget extends StatefulWidget {
+  const GraphRadialWidget({
     super.key,
     required this.variable,
     required this.color,
@@ -18,11 +18,11 @@ class RadialWidget extends StatefulWidget {
   final Color? color;
 
   @override
-  State<RadialWidget> createState() => _RadialWidgetState();
+  State<GraphRadialWidget> createState() => _GraphRadialWidgetState();
 }
 
-class _RadialWidgetState extends State<RadialWidget> {
-  late RadialModel _model;
+class _GraphRadialWidgetState extends State<GraphRadialWidget> {
+  late GraphRadialModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -33,7 +33,7 @@ class _RadialWidgetState extends State<RadialWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RadialModel());
+    _model = createModel(context, () => GraphRadialModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }

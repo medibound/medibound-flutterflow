@@ -71,7 +71,7 @@ class _VsplitWidgetState extends State<VsplitWidget> {
             }),
           ),
         ),
-      ],
+      ].divide(const SizedBox(width: 10.0)),
     );
   }
 }

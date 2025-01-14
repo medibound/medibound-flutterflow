@@ -7,10 +7,10 @@ export 'whole_model.dart';
 class WholeWidget extends StatefulWidget {
   const WholeWidget({
     super.key,
-    required this.graph1,
+    required this.subBlock,
   });
 
-  final Widget Function()? graph1;
+  final Widget Function()? subBlock;
 
   @override
   State<WholeWidget> createState() => _WholeWidgetState();
@@ -55,7 +55,7 @@ class _WholeWidgetState extends State<WholeWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               child: Builder(builder: (_) {
-                return widget.graph1!();
+                return widget.subBlock!();
               }),
             ),
           ),

@@ -1,7 +1,9 @@
+import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/layout_widget.dart';
+import '/components/graph_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/device_profiles/components/layouts/whole/whole_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'component_model.dart';
@@ -67,18 +69,26 @@ class _ComponentWidgetState extends State<ComponentWidget> {
           builder: (context) {
             if (widget.block?.size == 'QUARTER') {
               return wrapWithModel(
-                model: _model.layoutModel1,
+                model: _model.wholeModel1,
                 updateCallback: () => safeSetState(() {}),
-                child: LayoutWidget(
-                  block: widget.block!,
+                child: WholeWidget(
+                  subBlock: () => GraphWidget(
+                    block: widget.block!,
+                    graphIndex: 0,
+                    orientation: GraphOrientation.HORIZONTAL,
+                  ),
                 ),
               );
             } else if (widget.block?.size == 'HALF') {
               return wrapWithModel(
-                model: _model.layoutModel2,
+                model: _model.wholeModel2,
                 updateCallback: () => safeSetState(() {}),
-                child: LayoutWidget(
-                  block: widget.block!,
+                child: WholeWidget(
+                  subBlock: () => GraphWidget(
+                    block: widget.block!,
+                    graphIndex: 0,
+                    orientation: GraphOrientation.HORIZONTAL,
+                  ),
                 ),
               );
             } else {

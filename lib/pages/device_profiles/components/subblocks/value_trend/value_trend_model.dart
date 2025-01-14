@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'svalue_widget.dart' show SvalueWidget;
+import 'value_trend_widget.dart' show ValueTrendWidget;
 import 'package:flutter/material.dart';
 
-class SvalueModel extends FlutterFlowModel<SvalueWidget> {
+class ValueTrendModel extends FlutterFlowModel<ValueTrendWidget> {
   @override
   void initState(BuildContext context) {}
 

@@ -10,35 +10,35 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class ConstraintStruct extends FFFirebaseStruct {
   ConstraintStruct({
-    String? refCode,
-    List<String>? worksWith,
+    String? link,
+    List<String>? requires,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
-  })  : _refCode = refCode,
-        _worksWith = worksWith,
+  })  : _link = link,
+        _requires = requires,
         super(firestoreUtilData);
 
-  // "ref_code" field.
-  String? _refCode;
-  String get refCode => _refCode ?? '';
-  set refCode(String? val) => _refCode = val;
+  // "link" field.
+  String? _link;
+  String get link => _link ?? '';
+  set link(String? val) => _link = val;
 
-  bool hasRefCode() => _refCode != null;
+  bool hasLink() => _link != null;
 
-  // "works_with" field.
-  List<String>? _worksWith;
-  List<String> get worksWith => _worksWith ?? const [];
-  set worksWith(List<String>? val) => _worksWith = val;
+  // "requires" field.
+  List<String>? _requires;
+  List<String> get requires => _requires ?? const [];
+  set requires(List<String>? val) => _requires = val;
 
-  void updateWorksWith(Function(List<String>) updateFn) {
-    updateFn(_worksWith ??= []);
+  void updateRequires(Function(List<String>) updateFn) {
+    updateFn(_requires ??= []);
   }
 
-  bool hasWorksWith() => _worksWith != null;
+  bool hasRequires() => _requires != null;
 
   static ConstraintStruct fromMap(Map<String, dynamic> data) =>
       ConstraintStruct(
-        refCode: data['ref_code'] as String?,
-        worksWith: getDataList(data['works_with']),
+        link: data['link'] as String?,
+        requires: getDataList(data['requires']),
       );
 
   static ConstraintStruct? maybeFromMap(dynamic data) => data is Map
@@ -46,18 +46,18 @@ class ConstraintStruct extends FFFirebaseStruct {
       : null;
 
   Map<String, dynamic> toMap() => {
-        'ref_code': _refCode,
-        'works_with': _worksWith,
+        'link': _link,
+        'requires': _requires,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'ref_code': serializeParam(
-          _refCode,
+        'link': serializeParam(
+          _link,
           ParamType.String,
         ),
-        'works_with': serializeParam(
-          _worksWith,
+        'requires': serializeParam(
+          _requires,
           ParamType.String,
           isList: true,
         ),
@@ -65,13 +65,13 @@ class ConstraintStruct extends FFFirebaseStruct {
 
   static ConstraintStruct fromSerializableMap(Map<String, dynamic> data) =>
       ConstraintStruct(
-        refCode: deserializeParam(
-          data['ref_code'],
+        link: deserializeParam(
+          data['link'],
           ParamType.String,
           false,
         ),
-        worksWith: deserializeParam<String>(
-          data['works_with'],
+        requires: deserializeParam<String>(
+          data['requires'],
           ParamType.String,
           true,
         ),
@@ -79,13 +79,13 @@ class ConstraintStruct extends FFFirebaseStruct {
 
   static ConstraintStruct fromAlgoliaData(Map<String, dynamic> data) =>
       ConstraintStruct(
-        refCode: convertAlgoliaParam(
-          data['ref_code'],
+        link: convertAlgoliaParam(
+          data['link'],
           ParamType.String,
           false,
         ),
-        worksWith: convertAlgoliaParam<String>(
-          data['works_with'],
+        requires: convertAlgoliaParam<String>(
+          data['requires'],
           ParamType.String,
           true,
         ),
@@ -102,23 +102,23 @@ class ConstraintStruct extends FFFirebaseStruct {
   bool operator ==(Object other) {
     const listEquality = ListEquality();
     return other is ConstraintStruct &&
-        refCode == other.refCode &&
-        listEquality.equals(worksWith, other.worksWith);
+        link == other.link &&
+        listEquality.equals(requires, other.requires);
   }
 
   @override
-  int get hashCode => const ListEquality().hash([refCode, worksWith]);
+  int get hashCode => const ListEquality().hash([link, requires]);
 }
 
 ConstraintStruct createConstraintStruct({
-  String? refCode,
+  String? link,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
   bool delete = false,
 }) =>
     ConstraintStruct(
-      refCode: refCode,
+      link: link,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

@@ -88,3 +88,8 @@ double getBlockWidth(
     return fullHeight;
   }
 }
+
+String rulesToString(List<RuleStruct> rules) {
+  // turn a list of rules to string
+  return rules.map((rule) => rule.toString()).join(' ');
+}
