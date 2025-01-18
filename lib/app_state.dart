@@ -485,115 +485,45 @@ class FFAppState extends ChangeNotifier {
     BlockColors.insert(index, value);
   }
 
-  List<BlockComponentStruct> _ComponentExamples = [
-    BlockComponentStruct.fromSerializableMap(jsonDecode(
-        '{\"info\":\"{\\\"display\\\":\\\"Test\\\",\\\"description\\\":\\\"test\\\",\\\"code\\\":\\\"test\\\"}\",\"required_vars\":\"[\\\"NUMBER_ARRAY\\\"]\",\"size\":\"HALF\",\"layout\":\"HSPLIT\",\"color\":\"#01775a\",\"graphs\":\"[\\\"TREND\\\",\\\"COLUMN\\\"]\",\"variables\":\"[\\\"{\\\\\\\"info\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"display\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Test\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"description\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"test\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"code\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"test2\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"is_list\\\\\\\":\\\\\\\"true\\\\\\\",\\\\\\\"is_ranged\\\\\\\":\\\\\\\"false\\\\\\\",\\\\\\\"range\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"upper_bound\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"lower_bound\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"20\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"type\\\\\\\":\\\\\\\"NUMBER\\\\\\\",\\\\\\\"unit\\\\\\\":\\\\\\\"m\\\\\\\",\\\\\\\"data\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"string\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"[\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"Hello World\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"number\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"[\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"5\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"7\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"9\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"8\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"14\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"17\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"3\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"15\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\\\\\\\\"}\\\\\\\"}\\\"]\"}')),
-    BlockComponentStruct.fromSerializableMap(jsonDecode(
-        '{\"info\":\"{\\\"display\\\":\\\"ejhufu\\\",\\\"description\\\":\\\"Hello Worldfef\\\",\\\"code\\\":\\\"efef\\\"}\",\"required_vars\":\"[\\\"NUMBER_ARRAY\\\"]\",\"size\":\"QUARTER\",\"layout\":\"WHOLE\",\"color\":\"#01bcf6\",\"graphs\":\"[\\\"RADIAL\\\"]\",\"variables\":\"[\\\"{\\\\\\\"info\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"display\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"Hello eefeWorld\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"description\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"efef\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"code\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"efefef\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"is_list\\\\\\\":\\\\\\\"false\\\\\\\",\\\\\\\"is_ranged\\\\\\\":\\\\\\\"false\\\\\\\",\\\\\\\"range\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"upper_bound\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"0\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"lower_bound\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"50\\\\\\\\\\\\\\\"}\\\\\\\",\\\\\\\"type\\\\\\\":\\\\\\\"NUMBER\\\\\\\",\\\\\\\"unit\\\\\\\":\\\\\\\"m\\\\\\\",\\\\\\\"data\\\\\\\":\\\\\\\"{\\\\\\\\\\\\\\\"string\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"[]\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"number\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"[\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"45\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"]\\\\\\\\\\\\\\\"}\\\\\\\"}\\\"]\"}'))
+  List<SubblockComponentStruct> _Subblocks = [
+    SubblockComponentStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Column Graph\\\",\\\"description\\\":\\\"\\\",\\\"code\\\":\\\"GRAPH_COLUMN\\\"}\",\"sizes\":\"[\\\"HALF\\\"]\",\"types\":\"[\\\"NUMBER_ARRAY\\\"]\"}')),
+    SubblockComponentStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Line Graph\\\",\\\"description\\\":\\\"\\\",\\\"code\\\":\\\"GRAPH_LINE\\\"}\",\"sizes\":\"[\\\"HALF\\\"]\",\"types\":\"[\\\"NUMBER_ARRAY\\\"]\"}')),
+    SubblockComponentStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Radial Graph\\\",\\\"description\\\":\\\"\\\",\\\"code\\\":\\\"GRAPH_RADIAL\\\"}\",\"sizes\":\"[\\\"QUARTER\\\"]\",\"types\":\"[\\\"NUMBER\\\",\\\"NUMBER_ARRAY\\\"]\"}')),
+    SubblockComponentStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Numerical Value\\\",\\\"description\\\":\\\"\\\",\\\"code\\\":\\\"VALUE_NUM\\\"}\",\"sizes\":\"[\\\"QUARTER\\\",\\\"HALF\\\"]\",\"types\":\"[\\\"NUMBER\\\",\\\"NUMBER_ARRAY\\\"]\"}')),
+    SubblockComponentStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"String Value\\\",\\\"description\\\":\\\"\\\",\\\"code\\\":\\\"VALUE_STRING\\\"}\",\"sizes\":\"[\\\"QUARTER\\\",\\\"HALF\\\"]\",\"types\":\"[\\\"STRING\\\",\\\"STRING_ARRAY\\\"]\"}')),
+    SubblockComponentStruct.fromSerializableMap(jsonDecode(
+        '{\"info\":\"{\\\"display\\\":\\\"Trend Value\\\",\\\"description\\\":\\\"\\\",\\\"code\\\":\\\"VALUE_TREND\\\"}\",\"sizes\":\"[\\\"QUARTER\\\",\\\"HALF\\\"]\",\"types\":\"[\\\"NUMBER_ARRAY\\\"]\"}'))
   ];
-  List<BlockComponentStruct> get ComponentExamples => _ComponentExamples;
-  set ComponentExamples(List<BlockComponentStruct> value) {
-    _ComponentExamples = value;
+  List<SubblockComponentStruct> get Subblocks => _Subblocks;
+  set Subblocks(List<SubblockComponentStruct> value) {
+    _Subblocks = value;
   }
 
-  void addToComponentExamples(BlockComponentStruct value) {
-    ComponentExamples.add(value);
+  void addToSubblocks(SubblockComponentStruct value) {
+    Subblocks.add(value);
   }
 
-  void removeFromComponentExamples(BlockComponentStruct value) {
-    ComponentExamples.remove(value);
+  void removeFromSubblocks(SubblockComponentStruct value) {
+    Subblocks.remove(value);
   }
 
-  void removeAtIndexFromComponentExamples(int index) {
-    ComponentExamples.removeAt(index);
+  void removeAtIndexFromSubblocks(int index) {
+    Subblocks.removeAt(index);
   }
 
-  void updateComponentExamplesAtIndex(
+  void updateSubblocksAtIndex(
     int index,
-    BlockComponentStruct Function(BlockComponentStruct) updateFn,
+    SubblockComponentStruct Function(SubblockComponentStruct) updateFn,
   ) {
-    ComponentExamples[index] = updateFn(_ComponentExamples[index]);
+    Subblocks[index] = updateFn(_Subblocks[index]);
   }
 
-  void insertAtIndexInComponentExamples(int index, BlockComponentStruct value) {
-    ComponentExamples.insert(index, value);
-  }
-
-  List<RuleStruct> _BlockLayouts = [
-    RuleStruct.fromSerializableMap(jsonDecode(
-        '{\"info\":\"{\\\"display\\\":\\\"Whole Layout\\\",\\\"description\\\":\\\"Covers the whole component\\\",\\\"code\\\":\\\"WHOLE\\\"}\",\"constraints\":\"[\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"size\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"HALF\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"QUARTER\\\\\\\\\\\\\\\"]\\\\\\\"}\\\",\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"graphs (amount in list)\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"1\\\\\\\\\\\\\\\"]\\\\\\\"}\\\"]\"}')),
-    RuleStruct.fromSerializableMap(jsonDecode(
-        '{\"info\":\"{\\\"display\\\":\\\"Horizontal Split Layout\\\",\\\"description\\\":\\\"Splits a component in half on the horizontal axis.\\\",\\\"code\\\":\\\"HSPLIT\\\"}\",\"constraints\":\"[\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"size\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"HALF\\\\\\\\\\\\\\\"]\\\\\\\"}\\\",\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"graphs (amount in list)\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\"}\\\"]\"}')),
-    RuleStruct.fromSerializableMap(jsonDecode(
-        '{\"info\":\"{\\\"display\\\":\\\"Vertical Split Layout\\\",\\\"description\\\":\\\"Splits a component in half on the vertical axis.\\\",\\\"code\\\":\\\"VSPLIT\\\"}\",\"constraints\":\"[\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"size\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"HALF\\\\\\\\\\\\\\\"]\\\\\\\"}\\\",\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"graphs (amount in list)\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\"}\\\"]\"}'))
-  ];
-  List<RuleStruct> get BlockLayouts => _BlockLayouts;
-  set BlockLayouts(List<RuleStruct> value) {
-    _BlockLayouts = value;
-  }
-
-  void addToBlockLayouts(RuleStruct value) {
-    BlockLayouts.add(value);
-  }
-
-  void removeFromBlockLayouts(RuleStruct value) {
-    BlockLayouts.remove(value);
-  }
-
-  void removeAtIndexFromBlockLayouts(int index) {
-    BlockLayouts.removeAt(index);
-  }
-
-  void updateBlockLayoutsAtIndex(
-    int index,
-    RuleStruct Function(RuleStruct) updateFn,
-  ) {
-    BlockLayouts[index] = updateFn(_BlockLayouts[index]);
-  }
-
-  void insertAtIndexInBlockLayouts(int index, RuleStruct value) {
-    BlockLayouts.insert(index, value);
-  }
-
-  List<RuleStruct> _BlockGraphs = [
-    RuleStruct.fromSerializableMap(jsonDecode(
-        '{\"info\":\"{\\\"display\\\":\\\"Column Graph\\\",\\\"description\\\":\\\"Column Graph\\\",\\\"code\\\":\\\"COLUMN\\\"}\",\"constraints\":\"[\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"type\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"NUMBER_ARRAY\\\\\\\\\\\\\\\"]\\\\\\\"}\\\",\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"layout\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"HSPLIT\\\\\\\\\\\\\\\"]\\\\\\\"}\\\"]\"}')),
-    RuleStruct.fromSerializableMap(jsonDecode(
-        '{\"info\":\"{\\\"display\\\":\\\"Line Graph\\\",\\\"description\\\":\\\"Line Graph\\\",\\\"code\\\":\\\"LINE\\\"}\",\"constraints\":\"[\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"type\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"NUMBER_ARRAY\\\\\\\\\\\\\\\"]\\\\\\\"}\\\",\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"layout\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"HSPLIT\\\\\\\\\\\\\\\"]\\\\\\\"}\\\"]\"}')),
-    RuleStruct.fromSerializableMap(jsonDecode(
-        '{\"info\":\"{\\\"display\\\":\\\"Radial Graph\\\",\\\"description\\\":\\\"Radial Graph\\\",\\\"code\\\":\\\"RADIAL\\\"}\",\"constraints\":\"[\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"type\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"NUMBER_ARRAY\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"NUMBER\\\\\\\\\\\\\\\"]\\\\\\\"}\\\",\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"layout\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"WHOLE\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"VSPLIT\\\\\\\\\\\\\\\"]\\\\\\\"}\\\"]\"}')),
-    RuleStruct.fromSerializableMap(jsonDecode(
-        '{\"info\":\"{\\\"display\\\":\\\"Numerical Value Graph\\\",\\\"description\\\":\\\"Numerical Value Graph\\\",\\\"code\\\":\\\"NVALUE\\\"}\",\"constraints\":\"[\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"type\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"NUMBER_ARRAY\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"NUMBER\\\\\\\\\\\\\\\"]\\\\\\\"}\\\",\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"layout\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"HSPLIT\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"VSPLIT\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"WHOLE\\\\\\\\\\\\\\\"]\\\\\\\"}\\\"]\"}')),
-    RuleStruct.fromSerializableMap(jsonDecode(
-        '{\"info\":\"{\\\"display\\\":\\\"String Value Graph\\\",\\\"description\\\":\\\"String Value Graph\\\",\\\"code\\\":\\\"SVALUE\\\"}\",\"constraints\":\"[\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"type\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"STRING\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"STRING_ARRAY\\\\\\\\\\\\\\\"]\\\\\\\"}\\\",\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"layout\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"HSPLIT\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"VSPLIT\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"WHOLE\\\\\\\\\\\\\\\"]\\\\\\\"}\\\"]\"}')),
-    RuleStruct.fromSerializableMap(jsonDecode(
-        '{\"info\":\"{\\\"display\\\":\\\"Trend Value Graph\\\",\\\"description\\\":\\\"Trend Value Graph\\\",\\\"code\\\":\\\"TREND\\\"}\",\"constraints\":\"[\\\"{\\\\\\\"link\\\\\\\":\\\\\\\"type\\\\\\\",\\\\\\\"requires\\\\\\\":\\\\\\\"[\\\\\\\\\\\\\\\"HSPLIT\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"VSPLIT\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"WHOLE\\\\\\\\\\\\\\\"]\\\\\\\"}\\\"]\"}'))
-  ];
-  List<RuleStruct> get BlockGraphs => _BlockGraphs;
-  set BlockGraphs(List<RuleStruct> value) {
-    _BlockGraphs = value;
-  }
-
-  void addToBlockGraphs(RuleStruct value) {
-    BlockGraphs.add(value);
-  }
-
-  void removeFromBlockGraphs(RuleStruct value) {
-    BlockGraphs.remove(value);
-  }
-
-  void removeAtIndexFromBlockGraphs(int index) {
-    BlockGraphs.removeAt(index);
-  }
-
-  void updateBlockGraphsAtIndex(
-    int index,
-    RuleStruct Function(RuleStruct) updateFn,
-  ) {
-    BlockGraphs[index] = updateFn(_BlockGraphs[index]);
-  }
-
-  void insertAtIndexInBlockGraphs(int index, RuleStruct value) {
-    BlockGraphs.insert(index, value);
+  void insertAtIndexInSubblocks(int index, SubblockComponentStruct value) {
+    Subblocks.insert(index, value);
   }
 }

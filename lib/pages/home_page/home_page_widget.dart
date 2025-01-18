@@ -4,7 +4,6 @@ import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/device_profiles/components/component/component_widget.dart';
 import '/pages/organization/create_organization/create_organization_widget.dart';
 import '/utils/dialog_box/dialog_box_widget.dart';
 import '/utils/dropdown/component_profile_tile/component_profile_tile_widget.dart';
@@ -105,26 +104,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Opacity(
-                        opacity: 0.5,
-                        child: Container(
-                          width: double.infinity,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                FlutterFlowTheme.of(context).accent1,
-                                FlutterFlowTheme.of(context).accent3
-                              ],
-                              stops: const [0.0, 0.6, 1.0],
-                              begin: const AlignmentDirectional(-1.0, 1.0),
-                              end: const AlignmentDirectional(1.0, -1.0),
-                            ),
-                          ),
-                        ),
-                      ),
                       Flexible(
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -352,28 +331,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           elevation: 0.0,
                                           borderRadius:
                                               BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                      wrapWithModel(
-                                        model: _model.componentModel1,
-                                        updateCallback: () =>
-                                            safeSetState(() {}),
-                                        child: ComponentWidget(
-                                          totalHeight: 75.0,
-                                          block: FFAppState()
-                                              .ComponentExamples
-                                              .firstOrNull!,
-                                        ),
-                                      ),
-                                      wrapWithModel(
-                                        model: _model.componentModel2,
-                                        updateCallback: () =>
-                                            safeSetState(() {}),
-                                        child: ComponentWidget(
-                                          totalHeight: 75.0,
-                                          block: FFAppState()
-                                              .ComponentExamples
-                                              .elementAtOrNull(1)!,
                                         ),
                                       ),
                                     ].divide(const SizedBox(height: 20.0)),

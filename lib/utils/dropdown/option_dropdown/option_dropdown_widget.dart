@@ -73,17 +73,27 @@ class _OptionDropdownWidgetState extends State<OptionDropdownWidget> {
                           .toList())!
                       .isNotEmpty) ==
               true) {
-            _model.option = widget.initialOption;
-            safeSetState(() {});
-            safeSetState(() {
-              _model.dropdownTextController?.text = ' ';
-            });
+            if (!(widget.optionsList!
+                .where((e) => e.code == _model.option?.code)
+                .toList()
+                .isNotEmpty)) {
+              _model.option = widget.initialOption;
+              safeSetState(() {});
+              safeSetState(() {
+                _model.dropdownTextController?.text = ' ';
+              });
+            }
           } else {
-            _model.option = null;
-            safeSetState(() {});
-            safeSetState(() {
-              _model.dropdownTextController?.clear();
-            });
+            if (!(widget.optionsList!
+                .where((e) => e.code == _model.option?.code)
+                .toList()
+                .isNotEmpty)) {
+              _model.option = null;
+              safeSetState(() {});
+              safeSetState(() {
+                _model.dropdownTextController?.clear();
+              });
+            }
           }
         }
       }

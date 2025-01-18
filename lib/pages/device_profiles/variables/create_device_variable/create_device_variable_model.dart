@@ -45,6 +45,8 @@ class CreateDeviceVariableModel
   bool? isListValue;
   // Model for PresetIntegration.
   late OptionDropdownModel presetIntegrationModel;
+  // State field(s) for IsRanged widget.
+  bool? isRangedValue;
   // State field(s) for LowerBound widget.
   FocusNode? lowerBoundFocusNode;
   TextEditingController? lowerBoundTextController;
@@ -53,15 +55,6 @@ class CreateDeviceVariableModel
   FocusNode? upperBoundFocusNode;
   TextEditingController? upperBoundTextController;
   String? Function(BuildContext, String?)? upperBoundTextControllerValidator;
-  String? _upperBoundTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Device Name is required';
-    }
-
-    return null;
-  }
-
   // Model for Unit.
   late OptionDropdownModel unitModel;
 
@@ -70,7 +63,6 @@ class CreateDeviceVariableModel
     variableNameTextControllerValidator = _variableNameTextControllerValidator;
     variableTypeModel = createModel(context, () => OptionDropdownModel());
     presetIntegrationModel = createModel(context, () => OptionDropdownModel());
-    upperBoundTextControllerValidator = _upperBoundTextControllerValidator;
     unitModel = createModel(context, () => OptionDropdownModel());
   }
 

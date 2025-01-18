@@ -79,17 +79,118 @@ List<DropdownStruct>? deviceVariablesToDropdowns(
 double getBlockWidth(
   double fullHeight,
   String blockType,
+  double spacing,
 ) {
-  if (blockType == "FULL") {
-    return fullHeight * 4.5;
+  if (blockType == "SECTION") {
+    return (fullHeight * 4) + (spacing * 5) + 4;
+  } else if (blockType == "FULL") {
+    return (fullHeight * 4) + (spacing * 3) + 6;
   } else if (blockType == "HALF") {
-    return fullHeight * 2.2;
+    return (fullHeight * 2) + (spacing);
   } else {
     return fullHeight;
   }
 }
 
-String rulesToString(List<RuleStruct> rules) {
-  // turn a list of rules to string
-  return rules.map((rule) => rule.toString()).join(' ');
+String twoToArrayString(
+  String type,
+  bool isList,
+) {
+  return type + (isList ? "_ARRAY" : "");
+}
+
+VariableDataStruct generateSampleData(
+  String type,
+  bool isList,
+  bool isRanged,
+  double? upperBound,
+  double? lowerBound,
+) {
+  // Ensure bounds are valid, fallback to default range (0 to 100.0) if improper
+  final double minBound =
+      (lowerBound != null && upperBound != null && lowerBound < upperBound)
+          ? lowerBound
+          : 0.0;
+  final double maxBound =
+      (lowerBound != null && upperBound != null && lowerBound < upperBound)
+          ? upperBound
+          : 100.0;
+
+  // Helper function to generate a random number within the range
+  double generateRandomNumber() {
+    return minBound + math.Random().nextDouble() * (maxBound - minBound);
+  }
+
+  // Helper function to generate a list of random numbers
+  List<double> generateNumberList(int count) {
+    return List.generate(count, (_) => generateRandomNumber());
+  }
+
+  // Helper function to generate a list of strings
+  List<String> generateStringList(int count) {
+    return List.generate(count, (index) => 'String${index + 1}');
+  }
+
+  // Generate data based on type
+  if (type == "NUMBER") {
+    if (isList) {
+      return VariableDataStruct(
+        number: generateNumberList(20),
+        string: [],
+      );
+    } else {
+      return VariableDataStruct(
+        number: [generateRandomNumber()],
+        string: [],
+      );
+    }
+  } else if (type == "STRING") {
+    if (isList) {
+      return VariableDataStruct(
+        number: [],
+        string: generateStringList(20),
+      );
+    } else {
+      return VariableDataStruct(
+        number: [],
+        string: ["String"],
+      );
+    }
+  } else {
+    // Default empty data if the type is unrecognized
+    return VariableDataStruct(
+      number: [],
+      string: [],
+    );
+  }
+}
+
+bool acceptBlock(
+  BlockComponentStruct block,
+  List<BlockComponentStruct> blockList,
+) {
+  int total = 0;
+
+  for (BlockComponentStruct b in blockList) {
+    if (b.size == "QUARTER") {
+      total++;
+    } else if (b.size == "HALF") {
+      total += 2;
+    } else {
+      return false;
+    }
+  }
+  if (block.size == "QUARTER") {
+    total++;
+  } else if (block.size == "HALF") {
+    total += 2;
+  } else {
+    return false;
+  }
+
+  if (total <= 4) {
+    return true;
+  } else {
+    return false;
+  }
 }

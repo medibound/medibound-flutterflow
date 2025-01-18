@@ -168,14 +168,15 @@ class _ValueNumWidgetState extends State<ValueNumWidget> {
                     valueOrDefault<String>(
                       widget.variable?.data.number.lastOrNull?.toString(),
                       '0.0',
+                    ).maybeHandleOverflow(
+                      maxChars: 4,
                     ),
                     textAlign: TextAlign.center,
                     maxLines: 1,
-                    minFontSize: 30.0,
                     style: FlutterFlowTheme.of(context).headlineSmall.override(
                           fontFamily: 'Rubik',
                           color: widget.color,
-                          fontSize: 30.0,
+                          fontSize: 24.0,
                           letterSpacing: 0.0,
                         ),
                   ),

@@ -16,16 +16,6 @@ class DeviceProfilesRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "display_name" field.
-  String? _displayName;
-  String get displayName => _displayName ?? '';
-  bool hasDisplayName() => _displayName != null;
-
-  // "description" field.
-  String? _description;
-  String get description => _description ?? '';
-  bool hasDescription() => _description != null;
-
   // "organization" field.
   DocumentReference? _organization;
   DocumentReference? get organization => _organization;
@@ -56,19 +46,22 @@ class DeviceProfilesRecord extends FirestoreRecord {
   List<DeviceVariableStruct> get variables => _variables ?? const [];
   bool hasVariables() => _variables != null;
 
-  // "type" field.
-  String? _type;
-  String get type => _type ?? '';
-  bool hasType() => _type != null;
-
   // "transfer_type" field.
   String? _transferType;
   String get transferType => _transferType ?? '';
   bool hasTransferType() => _transferType != null;
 
+  // "info" field.
+  DropdownStruct? _info;
+  DropdownStruct get info => _info ?? DropdownStruct();
+  bool hasInfo() => _info != null;
+
+  // "type" field.
+  String? _type;
+  String get type => _type ?? '';
+  bool hasType() => _type != null;
+
   void _initializeFields() {
-    _displayName = snapshotData['display_name'] as String?;
-    _description = snapshotData['description'] as String?;
     _organization = snapshotData['organization'] as DocumentReference?;
     _mode = snapshotData['mode'] is DeviceModeCode
         ? snapshotData['mode']
@@ -81,8 +74,11 @@ class DeviceProfilesRecord extends FirestoreRecord {
       snapshotData['variables'],
       DeviceVariableStruct.fromMap,
     );
-    _type = snapshotData['type'] as String?;
     _transferType = snapshotData['transfer_type'] as String?;
+    _info = snapshotData['info'] is DropdownStruct
+        ? snapshotData['info']
+        : DropdownStruct.maybeFromMap(snapshotData['info']);
+    _type = snapshotData['type'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -120,29 +116,30 @@ class DeviceProfilesRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createDeviceProfilesRecordData({
-  String? displayName,
-  String? description,
   DocumentReference? organization,
   DeviceModeCode? mode,
   String? manualPath,
   String? modelNumber,
   String? uniqueDeviceIdentifier,
-  String? type,
   String? transferType,
+  DropdownStruct? info,
+  String? type,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'display_name': displayName,
-      'description': description,
       'organization': organization,
       'mode': mode,
       'manual_path': manualPath,
       'model_number': modelNumber,
       'unique_device_identifier': uniqueDeviceIdentifier,
-      'type': type,
       'transfer_type': transferType,
+      'info': DropdownStruct().toMap(),
+      'type': type,
     }.withoutNulls,
   );
+
+  // Handle nested data for "info" field.
+  addDropdownStructData(firestoreData, info, 'info');
 
   return firestoreData;
 }
@@ -154,30 +151,28 @@ class DeviceProfilesRecordDocumentEquality
   @override
   bool equals(DeviceProfilesRecord? e1, DeviceProfilesRecord? e2) {
     const listEquality = ListEquality();
-    return e1?.displayName == e2?.displayName &&
-        e1?.description == e2?.description &&
-        e1?.organization == e2?.organization &&
+    return e1?.organization == e2?.organization &&
         e1?.mode == e2?.mode &&
         e1?.manualPath == e2?.manualPath &&
         e1?.modelNumber == e2?.modelNumber &&
         e1?.uniqueDeviceIdentifier == e2?.uniqueDeviceIdentifier &&
         listEquality.equals(e1?.variables, e2?.variables) &&
-        e1?.type == e2?.type &&
-        e1?.transferType == e2?.transferType;
+        e1?.transferType == e2?.transferType &&
+        e1?.info == e2?.info &&
+        e1?.type == e2?.type;
   }
 
   @override
   int hash(DeviceProfilesRecord? e) => const ListEquality().hash([
-        e?.displayName,
-        e?.description,
         e?.organization,
         e?.mode,
         e?.manualPath,
         e?.modelNumber,
         e?.uniqueDeviceIdentifier,
         e?.variables,
-        e?.type,
-        e?.transferType
+        e?.transferType,
+        e?.info,
+        e?.type
       ]);
 
   @override

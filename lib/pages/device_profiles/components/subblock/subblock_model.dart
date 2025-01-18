@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'graph_widget.dart' show GraphWidget;
+import 'subblock_widget.dart' show SubblockWidget;
 import 'package:flutter/material.dart';
 
-class GraphModel extends FlutterFlowModel<GraphWidget> {
+class SubblockModel extends FlutterFlowModel<SubblockWidget> {
   @override
   void initState(BuildContext context) {}
 

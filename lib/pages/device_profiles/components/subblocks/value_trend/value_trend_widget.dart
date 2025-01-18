@@ -127,10 +127,11 @@ class _ValueTrendWidgetState extends State<ValueTrendWidget> {
                             widget.variable?.data.number.lastOrNull
                                 ?.toString(),
                             '0.0',
+                          ).maybeHandleOverflow(
+                            maxChars: 4,
                           ),
                           textAlign: TextAlign.center,
                           maxLines: 1,
-                          minFontSize: 16.0,
                           style: FlutterFlowTheme.of(context)
                               .headlineSmall
                               .override(
@@ -230,14 +231,15 @@ class _ValueTrendWidgetState extends State<ValueTrendWidget> {
                           widget.variable?.data.number.firstOrNull
                               ?.toString(),
                           '0.0',
+                        ).maybeHandleOverflow(
+                          maxChars: 4,
                         ),
                         textAlign: TextAlign.center,
                         maxLines: 1,
-                        minFontSize: 30.0,
                         style:
                             FlutterFlowTheme.of(context).headlineSmall.override(
                                   fontFamily: 'Rubik',
-                                  fontSize: 30.0,
+                                  fontSize: 25.0,
                                   letterSpacing: 0.0,
                                 ),
                       ),

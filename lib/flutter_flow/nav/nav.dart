@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
@@ -299,13 +298,14 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 25.0,
-                    height: 25.0,
-                    child: SpinKitPulse(
-                      color: FlutterFlowTheme.of(context).primary,
-                      size: 25.0,
+              ? Container(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/medibound.svg',
+                      width: 50.0,
+                      height: 50.0,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 )

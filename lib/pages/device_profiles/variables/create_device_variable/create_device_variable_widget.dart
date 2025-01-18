@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/dropdown/option_dropdown/option_dropdown_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'create_device_variable_model.dart';
@@ -182,7 +183,8 @@ class _CreateDeviceVariableWidgetState
                                             ],
                                           ),
                                           alignLabelWithHint: false,
-                                          hintText: 'onePointTwentyOne',
+                                          hintText:
+                                              'onePointTwentyOne (camelCase)',
                                           hintStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
@@ -251,6 +253,10 @@ class _CreateDeviceVariableWidgetState
                                         validator: _model
                                             .variableNameTextControllerValidator
                                             .asValidator(context),
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.allow(RegExp(
+                                              '[a-z]+((\\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?'))
+                                        ],
                                       ),
                                     ),
                                     wrapWithModel(
@@ -350,7 +356,57 @@ class _CreateDeviceVariableWidgetState
                                             description: '',
                                             code: '',
                                           ),
-                                          onSelected: (optionSelected) async {},
+                                          onSelected: (optionSelected) async {
+                                            safeSetState(() {
+                                              _model.isRangedValue = FFAppState()
+                                                  .DeviceVariablePresetIntegrations
+                                                  .where((e) =>
+                                                      optionSelected.code ==
+                                                      e.info.code)
+                                                  .toList()
+                                                  .firstOrNull!
+                                                  .isRanged;
+                                            });
+                                            if (FFAppState()
+                                                .DeviceVariablePresetIntegrations
+                                                .where((e) =>
+                                                    optionSelected.code ==
+                                                    e.info.code)
+                                                .toList()
+                                                .firstOrNull!
+                                                .isRanged) {
+                                              safeSetState(() {
+                                                _model.lowerBoundTextController
+                                                        ?.text =
+                                                    FFAppState()
+                                                        .DeviceVariablePresetIntegrations
+                                                        .where((e) =>
+                                                            optionSelected
+                                                                .code ==
+                                                            e.info.code)
+                                                        .toList()
+                                                        .firstOrNull!
+                                                        .range
+                                                        .lowerBound
+                                                        .toString();
+                                              });
+                                              safeSetState(() {
+                                                _model.upperBoundTextController
+                                                        ?.text =
+                                                    FFAppState()
+                                                        .DeviceVariablePresetIntegrations
+                                                        .where((e) =>
+                                                            optionSelected
+                                                                .code ==
+                                                            e.info.code)
+                                                        .toList()
+                                                        .firstOrNull!
+                                                        .range
+                                                        .upperBound
+                                                        .toString();
+                                              });
+                                            }
+                                          },
                                         ),
                                       ),
                                   ],
@@ -400,6 +456,17 @@ class _CreateDeviceVariableWidgetState
                                                         .variableTypeModel
                                                         .option
                                                         ?.code,
+                                                    data: functions.generateSampleData(
+                                                        _model.variableTypeModel
+                                                            .option!.code,
+                                                        _model.isListValue!,
+                                                        _model.isRangedValue!,
+                                                        double.tryParse(_model
+                                                            .upperBoundTextController
+                                                            .text),
+                                                        double.tryParse(_model
+                                                            .lowerBoundTextController
+                                                            .text)),
                                                   ),
                                                 );
                                                 Navigator.pop(context);
@@ -454,40 +521,6 @@ class _CreateDeviceVariableWidgetState
                                                         .validate()) {
                                                   return;
                                                 }
-                                                safeSetState(() {
-                                                  _model.upperBoundTextController
-                                                          ?.text =
-                                                      FFAppState()
-                                                          .DeviceVariablePresetIntegrations
-                                                          .where((e) =>
-                                                              e.info.code ==
-                                                              _model
-                                                                  .presetIntegrationModel
-                                                                  .option
-                                                                  ?.code)
-                                                          .toList()
-                                                          .firstOrNull!
-                                                          .range
-                                                          .upperBound
-                                                          .toString();
-                                                });
-                                                safeSetState(() {
-                                                  _model.lowerBoundTextController
-                                                          ?.text =
-                                                      FFAppState()
-                                                          .DeviceVariablePresetIntegrations
-                                                          .where((e) =>
-                                                              e.info.code ==
-                                                              _model
-                                                                  .presetIntegrationModel
-                                                                  .option
-                                                                  ?.code)
-                                                          .toList()
-                                                          .firstOrNull!
-                                                          .range
-                                                          .lowerBound
-                                                          .toString();
-                                                });
                                                 await _model.pageViewController
                                                     ?.nextPage(
                                                   duration: const Duration(
@@ -653,305 +686,406 @@ class _CreateDeviceVariableWidgetState
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
+                                                  Theme(
+                                                    data: ThemeData(
+                                                      checkboxTheme:
+                                                          CheckboxThemeData(
+                                                        visualDensity:
+                                                            VisualDensity
+                                                                .compact,
+                                                        materialTapTargetSize:
+                                                            MaterialTapTargetSize
+                                                                .shrinkWrap,
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      4.0),
+                                                        ),
+                                                      ),
+                                                      unselectedWidgetColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                    ),
+                                                    child: Checkbox(
+                                                      value: _model
+                                                              .isRangedValue ??=
+                                                          false,
+                                                      onChanged:
+                                                          (newValue) async {
+                                                        safeSetState(() => _model
+                                                                .isRangedValue =
+                                                            newValue!);
+                                                      },
+                                                      side: BorderSide(
+                                                        width: 2,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                      ),
+                                                      activeColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      checkColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Is Ranged',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
                                                   Expanded(
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
+                                                    child: Opacity(
+                                                      opacity:
+                                                          _model.isRangedValue!
+                                                              ? 1.0
+                                                              : 0.7,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .lowerBoundTextController,
+                                                          focusNode: _model
+                                                              .lowerBoundFocusNode,
+                                                          autofocus: false,
+                                                          textInputAction:
+                                                              TextInputAction
+                                                                  .next,
+                                                          readOnly: !_model
+                                                              .isRangedValue!,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            isDense: false,
+                                                            labelText:
+                                                                'Lower Bound',
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Rubik',
+                                                              letterSpacing:
                                                                   0.0,
-                                                                  10.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: TextFormField(
-                                                        controller: _model
-                                                            .lowerBoundTextController,
-                                                        focusNode: _model
-                                                            .lowerBoundFocusNode,
-                                                        autofocus: false,
-                                                        textInputAction:
-                                                            TextInputAction
-                                                                .next,
-                                                        obscureText: false,
-                                                        decoration:
-                                                            InputDecoration(
-                                                          isDense: false,
-                                                          labelText:
-                                                              'Lower Bound',
-                                                          labelStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                            fontFamily: 'Rubik',
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            shadows: [
-                                                              Shadow(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                              shadows: [
+                                                                Shadow(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .customColor1,
+                                                                  offset:
+                                                                      const Offset(
+                                                                          0.0,
+                                                                          2.0),
+                                                                  blurRadius:
+                                                                      40.0,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            alignLabelWithHint:
+                                                                false,
+                                                            hintText: '0.0',
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Rubik',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Color(
+                                                                    0x00000000),
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
+                                                                    .primary,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0),
+                                                            ),
+                                                            errorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0),
+                                                            ),
+                                                            focusedErrorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0),
+                                                            ),
+                                                            filled: true,
+                                                            fillColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                            contentPadding:
+                                                                const EdgeInsets.all(
+                                                                    20.0),
+                                                            hoverColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
                                                                     .customColor1,
-                                                                offset: const Offset(
-                                                                    0.0, 2.0),
-                                                                blurRadius:
-                                                                    40.0,
-                                                              )
-                                                            ],
                                                           ),
-                                                          alignLabelWithHint:
-                                                              false,
-                                                          hintText:
-                                                              'onePointTwentyOne',
-                                                          hintStyle:
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Rubik',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                          keyboardType:
+                                                              const TextInputType
+                                                                  .numberWithOptions(
+                                                                  decimal:
+                                                                      true),
+                                                          cursorColor:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Rubik',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                          enabledBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0x00000000),
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
-                                                          ),
-                                                          focusedBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
-                                                          ),
-                                                          errorBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
-                                                          ),
-                                                          focusedErrorBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
-                                                          ),
-                                                          filled: true,
-                                                          fillColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .alternate,
-                                                          contentPadding:
-                                                              const EdgeInsets.all(
-                                                                  20.0),
-                                                          hoverColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .customColor1,
+                                                                  .primaryText,
+                                                          validator: _model
+                                                              .lowerBoundTextControllerValidator
+                                                              .asValidator(
+                                                                  context),
+                                                          inputFormatters: [
+                                                            FilteringTextInputFormatter
+                                                                .allow(RegExp(
+                                                                    '[0-9]'))
+                                                          ],
                                                         ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Rubik',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        keyboardType:
-                                                            TextInputType.name,
-                                                        cursorColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        validator: _model
-                                                            .lowerBoundTextControllerValidator
-                                                            .asValidator(
-                                                                context),
                                                       ),
                                                     ),
                                                   ),
                                                   Expanded(
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
+                                                    child: Opacity(
+                                                      opacity:
+                                                          _model.isRangedValue!
+                                                              ? 1.0
+                                                              : 0.7,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .upperBoundTextController,
+                                                          focusNode: _model
+                                                              .upperBoundFocusNode,
+                                                          autofocus: false,
+                                                          textInputAction:
+                                                              TextInputAction
+                                                                  .next,
+                                                          readOnly: !_model
+                                                              .isRangedValue!,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            isDense: false,
+                                                            labelText:
+                                                                'Upper Bound',
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Rubik',
+                                                              letterSpacing:
                                                                   0.0,
-                                                                  10.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: TextFormField(
-                                                        controller: _model
-                                                            .upperBoundTextController,
-                                                        focusNode: _model
-                                                            .upperBoundFocusNode,
-                                                        autofocus: false,
-                                                        textInputAction:
-                                                            TextInputAction
-                                                                .next,
-                                                        obscureText: false,
-                                                        decoration:
-                                                            InputDecoration(
-                                                          isDense: false,
-                                                          labelText:
-                                                              'Upper Bound',
-                                                          labelStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                            fontFamily: 'Rubik',
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            shadows: [
-                                                              Shadow(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                              shadows: [
+                                                                Shadow(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .customColor1,
+                                                                  offset:
+                                                                      const Offset(
+                                                                          0.0,
+                                                                          2.0),
+                                                                  blurRadius:
+                                                                      40.0,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            alignLabelWithHint:
+                                                                false,
+                                                            hintText: '1.21',
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Rubik',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Color(
+                                                                    0x00000000),
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
+                                                                    .primary,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0),
+                                                            ),
+                                                            errorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0),
+                                                            ),
+                                                            focusedErrorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0),
+                                                            ),
+                                                            filled: true,
+                                                            fillColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                            contentPadding:
+                                                                const EdgeInsets.all(
+                                                                    20.0),
+                                                            hoverColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
                                                                     .customColor1,
-                                                                offset: const Offset(
-                                                                    0.0, 2.0),
-                                                                blurRadius:
-                                                                    40.0,
-                                                              )
-                                                            ],
                                                           ),
-                                                          alignLabelWithHint:
-                                                              false,
-                                                          hintText:
-                                                              'onePointTwentyOne',
-                                                          hintStyle:
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Rubik',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                          keyboardType:
+                                                              const TextInputType
+                                                                  .numberWithOptions(
+                                                                  decimal:
+                                                                      true),
+                                                          cursorColor:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Rubik',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                          enabledBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0x00000000),
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
-                                                          ),
-                                                          focusedBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
-                                                          ),
-                                                          errorBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
-                                                          ),
-                                                          focusedErrorBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
-                                                          ),
-                                                          filled: true,
-                                                          fillColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .alternate,
-                                                          contentPadding:
-                                                              const EdgeInsets.all(
-                                                                  20.0),
-                                                          hoverColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .customColor1,
+                                                                  .primaryText,
+                                                          validator: _model
+                                                              .upperBoundTextControllerValidator
+                                                              .asValidator(
+                                                                  context),
+                                                          inputFormatters: [
+                                                            FilteringTextInputFormatter
+                                                                .allow(RegExp(
+                                                                    '[0-9]'))
+                                                          ],
                                                         ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Rubik',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        keyboardType:
-                                                            TextInputType.name,
-                                                        cursorColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        validator: _model
-                                                            .upperBoundTextControllerValidator
-                                                            .asValidator(
-                                                                context),
                                                       ),
                                                     ),
                                                   ),
@@ -1154,6 +1288,20 @@ class _CreateDeviceVariableWidgetState
                                                             ?.code,
                                                         unit: _model.unitModel
                                                             .option?.code,
+                                                        data: functions.generateSampleData(
+                                                            _model
+                                                                .variableTypeModel
+                                                                .option!
+                                                                .code,
+                                                            _model.isListValue!,
+                                                            _model
+                                                                .isRangedValue!,
+                                                            double.tryParse(_model
+                                                                .upperBoundTextController
+                                                                .text),
+                                                            double.tryParse(_model
+                                                                .lowerBoundTextController
+                                                                .text)),
                                                       ),
                                                     );
                                                     Navigator.pop(context);

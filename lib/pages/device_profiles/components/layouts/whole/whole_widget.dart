@@ -45,7 +45,7 @@ class _WholeWidgetState extends State<WholeWidget> {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Row(
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
             child: Container(

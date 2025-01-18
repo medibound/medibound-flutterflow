@@ -1,15 +1,19 @@
-import '/backend/gemini/gemini.dart';
+import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
+import '/backend/schema/structs/index.dart';
+import '/components/record_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
+import '/pages/device_profiles/builder/body_builder/body_builder_widget.dart';
+import '/pages/device_profiles/builder/header_builder/header_builder_widget.dart';
+import '/pages/device_profiles/builder/select_component/select_component_widget.dart';
 import '/pages/device_profiles/variables/create_device_variable/create_device_variable_widget.dart';
 import '/utils/dropdown/option_dropdown/option_dropdown_widget.dart';
 import '/utils/dropdown/profile_dropdown/profile_dropdown_widget.dart';
 import '/utils/variable_list_tile/variable_list_tile_widget.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:styled_divider/styled_divider.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -97,7 +101,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                     onPageChanged: (_) async {
                       await Future.delayed(const Duration(milliseconds: 200));
                       _model.windowWidth =
-                          _model.pageViewCurrentIndex == 3 ? 800.0 : 660.0;
+                          _model.pageViewCurrentIndex == 3 ? 850.0 : 660.0;
                       safeSetState(() {});
                     },
                     scrollDirection: Axis.horizontal,
@@ -105,7 +109,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                       Align(
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Form(
-                          key: _model.formKey4,
+                          key: _model.formKey5,
                           autovalidateMode: AutovalidateMode.disabled,
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -398,9 +402,9 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                       alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          if (_model.formKey4.currentState ==
+                                          if (_model.formKey5.currentState ==
                                                   null ||
-                                              !_model.formKey4.currentState!
+                                              !_model.formKey5.currentState!
                                                   .validate()) {
                                             return;
                                           }
@@ -1236,432 +1240,473 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                             children: [
                               Expanded(
                                 flex: 3,
-                                child: Container(
-                                  decoration: const BoxDecoration(),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Wrap(
-                                            spacing: 0.0,
-                                            runSpacing: 0.0,
-                                            alignment: WrapAlignment.start,
-                                            crossAxisAlignment:
-                                                WrapCrossAlignment.start,
-                                            direction: Axis.vertical,
-                                            runAlignment: WrapAlignment.start,
-                                            verticalDirection:
-                                                VerticalDirection.down,
-                                            clipBehavior: Clip.none,
+                                child: ClipRRect(
+                                  child: Container(
+                                    decoration: const BoxDecoration(),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(
-                                                'Designing A Record Template',
-                                                textAlign: TextAlign.start,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                              Wrap(
+                                                spacing: 0.0,
+                                                runSpacing: 0.0,
+                                                alignment: WrapAlignment.start,
+                                                crossAxisAlignment:
+                                                    WrapCrossAlignment.start,
+                                                direction: Axis.vertical,
+                                                runAlignment:
+                                                    WrapAlignment.start,
+                                                verticalDirection:
+                                                    VerticalDirection.down,
+                                                clipBehavior: Clip.antiAlias,
+                                                children: [
+                                                  AutoSizeText(
+                                                    'Create Your Record Template',
+                                                    textAlign: TextAlign.start,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .headlineMedium
                                                         .override(
                                                           fontFamily: 'Rubik',
                                                           letterSpacing: 0.0,
                                                         ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 4.0),
-                                                child: Text(
-                                                  'Drag-and-drop components fitted to your variables',
-                                                  textAlign: TextAlign.start,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelMedium
-                                                      .override(
-                                                        fontFamily: 'Rubik',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 4.0,
+                                                                0.0, 4.0),
+                                                    child: AutoSizeText(
+                                                      'Drag-and-drop components fitted to your variables',
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily: 'Rubik',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
-                                        ],
-                                      ),
-                                      Container(
-                                        width: 500.0,
-                                        height: 125.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
                                         ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Expanded(
-                                              flex: 6,
-                                              child: Container(
-                                                width: 100.0,
-                                                height: 100.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, -1.0),
+                                            child: SingleChildScrollView(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  wrapWithModel(
+                                                    model: _model
+                                                        .headerBuilderModel,
+                                                    updateCallback: () =>
+                                                        safeSetState(() {}),
+                                                    child:
+                                                        const HeaderBuilderWidget(),
+                                                  ),
+                                                  StyledDivider(
+                                                    thickness: 1.0,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    lineStyle:
+                                                        DividerLineStyle.dashed,
+                                                  ),
+                                                  wrapWithModel(
+                                                    model:
+                                                        _model.bodyBuilderModel,
+                                                    updateCallback: () =>
+                                                        safeSetState(() {}),
+                                                    updateOnChange: true,
+                                                    child: const BodyBuilderWidget(),
+                                                  ),
+                                                ].divide(
+                                                    const SizedBox(height: 10.0)),
                                               ),
                                             ),
-                                            Expanded(
-                                              flex: 6,
-                                              child: Container(
-                                                width: 100.0,
-                                                height: 100.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                              ),
-                                            ),
-                                          ]
-                                              .divide(const SizedBox(width: 15.0))
-                                              .around(const SizedBox(width: 15.0)),
+                                          ),
                                         ),
-                                      ),
-                                      Container(
-                                        width: 500.0,
-                                        height: 125.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 20.0, 0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    await _model
+                                                        .pageViewController
+                                                        ?.previousPage(
+                                                      duration: const Duration(
+                                                          milliseconds: 300),
+                                                      curve: Curves.ease,
+                                                    );
+                                                  },
+                                                  text: 'Back',
+                                                  options: FFButtonOptions(
+                                                    height: 40.0,
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
+                                                    iconPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: const Color(0x00E0E3E7),
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondary,
+                                                          fontSize: 14.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    elevation: 0.0,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                    hoverColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryBackground,
+                                                    hoverTextColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondary,
+                                                    hoverElevation: 0.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    if (_model.formKey1
+                                                                .currentState ==
+                                                            null ||
+                                                        !_model.formKey1
+                                                            .currentState!
+                                                            .validate()) {
+                                                      return;
+                                                    }
+                                                    await _model
+                                                        .pageViewController
+                                                        ?.nextPage(
+                                                      duration: const Duration(
+                                                          milliseconds: 300),
+                                                      curve: Curves.ease,
+                                                    );
+                                                  },
+                                                  text: 'Next',
+                                                  options: FFButtonOptions(
+                                                    height: 40.0,
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
+                                                    iconPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          fontSize: 14.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    elevation: 0.0,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                    hoverColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryBackground,
+                                                    hoverTextColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondary,
+                                                    hoverElevation: 0.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ].divide(const SizedBox(width: 10.0)),
+                                          ),
                                         ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Expanded(
-                                              flex: 6,
-                                              child: Container(
-                                                width: 100.0,
-                                                height: 100.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 6,
-                                              child: Container(
-                                                width: 100.0,
-                                                height: 100.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 6,
-                                              child: Container(
-                                                width: 100.0,
-                                                height: 100.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 6,
-                                              child: Container(
-                                                width: 100.0,
-                                                height: 100.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                              ),
-                                            ),
-                                          ]
-                                              .divide(const SizedBox(width: 15.0))
-                                              .around(const SizedBox(width: 15.0)),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 20.0, 0.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: FFButtonWidget(
-                                                onPressed: () async {
-                                                  await _model
-                                                      .pageViewController
-                                                      ?.previousPage(
-                                                    duration: const Duration(
-                                                        milliseconds: 300),
-                                                    curve: Curves.ease,
-                                                  );
-                                                },
-                                                text: 'Back',
-                                                options: FFButtonOptions(
-                                                  height: 40.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          16.0, 0.0, 16.0, 0.0),
-                                                  iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: const Color(0x00E0E3E7),
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily: 'Rubik',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                  elevation: 0.0,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                  hoverColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryBackground,
-                                                  hoverTextColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondary,
-                                                  hoverElevation: 0.0,
-                                                ),
-                                              ),
-                                            ),
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: FFButtonWidget(
-                                                onPressed: () async {
-                                                  if (_model.formKey1
-                                                              .currentState ==
-                                                          null ||
-                                                      !_model.formKey1
-                                                          .currentState!
-                                                          .validate()) {
-                                                    return;
-                                                  }
-                                                  await _model
-                                                      .pageViewController
-                                                      ?.nextPage(
-                                                    duration: const Duration(
-                                                        milliseconds: 300),
-                                                    curve: Curves.ease,
-                                                  );
-                                                },
-                                                text: 'Next',
-                                                options: FFButtonOptions(
-                                                  height: 40.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          16.0, 0.0, 16.0, 0.0),
-                                                  iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily: 'Rubik',
-                                                            fontSize: 14.0,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                  elevation: 0.0,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                  hoverColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryBackground,
-                                                  hoverTextColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondary,
-                                                  hoverElevation: 0.0,
-                                                ),
-                                              ),
-                                            ),
-                                          ].divide(const SizedBox(width: 10.0)),
-                                        ),
-                                      ),
-                                    ].divide(const SizedBox(height: 10.0)),
+                                      ].divide(const SizedBox(height: 10.0)),
+                                    ),
                                   ),
                                 ),
                               ),
-                              Container(
-                                width: 250.0,
-                                height: MediaQuery.sizeOf(context).height * 1.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    wrapWithModel(
-                                      model: _model.optionDropdownModel3,
-                                      updateCallback: () => safeSetState(() {}),
-                                      child: OptionDropdownWidget(
-                                        width: 250.0,
-                                        label: 'Variable',
-                                        disabled: false,
-                                        optionsList: functions
-                                            .deviceVariablesToDropdowns(
-                                                _model.variableList.toList()),
-                                        onSelected: (optionSelected) async {
-                                          await geminiGenerateText(
-                                            context,
-                                            'Given this variable: ${(_model.variableList.where((e) => e.info.code == optionSelected.code).toList().firstOrNull?.toMap())?.toString()}and that the size of the component must be:${_model.choiceChipsValue}and that the constraint of the following must be followed:${functions.rulesToString(FFAppState().BlockLayouts.toList())}and ${functions.rulesToString(FFAppState().BlockGraphs.toList())}generate the best component for this variable using the following as a template for componnet class (export json): ${(FFAppState().ComponentExamples.firstOrNull?.toMap())?.toString()}',
-                                          ).then((generatedText) {
-                                            safeSetState(() => _model
-                                                .resultGem = generatedText);
-                                          });
-
-                                          safeSetState(() {});
-                                        },
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        FlutterFlowChoiceChips(
-                                          options: const [
-                                            ChipData('Quarter',
-                                                Icons.square_rounded),
-                                            ChipData(
-                                                'Half', Icons.rectangle_rounded)
-                                          ],
-                                          onChanged: (val) => safeSetState(() =>
-                                              _model.choiceChipsValue =
-                                                  val?.firstOrNull),
-                                          selectedChipStyle: ChipStyle(
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryBackground,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Rubik',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            iconColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                            iconSize: 16.0,
-                                            elevation: 0.0,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          unselectedChipStyle: ChipStyle(
-                                            backgroundColor: const Color(0x00000000),
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Rubik',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            iconColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryText,
-                                            iconSize: 16.0,
-                                            elevation: 0.0,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          chipSpacing: 8.0,
-                                          rowSpacing: 8.0,
-                                          multiselect: false,
-                                          initialized:
-                                              _model.choiceChipsValue != null,
-                                          alignment: WrapAlignment.center,
-                                          controller: _model
-                                                  .choiceChipsValueController ??=
-                                              FormFieldController<List<String>>(
-                                            ['Quarter'],
-                                          ),
-                                          wrapped: false,
-                                        ),
-                                      ],
-                                    ),
-                                    ListView(
-                                      padding: EdgeInsets.zero,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      children: const [],
-                                    ),
-                                  ].divide(const SizedBox(height: 10.0)),
+                              VerticalDivider(
+                                thickness: 1.0,
+                                color: FlutterFlowTheme.of(context).alternate,
+                              ),
+                              wrapWithModel(
+                                model: _model.selectComponentModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: SelectComponentWidget(
+                                  variablesList: _model.variableList,
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 10.0)),
+                            ].divide(const SizedBox(width: 15.0)),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Form(
+                          key: _model.formKey4,
+                          autovalidateMode: AutovalidateMode.disabled,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Wrap(
+                                spacing: 0.0,
+                                runSpacing: 0.0,
+                                alignment: WrapAlignment.start,
+                                crossAxisAlignment: WrapCrossAlignment.start,
+                                direction: Axis.vertical,
+                                runAlignment: WrapAlignment.start,
+                                verticalDirection: VerticalDirection.down,
+                                clipBehavior: Clip.none,
+                                children: [
+                                  Text(
+                                    'Preview Your Device Record',
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context)
+                                        .headlineMedium
+                                        .override(
+                                          fontFamily: 'Rubik',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 4.0, 0.0, 24.0),
+                                    child: Text(
+                                      'Take a look at your masterpiece!',
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Rubik',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Flexible(
+                                child: Align(
+                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                  child: ClipRRect(
+                                    child: Container(
+                                      width: double.infinity,
+                                      decoration: const BoxDecoration(),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 50.0, 0.0, 0.0),
+                                        child: Container(
+                                          width: 400.0,
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              1.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                blurRadius: 40.0,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                offset: const Offset(
+                                                  0.0,
+                                                  -20.0,
+                                                ),
+                                              )
+                                            ],
+                                            borderRadius: const BorderRadius.only(
+                                              bottomLeft: Radius.circular(0.0),
+                                              bottomRight: Radius.circular(0.0),
+                                              topLeft: Radius.circular(40.0),
+                                              topRight: Radius.circular(40.0),
+                                            ),
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                          child: Container(
+                                            decoration: const BoxDecoration(),
+                                            child: wrapWithModel(
+                                              model: _model.recordModel,
+                                              updateCallback: () =>
+                                                  safeSetState(() {}),
+                                              child: RecordWidget(
+                                                recordWidth: 400.0,
+                                                record: RecordStruct(
+                                                  info: DropdownStruct(
+                                                    display: 'Example Record',
+                                                  ),
+                                                  sections: _model
+                                                      .bodyBuilderModel
+                                                      .bodySections,
+                                                  header: _model
+                                                      .headerBuilderModel
+                                                      .header,
+                                                  organization: _model
+                                                      .profileDropdownModel
+                                                      .profile,
+                                                  device: ProfileStruct(
+                                                    displayName: _model
+                                                        .deviceNameTextController
+                                                        .text,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 20.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Align(
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          await _model.pageViewController
+                                              ?.previousPage(
+                                            duration:
+                                                const Duration(milliseconds: 300),
+                                            curve: Curves.ease,
+                                          );
+                                        },
+                                        text: 'Back',
+                                        options: FFButtonOptions(
+                                          height: 40.0,
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 16.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: const Color(0x00E0E3E7),
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily: 'Rubik',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                          elevation: 0.0,
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          hoverColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryBackground,
+                                          hoverTextColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                          hoverElevation: 0.0,
+                                        ),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          if (_model.formKey4.currentState ==
+                                                  null ||
+                                              !_model.formKey4.currentState!
+                                                  .validate()) {
+                                            return;
+                                          }
+                                          await _model.pageViewController
+                                              ?.nextPage(
+                                            duration:
+                                                const Duration(milliseconds: 300),
+                                            curve: Curves.ease,
+                                          );
+                                        },
+                                        text: 'Create Device Profile',
+                                        options: FFButtonOptions(
+                                          height: 40.0,
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 16.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Rubik',
+                                                    color: Colors.white,
+                                                    fontSize: 14.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 0.0,
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                      ),
+                                    ),
+                                  ].divide(const SizedBox(width: 10.0)),
+                                ),
+                              ),
+                            ].divide(const SizedBox(height: 10.0)),
                           ),
                         ),
                       ),

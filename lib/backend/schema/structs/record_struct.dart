@@ -10,13 +10,15 @@ import '/flutter_flow/flutter_flow_util.dart';
 class RecordStruct extends FFFirebaseStruct {
   RecordStruct({
     DropdownStruct? info,
-    HeaderStruct? header,
-    DocumentReference? organization,
-    DocumentReference? user,
-    DocumentReference? device,
+    List<BlockComponentStruct>? header,
+    List<BodySectionStruct>? sections,
+    ProfileStruct? organization,
+    ProfileStruct? user,
+    ProfileStruct? device,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _info = info,
         _header = header,
+        _sections = sections,
         _organization = organization,
         _user = user,
         _device = device,
@@ -34,34 +36,57 @@ class RecordStruct extends FFFirebaseStruct {
   bool hasInfo() => _info != null;
 
   // "header" field.
-  HeaderStruct? _header;
-  HeaderStruct get header => _header ?? HeaderStruct();
-  set header(HeaderStruct? val) => _header = val;
+  List<BlockComponentStruct>? _header;
+  List<BlockComponentStruct> get header => _header ?? const [];
+  set header(List<BlockComponentStruct>? val) => _header = val;
 
-  void updateHeader(Function(HeaderStruct) updateFn) {
-    updateFn(_header ??= HeaderStruct());
+  void updateHeader(Function(List<BlockComponentStruct>) updateFn) {
+    updateFn(_header ??= []);
   }
 
   bool hasHeader() => _header != null;
 
+  // "sections" field.
+  List<BodySectionStruct>? _sections;
+  List<BodySectionStruct> get sections => _sections ?? const [];
+  set sections(List<BodySectionStruct>? val) => _sections = val;
+
+  void updateSections(Function(List<BodySectionStruct>) updateFn) {
+    updateFn(_sections ??= []);
+  }
+
+  bool hasSections() => _sections != null;
+
   // "organization" field.
-  DocumentReference? _organization;
-  DocumentReference? get organization => _organization;
-  set organization(DocumentReference? val) => _organization = val;
+  ProfileStruct? _organization;
+  ProfileStruct get organization => _organization ?? ProfileStruct();
+  set organization(ProfileStruct? val) => _organization = val;
+
+  void updateOrganization(Function(ProfileStruct) updateFn) {
+    updateFn(_organization ??= ProfileStruct());
+  }
 
   bool hasOrganization() => _organization != null;
 
   // "user" field.
-  DocumentReference? _user;
-  DocumentReference? get user => _user;
-  set user(DocumentReference? val) => _user = val;
+  ProfileStruct? _user;
+  ProfileStruct get user => _user ?? ProfileStruct();
+  set user(ProfileStruct? val) => _user = val;
+
+  void updateUser(Function(ProfileStruct) updateFn) {
+    updateFn(_user ??= ProfileStruct());
+  }
 
   bool hasUser() => _user != null;
 
   // "device" field.
-  DocumentReference? _device;
-  DocumentReference? get device => _device;
-  set device(DocumentReference? val) => _device = val;
+  ProfileStruct? _device;
+  ProfileStruct get device => _device ?? ProfileStruct();
+  set device(ProfileStruct? val) => _device = val;
+
+  void updateDevice(Function(ProfileStruct) updateFn) {
+    updateFn(_device ??= ProfileStruct());
+  }
 
   bool hasDevice() => _device != null;
 
@@ -69,12 +94,23 @@ class RecordStruct extends FFFirebaseStruct {
         info: data['info'] is DropdownStruct
             ? data['info']
             : DropdownStruct.maybeFromMap(data['info']),
-        header: data['header'] is HeaderStruct
-            ? data['header']
-            : HeaderStruct.maybeFromMap(data['header']),
-        organization: data['organization'] as DocumentReference?,
-        user: data['user'] as DocumentReference?,
-        device: data['device'] as DocumentReference?,
+        header: getStructList(
+          data['header'],
+          BlockComponentStruct.fromMap,
+        ),
+        sections: getStructList(
+          data['sections'],
+          BodySectionStruct.fromMap,
+        ),
+        organization: data['organization'] is ProfileStruct
+            ? data['organization']
+            : ProfileStruct.maybeFromMap(data['organization']),
+        user: data['user'] is ProfileStruct
+            ? data['user']
+            : ProfileStruct.maybeFromMap(data['user']),
+        device: data['device'] is ProfileStruct
+            ? data['device']
+            : ProfileStruct.maybeFromMap(data['device']),
       );
 
   static RecordStruct? maybeFromMap(dynamic data) =>
@@ -82,10 +118,11 @@ class RecordStruct extends FFFirebaseStruct {
 
   Map<String, dynamic> toMap() => {
         'info': _info?.toMap(),
-        'header': _header?.toMap(),
-        'organization': _organization,
-        'user': _user,
-        'device': _device,
+        'header': _header?.map((e) => e.toMap()).toList(),
+        'sections': _sections?.map((e) => e.toMap()).toList(),
+        'organization': _organization?.toMap(),
+        'user': _user?.toMap(),
+        'device': _device?.toMap(),
       }.withoutNulls;
 
   @override
@@ -97,18 +134,24 @@ class RecordStruct extends FFFirebaseStruct {
         'header': serializeParam(
           _header,
           ParamType.DataStruct,
+          isList: true,
+        ),
+        'sections': serializeParam(
+          _sections,
+          ParamType.DataStruct,
+          isList: true,
         ),
         'organization': serializeParam(
           _organization,
-          ParamType.DocumentReference,
+          ParamType.DataStruct,
         ),
         'user': serializeParam(
           _user,
-          ParamType.DocumentReference,
+          ParamType.DataStruct,
         ),
         'device': serializeParam(
           _device,
-          ParamType.DocumentReference,
+          ParamType.DataStruct,
         ),
       }.withoutNulls;
 
@@ -120,29 +163,35 @@ class RecordStruct extends FFFirebaseStruct {
           false,
           structBuilder: DropdownStruct.fromSerializableMap,
         ),
-        header: deserializeStructParam(
+        header: deserializeStructParam<BlockComponentStruct>(
           data['header'],
           ParamType.DataStruct,
-          false,
-          structBuilder: HeaderStruct.fromSerializableMap,
+          true,
+          structBuilder: BlockComponentStruct.fromSerializableMap,
         ),
-        organization: deserializeParam(
+        sections: deserializeStructParam<BodySectionStruct>(
+          data['sections'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: BodySectionStruct.fromSerializableMap,
+        ),
+        organization: deserializeStructParam(
           data['organization'],
-          ParamType.DocumentReference,
+          ParamType.DataStruct,
           false,
-          collectionNamePath: ['organizations'],
+          structBuilder: ProfileStruct.fromSerializableMap,
         ),
-        user: deserializeParam(
+        user: deserializeStructParam(
           data['user'],
-          ParamType.DocumentReference,
+          ParamType.DataStruct,
           false,
-          collectionNamePath: ['users'],
+          structBuilder: ProfileStruct.fromSerializableMap,
         ),
-        device: deserializeParam(
+        device: deserializeStructParam(
           data['device'],
-          ParamType.DocumentReference,
+          ParamType.DataStruct,
           false,
-          collectionNamePath: ['device_profiles'],
+          structBuilder: ProfileStruct.fromSerializableMap,
         ),
       );
 
@@ -154,26 +203,35 @@ class RecordStruct extends FFFirebaseStruct {
           false,
           structBuilder: DropdownStruct.fromAlgoliaData,
         ),
-        header: convertAlgoliaParam(
+        header: convertAlgoliaParam<BlockComponentStruct>(
           data['header'],
           ParamType.DataStruct,
-          false,
-          structBuilder: HeaderStruct.fromAlgoliaData,
+          true,
+          structBuilder: BlockComponentStruct.fromAlgoliaData,
+        ),
+        sections: convertAlgoliaParam<BodySectionStruct>(
+          data['sections'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: BodySectionStruct.fromAlgoliaData,
         ),
         organization: convertAlgoliaParam(
           data['organization'],
-          ParamType.DocumentReference,
+          ParamType.DataStruct,
           false,
+          structBuilder: ProfileStruct.fromAlgoliaData,
         ),
         user: convertAlgoliaParam(
           data['user'],
-          ParamType.DocumentReference,
+          ParamType.DataStruct,
           false,
+          structBuilder: ProfileStruct.fromAlgoliaData,
         ),
         device: convertAlgoliaParam(
           data['device'],
-          ParamType.DocumentReference,
+          ParamType.DataStruct,
           false,
+          structBuilder: ProfileStruct.fromAlgoliaData,
         ),
         firestoreUtilData: const FirestoreUtilData(
           clearUnsetFields: false,
@@ -186,25 +244,26 @@ class RecordStruct extends FFFirebaseStruct {
 
   @override
   bool operator ==(Object other) {
+    const listEquality = ListEquality();
     return other is RecordStruct &&
         info == other.info &&
-        header == other.header &&
+        listEquality.equals(header, other.header) &&
+        listEquality.equals(sections, other.sections) &&
         organization == other.organization &&
         user == other.user &&
         device == other.device;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([info, header, organization, user, device]);
+  int get hashCode => const ListEquality()
+      .hash([info, header, sections, organization, user, device]);
 }
 
 RecordStruct createRecordStruct({
   DropdownStruct? info,
-  HeaderStruct? header,
-  DocumentReference? organization,
-  DocumentReference? user,
-  DocumentReference? device,
+  ProfileStruct? organization,
+  ProfileStruct? user,
+  ProfileStruct? device,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -212,10 +271,9 @@ RecordStruct createRecordStruct({
 }) =>
     RecordStruct(
       info: info ?? (clearUnsetFields ? DropdownStruct() : null),
-      header: header ?? (clearUnsetFields ? HeaderStruct() : null),
-      organization: organization,
-      user: user,
-      device: device,
+      organization: organization ?? (clearUnsetFields ? ProfileStruct() : null),
+      user: user ?? (clearUnsetFields ? ProfileStruct() : null),
+      device: device ?? (clearUnsetFields ? ProfileStruct() : null),
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
@@ -279,11 +337,27 @@ Map<String, dynamic> getRecordFirestoreData(
     forFieldValue,
   );
 
-  // Handle nested data for "header" field.
-  addHeaderStructData(
+  // Handle nested data for "organization" field.
+  addProfileStructData(
     firestoreData,
-    record.hasHeader() ? record.header : null,
-    'header',
+    record.hasOrganization() ? record.organization : null,
+    'organization',
+    forFieldValue,
+  );
+
+  // Handle nested data for "user" field.
+  addProfileStructData(
+    firestoreData,
+    record.hasUser() ? record.user : null,
+    'user',
+    forFieldValue,
+  );
+
+  // Handle nested data for "device" field.
+  addProfileStructData(
+    firestoreData,
+    record.hasDevice() ? record.device : null,
+    'device',
     forFieldValue,
   );
 

@@ -11,12 +11,12 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import '../../utils/loading/loading_widget.dart';
-import '../../pages/device_profiles/components/graphs/graphline/graphline_widget.dart';
-import '../../pages/device_profiles/components/graphs/graphradial/graphradial_widget.dart';
-import '../../pages/device_profiles/components/graphs/graphcolumn/graphcolumn_widget.dart';
-import '../../pages/device_profiles/components/graphs/valuenum/valuenum_widget.dart';
-import '../../pages/device_profiles/components/graphs/valuestring/valuestring_widget.dart';
-import '../../pages/device_profiles/components/graphs/valuetrend/valuetrend_widget.dart';
+import '../../pages/device_profiles/components/subblocks/graph_line/graph_line_widget.dart';
+import '../../pages/device_profiles/components/subblocks/graph_radial/graph_radial_widget.dart';
+import '../../pages/device_profiles/components/subblocks/graph_column/graph_column_widget.dart';
+import '../../pages/device_profiles/components/subblocks/value_num/value_num_widget.dart';
+import '../../pages/device_profiles/components/subblocks/value_string/value_string_widget.dart';
+import '../../pages/device_profiles/components/subblocks/value_trend/value_trend_widget.dart';
 
 class SubblockSelector extends StatefulWidget {
   const SubblockSelector({
@@ -33,7 +33,7 @@ class SubblockSelector extends StatefulWidget {
   final Color color;
 
   @override
-  State<SubblockSelector> createState() => _SubblockSelectorrState();
+  State<SubblockSelector> createState() => _SubblockSelectorState();
 }
 
 class _SubblockSelectorState extends State<SubblockSelector> {
@@ -45,18 +45,19 @@ class _SubblockSelectorState extends State<SubblockSelector> {
     }
 
     // Get the required variable type and graph type
-    final requiredVar = widget.block.variable[0].type;
-    final graphType = widget.block.graph;
+    final requiredVar = twoToArrayString(
+        widget.block.variables[0].type, widget.block.variables[0].isList);
+    final graphType = widget.block.subBlock;
 
     // Return the appropriate widget based on the variable and graph type
     switch (requiredVar) {
       case "NUMBER":
         switch (graphType) {
           case "VALUE_NUM":
-            return ValuenumWidget(
+            return ValueNumWidget(
                 variable: widget.block.variables[0], color: widget.color);
           case "GRAPH_RADIAL":
-            return GraphradialWidget(
+            return GraphRadialWidget(
                 variable: widget.block.variables[0], color: widget.color);
           default:
             return LoadingWidget();
@@ -65,16 +66,19 @@ class _SubblockSelectorState extends State<SubblockSelector> {
       case "NUMBER_ARRAY":
         switch (graphType) {
           case "GRAPH_LINE":
-            return GraphlineWidget(
+            return GraphLineWidget(
                 variable: widget.block.variables[0], color: widget.color);
           case "GRAPH_COLUMN":
-            return GraphcolumnWidget(
+            return GraphColumnWidget(
                 variable: widget.block.variables[0], color: widget.color);
           case "GRAPH_RADIAL":
-            return GraphradialWidget(
+            return GraphRadialWidget(
                 variable: widget.block.variables[0], color: widget.color);
           case "VALUE_TREND":
-            return ValuetrendWidget(
+            return ValueTrendWidget(
+                variable: widget.block.variables[0], color: widget.color);
+          case "VALUE_NUM":
+            return ValueNumWidget(
                 variable: widget.block.variables[0], color: widget.color);
           default:
             return LoadingWidget();
@@ -83,7 +87,7 @@ class _SubblockSelectorState extends State<SubblockSelector> {
       case "STRING":
         switch (graphType) {
           case "VALUE_STRING":
-            return ValuestringWidget(
+            return ValueStringWidget(
                 variable: widget.block.variables[0], color: widget.color);
           default:
             return LoadingWidget();
@@ -92,7 +96,7 @@ class _SubblockSelectorState extends State<SubblockSelector> {
       case "STRING_ARRAY":
         switch (graphType) {
           case "VALUE_STRING":
-            return ValuestringWidget(
+            return ValueStringWidget(
                 variable: widget.block.variables[0], color: widget.color);
           default:
             return LoadingWidget();

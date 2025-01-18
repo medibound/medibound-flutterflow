@@ -3,11 +3,11 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'graph_model.dart';
-export 'graph_model.dart';
+import 'subblock_model.dart';
+export 'subblock_model.dart';
 
-class GraphWidget extends StatefulWidget {
-  const GraphWidget({
+class SubblockWidget extends StatefulWidget {
+  const SubblockWidget({
     super.key,
     required this.block,
     required this.graphIndex,
@@ -19,11 +19,11 @@ class GraphWidget extends StatefulWidget {
   final GraphOrientation? orientation;
 
   @override
-  State<GraphWidget> createState() => _GraphWidgetState();
+  State<SubblockWidget> createState() => _SubblockWidgetState();
 }
 
-class _GraphWidgetState extends State<GraphWidget> {
-  late GraphModel _model;
+class _SubblockWidgetState extends State<SubblockWidget> {
+  late SubblockModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -34,7 +34,7 @@ class _GraphWidgetState extends State<GraphWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => GraphModel());
+    _model = createModel(context, () => SubblockModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -51,7 +51,7 @@ class _GraphWidgetState extends State<GraphWidget> {
     return SizedBox(
       width: double.infinity,
       height: double.infinity,
-      child: custom_widgets.GraphSelector(
+      child: custom_widgets.SubblockSelector(
         width: double.infinity,
         height: double.infinity,
         color: widget.block!.color!,
