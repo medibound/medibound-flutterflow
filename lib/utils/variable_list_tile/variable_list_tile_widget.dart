@@ -60,7 +60,7 @@ class _VariableListTileWidgetState extends State<VariableListTileWidget> {
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(15.0, 10.0, 15.0, 10.0),
+          padding: EdgeInsetsDirectional.fromSTEB(15.0, 10.0, 15.0, 10.0),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -105,7 +105,7 @@ class _VariableListTileWidgetState extends State<VariableListTileWidget> {
                 ),
               Expanded(
                 child: Container(
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                 ),
               ),
               FFButtonWidget(
@@ -115,10 +115,10 @@ class _VariableListTileWidgetState extends State<VariableListTileWidget> {
                 text: 'Edit',
                 options: FFButtonOptions(
                   width: 40.0,
-                  padding: const EdgeInsets.all(0.0),
+                  padding: EdgeInsets.all(0.0),
                   iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: const Color(0x00E0E3E7),
+                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: Color(0x00E0E3E7),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Rubik',
                         color: FlutterFlowTheme.of(context).secondary,
@@ -138,10 +138,10 @@ class _VariableListTileWidgetState extends State<VariableListTileWidget> {
                 },
                 text: 'Delete',
                 options: FFButtonOptions(
-                  padding: const EdgeInsets.all(0.0),
+                  padding: EdgeInsets.all(0.0),
                   iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: const Color(0x00E0E3E7),
+                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: Color(0x00E0E3E7),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Rubik',
                         color: FlutterFlowTheme.of(context).error,
@@ -155,7 +155,7 @@ class _VariableListTileWidgetState extends State<VariableListTileWidget> {
                   hoverElevation: 0.0,
                 ),
               ),
-            ].divide(const SizedBox(width: 15.0)),
+            ].divide(SizedBox(width: 15.0)),
           ),
         ),
       ),

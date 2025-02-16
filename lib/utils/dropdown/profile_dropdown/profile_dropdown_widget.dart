@@ -56,11 +56,11 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: const AlignmentDirectional(1.0, 0.0),
+      alignment: AlignmentDirectional(1.0, 0.0),
       children: [
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-          child: SizedBox(
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+          child: Container(
             width: widget.width,
             child: TextFormField(
               controller: _model.textController,
@@ -82,14 +82,14 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
                       letterSpacing: 0.0,
                     ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(
+                  borderSide: BorderSide(
                     color: Color(0x00000000),
                     width: 2.0,
                   ),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(
+                  borderSide: BorderSide(
                     color: Color(0x00000000),
                     width: 2.0,
                   ),
@@ -112,7 +112,7 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
                 filled: true,
                 fillColor: FlutterFlowTheme.of(context).alternate,
                 contentPadding:
-                    const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                    EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
                 hoverColor: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -128,7 +128,7 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
         ),
         Builder(
           builder: (context) => Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
             child: InkWell(
               splashColor: Colors.transparent,
               focusColor: Colors.transparent,
@@ -139,9 +139,9 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
                   context: context,
                   isGlobal: false,
                   avoidOverflow: true,
-                  targetAnchor: const AlignmentDirectional(-1.0, 1.0)
+                  targetAnchor: AlignmentDirectional(-1.0, 1.0)
                       .resolve(Directionality.of(context)),
-                  followerAnchor: const AlignmentDirectional(-1.0, -1.0)
+                  followerAnchor: AlignmentDirectional(-1.0, -1.0)
                       .resolve(Directionality.of(context)),
                   builder: (dialogContext) {
                     return Material(
@@ -174,10 +174,10 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
               child: Container(
                 width: double.infinity,
                 height: 50.0,
-                decoration: const BoxDecoration(),
-                alignment: const AlignmentDirectional(-1.0, 0.0),
+                decoration: BoxDecoration(),
+                alignment: AlignmentDirectional(-1.0, 0.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 10.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 10.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -196,12 +196,12 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
                               width: 32.0,
                               height: 32.0,
                               clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
                               child: CachedNetworkImage(
-                                fadeInDuration: const Duration(milliseconds: 500),
-                                fadeOutDuration: const Duration(milliseconds: 500),
+                                fadeInDuration: Duration(milliseconds: 500),
+                                fadeOutDuration: Duration(milliseconds: 500),
                                 imageUrl: _model.profile != null
                                     ? _model.profile!.photoUrl
                                     : '',
@@ -224,7 +224,7 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
                             ),
                           ],
                         ),
-                      const Spacer(),
+                      Spacer(),
                       Builder(
                         builder: (context) {
                           if (_model.profile != null) {
@@ -249,8 +249,8 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
                           } else {
                             return Container(
                               width: 40.0,
-                              decoration: const BoxDecoration(),
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              decoration: BoxDecoration(),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: FaIcon(
                                 FontAwesomeIcons.caretDown,
                                 color:
@@ -261,7 +261,7 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
                           }
                         },
                       ),
-                    ].divide(const SizedBox(width: 10.0)),
+                    ].divide(SizedBox(width: 10.0)),
                   ),
                 ),
               ),

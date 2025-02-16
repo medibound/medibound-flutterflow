@@ -1,30 +1,36 @@
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/device_profiles/builder/body_section/body_section_widget.dart';
-import '/pages/device_profiles/builder/header/header_widget.dart';
+import '/pages/device_profiles/record/body_section/body_section_widget.dart';
+import '/pages/device_profiles/record/header/header_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'record_model.dart';
-export 'record_model.dart';
+import 'record_sample_model.dart';
+export 'record_sample_model.dart';
 
-class RecordWidget extends StatefulWidget {
-  const RecordWidget({
+class RecordSampleWidget extends StatefulWidget {
+  const RecordSampleWidget({
     super.key,
     required this.recordWidth,
-    required this.record,
+    required this.header,
+    required this.sections,
+    required this.profile,
+    required this.varList,
   });
 
   final double? recordWidth;
-  final RecordStruct? record;
+  final List<BlockComponentStruct>? header;
+  final List<BodySectionStruct>? sections;
+  final ProfileStruct? profile;
+  final List<DeviceVariableStruct>? varList;
 
   @override
-  State<RecordWidget> createState() => _RecordWidgetState();
+  State<RecordSampleWidget> createState() => _RecordSampleWidgetState();
 }
 
-class _RecordWidgetState extends State<RecordWidget> {
-  late RecordModel _model;
+class _RecordSampleWidgetState extends State<RecordSampleWidget> {
+  late RecordSampleModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -35,7 +41,7 @@ class _RecordWidgetState extends State<RecordWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RecordModel());
+    _model = createModel(context, () => RecordSampleModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -51,9 +57,9 @@ class _RecordWidgetState extends State<RecordWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: widget.recordWidth,
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 20.0),
+        padding: EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 20.0),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -67,14 +73,14 @@ class _RecordWidgetState extends State<RecordWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-1.0, 0.0),
+                alignment: AlignmentDirectional(-1.0, 0.0),
                 child: Container(
                   width: widget.recordWidth,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -96,10 +102,8 @@ class _RecordWidgetState extends State<RecordWidget> {
                               clipBehavior: Clip.none,
                               children: [
                                 AutoSizeText(
-                                  valueOrDefault<String>(
-                                    widget.record?.info.display,
-                                    'Example Record',
-                                  ).maybeHandleOverflow(
+                                  '${widget.profile?.displayName} Record'
+                                      .maybeHandleOverflow(
                                     maxChars: 20,
                                     replacement: '…',
                                   ),
@@ -112,42 +116,44 @@ class _RecordWidgetState extends State<RecordWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: 20.0,
-                                      height: 20.0,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
+                                Container(
+                                  decoration: BoxDecoration(),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 20.0,
+                                        height: 20.0,
+                                        clipBehavior: Clip.antiAlias,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: CachedNetworkImage(
+                                          fadeInDuration:
+                                              Duration(milliseconds: 500),
+                                          fadeOutDuration:
+                                              Duration(milliseconds: 500),
+                                          imageUrl: widget.profile!.photoUrl,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
-                                      child: CachedNetworkImage(
-                                        fadeInDuration:
-                                            const Duration(milliseconds: 500),
-                                        fadeOutDuration:
-                                            const Duration(milliseconds: 500),
-                                        imageUrl: widget
-                                            .record!.organization.photoUrl,
-                                        fit: BoxFit.cover,
+                                      AutoSizeText(
+                                        valueOrDefault<String>(
+                                          widget.profile?.displayName,
+                                          'Device Name',
+                                        ),
+                                        textAlign: TextAlign.start,
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Rubik',
+                                              letterSpacing: 0.0,
+                                            ),
                                       ),
-                                    ),
-                                    AutoSizeText(
-                                      valueOrDefault<String>(
-                                        widget.record?.device.displayName,
-                                        'Device Name',
-                                      ),
-                                      textAlign: TextAlign.start,
-                                      maxLines: 1,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Rubik',
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                  ].divide(const SizedBox(width: 7.5)),
+                                    ].divide(SizedBox(width: 7.5)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -168,22 +174,23 @@ class _RecordWidgetState extends State<RecordWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-1.0, 0.0),
+                alignment: AlignmentDirectional(-1.0, 0.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                   child: wrapWithModel(
                     model: _model.headerModel,
                     updateCallback: () => safeSetState(() {}),
                     child: HeaderWidget(
-                      header: widget.record!.header,
+                      header: widget.header!,
                       headerWidth: (widget.recordWidth!) - 40,
+                      varList: widget.varList!,
                     ),
                   ),
                 ),
               ),
               Builder(
                 builder: (context) {
-                  final sections = widget.record?.sections.toList() ?? [];
+                  final sections = widget.sections!.toList();
 
                   return ListView.separated(
                     padding: EdgeInsets.zero,
@@ -191,20 +198,21 @@ class _RecordWidgetState extends State<RecordWidget> {
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
                     itemCount: sections.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 15.0),
+                    separatorBuilder: (_, __) => SizedBox(height: 15.0),
                     itemBuilder: (context, sectionsIndex) {
                       final sectionsItem = sections[sectionsIndex];
                       return BodySectionWidget(
                         key: Key(
-                            'Keye3n_${sectionsIndex}_of_${sections.length}'),
+                            'Keykbv_${sectionsIndex}_of_${sections.length}'),
                         bodySection: sectionsItem,
                         bodySectionWidth: (widget.recordWidth!) - 40,
+                        varList: widget.varList!,
                       );
                     },
                   );
                 },
               ),
-            ].divide(const SizedBox(height: 10.0)),
+            ].divide(SizedBox(height: 10.0)),
           ),
         ),
       ),

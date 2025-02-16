@@ -4,6 +4,7 @@ import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/dropdown/component_profile_tile/component_profile_tile_widget.dart';
+import '/utils/empty/empty_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -95,7 +96,7 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
           }(),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -112,7 +113,7 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: Container(
@@ -124,7 +125,7 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
                       focusNode: _model.searchFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.searchTextController',
-                        const Duration(milliseconds: 2000),
+                        Duration(milliseconds: 2000),
                         () async {
                           if (widget.collectionType ==
                               CollectionProfiles.USERS) {
@@ -169,7 +170,7 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
                           shadows: [
                             Shadow(
                               color: FlutterFlowTheme.of(context).customColor1,
-                              offset: const Offset(0.0, 2.0),
+                              offset: Offset(0.0, 2.0),
                               blurRadius: 40.0,
                             )
                           ],
@@ -187,7 +188,7 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
                         focusedErrorBorder: InputBorder.none,
                         filled: true,
                         fillColor: FlutterFlowTheme.of(context).alternate,
-                        contentPadding: const EdgeInsets.all(15.0),
+                        contentPadding: EdgeInsets.all(15.0),
                         hoverColor: FlutterFlowTheme.of(context).customColor1,
                         suffixIcon: _model.searchTextController!.text.isNotEmpty
                             ? InkWell(
@@ -226,7 +227,7 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
                                   safeSetState(() {});
                                   safeSetState(() {});
                                 },
-                                child: const Icon(
+                                child: Icon(
                                   Icons.clear,
                                   size: 22,
                                 ),
@@ -245,7 +246,7 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                 child: Text(
                   () {
                     if (_model.searchTextController.text == '') {
@@ -264,7 +265,7 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                 child: Builder(
                   builder: (context) {
                     if (widget.collectionType ==
@@ -274,7 +275,7 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
                           final lists = (_model.organizations
                                       ?.map((e) => e)
                                       .toList()
-                                      .where((e) => e.displayName
+                                      .where((e) => e.profile.displayName
                                           .toLowerCase()
                                           .contains(_model
                                               .searchTextController.text
@@ -294,7 +295,7 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
                               final listsItem = lists[listsIndex];
                               return Container(
                                 height: 50.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -302,26 +303,22 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     await widget.action?.call(
-                                      ProfileStruct(
-                                        displayName: listsItem.displayName,
-                                        photoUrl: listsItem.photoUrl,
-                                        profileType: widget.collectionType,
-                                        uid: listsItem.reference.id,
-                                      ),
+                                      listsItem.profile,
                                     );
                                     Navigator.pop(context);
                                   },
                                   child: ComponentProfileTileWidget(
                                     key: Key(
                                         'Keyh8r_${listsIndex}_of_${lists.length}'),
-                                    display: listsItem.displayName,
+                                    display: listsItem.profile.displayName,
                                     subtitle: FFAppState()
                                         .OrganizationTypes
                                         .where((e) => e.code == listsItem.type)
                                         .toList()
                                         .firstOrNull!
                                         .display,
-                                    photoUrl: listsItem.photoUrl,
+                                    photoUrl: listsItem.profile.photoUrl,
+                                    widget: () => EmptyWidget(),
                                   ),
                                 ),
                               );
@@ -374,21 +371,17 @@ class _ProfileListWidgetState extends State<ProfileListWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         await widget.action?.call(
-                                          ProfileStruct(
-                                            displayName: usersItem.displayName,
-                                            photoUrl: usersItem.photoUrl,
-                                            profileType: widget.collectionType,
-                                            uid: usersItem.reference.id,
-                                          ),
+                                          usersItem.profile,
                                         );
                                         Navigator.pop(context);
                                       },
                                       child: ComponentProfileTileWidget(
                                         key: Key(
                                             'Keyqvo_${usersIndex}_of_${users.length}'),
-                                        display: usersItem.displayName,
+                                        display: usersItem.profile.displayName,
                                         subtitle: usersItem.email,
                                         photoUrl: usersItem.photoUrl,
+                                        widget: () => EmptyWidget(),
                                       ),
                                     ),
                                   );

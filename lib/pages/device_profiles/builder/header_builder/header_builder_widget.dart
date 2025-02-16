@@ -11,7 +11,12 @@ import 'header_builder_model.dart';
 export 'header_builder_model.dart';
 
 class HeaderBuilderWidget extends StatefulWidget {
-  const HeaderBuilderWidget({super.key});
+  const HeaderBuilderWidget({
+    super.key,
+    required this.varList,
+  });
+
+  final List<DeviceVariableStruct>? varList;
 
   @override
   State<HeaderBuilderWidget> createState() => _HeaderBuilderWidgetState();
@@ -44,7 +49,7 @@ class _HeaderBuilderWidgetState extends State<HeaderBuilderWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Wrap(
         spacing: 10.0,
         runSpacing: 0.0,
@@ -57,8 +62,8 @@ class _HeaderBuilderWidgetState extends State<HeaderBuilderWidget> {
         children: [
           Container(
             height: 40.0,
-            decoration: const BoxDecoration(),
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            decoration: BoxDecoration(),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Text(
               'Header Components',
               style: FlutterFlowTheme.of(context).titleLarge.override(
@@ -107,16 +112,16 @@ class _HeaderBuilderWidgetState extends State<HeaderBuilderWidget> {
                     width: 1.0,
                   ),
                 ),
-                alignment: const AlignmentDirectional(-1.0, 0.0),
+                alignment: AlignmentDirectional(-1.0, 0.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 10.0, 10.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 10.0, 10.0),
                   child: Builder(
                     builder: (context) {
                       final headerComponents =
                           _model.header.toList().take(4).toList();
                       if (headerComponents.isEmpty) {
                         return Center(
-                          child: SizedBox(
+                          child: Container(
                             width: double.infinity,
                             height: 100.0,
                             child: EmptyListWidget(
@@ -137,17 +142,17 @@ class _HeaderBuilderWidgetState extends State<HeaderBuilderWidget> {
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemCount: headerComponents.length,
-                        separatorBuilder: (_, __) => const SizedBox(width: 5.0),
+                        separatorBuilder: (_, __) => SizedBox(width: 5.0),
                         itemBuilder: (context, headerComponentsIndex) {
                           final headerComponentsItem =
                               headerComponents[headerComponentsIndex];
-                          return SizedBox(
+                          return Container(
                             height: 105.0,
                             child: Stack(
-                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.0, -1.0),
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 5.0, 0.0, 0.0),
                                   child: ComponentWidget(
                                     key: Key(
@@ -155,6 +160,7 @@ class _HeaderBuilderWidgetState extends State<HeaderBuilderWidget> {
                                     totalHeight: 100.0,
                                     block: headerComponentsItem,
                                     spacing: 10.0,
+                                    varList: widget.varList!,
                                   ),
                                 ),
                                 InkWell(
@@ -175,7 +181,7 @@ class _HeaderBuilderWidgetState extends State<HeaderBuilderWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        boxShadow: const [
+                                        boxShadow: [
                                           BoxShadow(
                                             blurRadius: 10.0,
                                             color: Color(0x63000000),
@@ -195,7 +201,7 @@ class _HeaderBuilderWidgetState extends State<HeaderBuilderWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: FaIcon(
                                           FontAwesomeIcons.minus,
                                           color: FlutterFlowTheme.of(context)

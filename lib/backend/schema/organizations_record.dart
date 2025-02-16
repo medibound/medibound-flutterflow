@@ -11,9 +11,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class OrganizationsRecord extends FirestoreRecord {
   OrganizationsRecord._(
-    super.reference,
-    super.data,
-  ) {
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
     _initializeFields();
   }
 
@@ -21,16 +21,6 @@ class OrganizationsRecord extends FirestoreRecord {
   String? _email;
   String get email => _email ?? '';
   bool hasEmail() => _email != null;
-
-  // "display_name" field.
-  String? _displayName;
-  String get displayName => _displayName ?? '';
-  bool hasDisplayName() => _displayName != null;
-
-  // "photo_url" field.
-  String? _photoUrl;
-  String get photoUrl => _photoUrl ?? '';
-  bool hasPhotoUrl() => _photoUrl != null;
 
   // "created_time" field.
   DateTime? _createdTime;
@@ -57,11 +47,6 @@ class OrganizationsRecord extends FirestoreRecord {
   String get privacyPolicy => _privacyPolicy ?? '';
   bool hasPrivacyPolicy() => _privacyPolicy != null;
 
-  // "uid" field.
-  String? _uid;
-  String get uid => _uid ?? '';
-  bool hasUid() => _uid != null;
-
   // "members" field.
   List<RoledUserStruct>? _members;
   List<RoledUserStruct> get members => _members ?? const [];
@@ -72,21 +57,26 @@ class OrganizationsRecord extends FirestoreRecord {
   String get type => _type ?? '';
   bool hasType() => _type != null;
 
+  // "profile" field.
+  ProfileStruct? _profile;
+  ProfileStruct get profile => _profile ?? ProfileStruct();
+  bool hasProfile() => _profile != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
-    _displayName = snapshotData['display_name'] as String?;
-    _photoUrl = snapshotData['photo_url'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _editedTime = snapshotData['edited_time'] as DateTime?;
     _address = snapshotData['address'] as String?;
     _website = snapshotData['website'] as String?;
     _privacyPolicy = snapshotData['privacyPolicy'] as String?;
-    _uid = snapshotData['uid'] as String?;
     _members = getStructList(
       snapshotData['members'],
       RoledUserStruct.fromMap,
     );
     _type = snapshotData['type'] as String?;
+    _profile = snapshotData['profile'] is ProfileStruct
+        ? snapshotData['profile']
+        : ProfileStruct.maybeFromMap(snapshotData['profile']);
   }
 
   static CollectionReference get collection =>
@@ -114,8 +104,6 @@ class OrganizationsRecord extends FirestoreRecord {
       OrganizationsRecord.getDocumentFromData(
         {
           'email': snapshot.data['email'],
-          'display_name': snapshot.data['display_name'],
-          'photo_url': snapshot.data['photo_url'],
           'created_time': convertAlgoliaParam(
             snapshot.data['created_time'],
             ParamType.DateTime,
@@ -129,13 +117,15 @@ class OrganizationsRecord extends FirestoreRecord {
           'address': snapshot.data['address'],
           'website': snapshot.data['website'],
           'privacyPolicy': snapshot.data['privacyPolicy'],
-          'uid': snapshot.data['uid'],
           'members': safeGet(
             () => (snapshot.data['members'] as Iterable)
                 .map((d) => RoledUserStruct.fromAlgoliaData(d).toMap())
                 .toList(),
           ),
           'type': snapshot.data['type'],
+          'profile':
+              ProfileStruct.fromAlgoliaData(snapshot.data['profile'] ?? {})
+                  .toMap(),
         },
         OrganizationsRecord.collection.doc(snapshot.objectID),
       );
@@ -173,30 +163,29 @@ class OrganizationsRecord extends FirestoreRecord {
 
 Map<String, dynamic> createOrganizationsRecordData({
   String? email,
-  String? displayName,
-  String? photoUrl,
   DateTime? createdTime,
   DateTime? editedTime,
   String? address,
   String? website,
   String? privacyPolicy,
-  String? uid,
   String? type,
+  ProfileStruct? profile,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'email': email,
-      'display_name': displayName,
-      'photo_url': photoUrl,
       'created_time': createdTime,
       'edited_time': editedTime,
       'address': address,
       'website': website,
       'privacyPolicy': privacyPolicy,
-      'uid': uid,
       'type': type,
+      'profile': ProfileStruct().toMap(),
     }.withoutNulls,
   );
+
+  // Handle nested data for "profile" field.
+  addProfileStructData(firestoreData, profile, 'profile');
 
   return firestoreData;
 }
@@ -209,31 +198,27 @@ class OrganizationsRecordDocumentEquality
   bool equals(OrganizationsRecord? e1, OrganizationsRecord? e2) {
     const listEquality = ListEquality();
     return e1?.email == e2?.email &&
-        e1?.displayName == e2?.displayName &&
-        e1?.photoUrl == e2?.photoUrl &&
         e1?.createdTime == e2?.createdTime &&
         e1?.editedTime == e2?.editedTime &&
         e1?.address == e2?.address &&
         e1?.website == e2?.website &&
         e1?.privacyPolicy == e2?.privacyPolicy &&
-        e1?.uid == e2?.uid &&
         listEquality.equals(e1?.members, e2?.members) &&
-        e1?.type == e2?.type;
+        e1?.type == e2?.type &&
+        e1?.profile == e2?.profile;
   }
 
   @override
   int hash(OrganizationsRecord? e) => const ListEquality().hash([
         e?.email,
-        e?.displayName,
-        e?.photoUrl,
         e?.createdTime,
         e?.editedTime,
         e?.address,
         e?.website,
         e?.privacyPolicy,
-        e?.uid,
         e?.members,
-        e?.type
+        e?.type,
+        e?.profile
       ]);
 
   @override

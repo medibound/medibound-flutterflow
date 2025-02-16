@@ -38,7 +38,7 @@ class _LoadingWidgetState extends State<LoadingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: 30.0,
       height: 30.0,
       child: custom_widgets.LoadingIndicator(

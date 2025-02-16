@@ -9,7 +9,7 @@ class DatePickerWidget extends StatefulWidget {
   const DatePickerWidget({
     super.key,
     String? label,
-  }) : label = label ?? 'Label';
+  }) : this.label = label ?? 'Label';
 
   final String label;
 
@@ -47,16 +47,16 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: const AlignmentDirectional(1.0, 0.0),
+      alignment: AlignmentDirectional(1.0, 0.0),
       children: [
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
           child: TextFormField(
             controller: _model.textController,
             focusNode: _model.textFieldFocusNode,
             onChanged: (_) => EasyDebounce.debounce(
               '_model.textController',
-              const Duration(milliseconds: 2000),
+              Duration(milliseconds: 2000),
               () async {
                 if (_model.textController.text == '') {
                   _model.date = null;
@@ -81,14 +81,14 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
                     letterSpacing: 0.0,
                   ),
               enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
+                borderSide: BorderSide(
                   color: Color(0x00000000),
                   width: 2.0,
                 ),
                 borderRadius: BorderRadius.circular(10.0),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
+                borderSide: BorderSide(
                   color: Color(0x00000000),
                   width: 2.0,
                 ),
@@ -110,7 +110,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
               ),
               filled: true,
               fillColor: FlutterFlowTheme.of(context).alternate,
-              contentPadding: const EdgeInsets.all(20.0),
+              contentPadding: EdgeInsets.all(20.0),
               hoverColor: FlutterFlowTheme.of(context).secondaryBackground,
             ),
             style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -128,7 +128,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
           hoverColor: Colors.transparent,
           highlightColor: Colors.transparent,
           onTap: () async {
-            final datePickedDate = await showDatePicker(
+            final _datePickedDate = await showDatePicker(
               context: context,
               initialDate: getCurrentTimestamp,
               firstDate: DateTime(1900),
@@ -161,13 +161,17 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
               },
             );
 
-            if (datePickedDate != null) {
+            if (_datePickedDate != null) {
               safeSetState(() {
                 _model.datePicked = DateTime(
-                  datePickedDate.year,
-                  datePickedDate.month,
-                  datePickedDate.day,
+                  _datePickedDate.year,
+                  _datePickedDate.month,
+                  _datePickedDate.day,
                 );
+              });
+            } else if (_model.datePicked != null) {
+              safeSetState(() {
+                _model.datePicked = getCurrentTimestamp;
               });
             }
             safeSetState(() {
@@ -183,7 +187,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
           child: Container(
             width: double.infinity,
             height: 57.0,
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(),
           ),
         ),
       ],

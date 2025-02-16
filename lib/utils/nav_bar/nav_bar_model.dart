@@ -21,6 +21,10 @@ class NavBarModel extends FlutterFlowModel<NavBarWidget> {
   late MenuTileModel menuTileModel5;
   // Model for MenuTile component.
   late MenuTileModel menuTileModel6;
+  // Model for MenuTile component.
+  late MenuTileModel menuTileModel7;
+  // Model for MenuTile component.
+  late MenuTileModel menuTileModel8;
 
   @override
   void initState(BuildContext context) {
@@ -31,6 +35,8 @@ class NavBarModel extends FlutterFlowModel<NavBarWidget> {
     menuTileModel4 = createModel(context, () => MenuTileModel());
     menuTileModel5 = createModel(context, () => MenuTileModel());
     menuTileModel6 = createModel(context, () => MenuTileModel());
+    menuTileModel7 = createModel(context, () => MenuTileModel());
+    menuTileModel8 = createModel(context, () => MenuTileModel());
   }
 
   @override
@@ -42,5 +48,7 @@ class NavBarModel extends FlutterFlowModel<NavBarWidget> {
     menuTileModel4.dispose();
     menuTileModel5.dispose();
     menuTileModel6.dispose();
+    menuTileModel7.dispose();
+    menuTileModel8.dispose();
   }
 }

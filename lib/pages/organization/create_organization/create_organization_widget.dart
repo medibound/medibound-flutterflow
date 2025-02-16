@@ -67,10 +67,10 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
     return Stack(
       children: [
         Align(
-          alignment: const AlignmentDirectional(0.0, 0.0),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-            child: SizedBox(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+            child: Container(
               width: double.infinity,
               child: PageView(
                 physics: const NeverScrollableScrollPhysics(),
@@ -79,7 +79,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                 scrollDirection: Axis.horizontal,
                 children: [
                   Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Form(
                       key: _model.formKey2,
                       autovalidateMode: AutovalidateMode.disabled,
@@ -109,7 +109,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                     ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 4.0, 0.0, 24.0),
                                 child: Text(
                                   'Let\'s get started by filling out the form below.',
@@ -125,7 +125,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                             ],
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: wrapWithModel(
                               model: _model.imagePickerModel,
                               updateCallback: () => safeSetState(() {}),
@@ -201,7 +201,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                               clipBehavior: Clip.none,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -223,7 +223,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                           Shadow(
                                             color: FlutterFlowTheme.of(context)
                                                 .customColor1,
-                                            offset: const Offset(0.0, 2.0),
+                                            offset: Offset(0.0, 2.0),
                                             blurRadius: 40.0,
                                           )
                                         ],
@@ -237,7 +237,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 2.0,
                                         ),
@@ -274,7 +274,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                       filled: true,
                                       fillColor: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      contentPadding: const EdgeInsets.all(20.0),
+                                      contentPadding: EdgeInsets.all(20.0),
                                       hoverColor: FlutterFlowTheme.of(context)
                                           .customColor1,
                                     ),
@@ -293,7 +293,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.websiteTextController,
@@ -314,7 +314,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                           Shadow(
                                             color: FlutterFlowTheme.of(context)
                                                 .customColor1,
-                                            offset: const Offset(0.0, 2.0),
+                                            offset: Offset(0.0, 2.0),
                                             blurRadius: 40.0,
                                           )
                                         ],
@@ -328,7 +328,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 2.0,
                                         ),
@@ -365,7 +365,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                       filled: true,
                                       fillColor: FlutterFlowTheme.of(context)
                                           .alternate,
-                                      contentPadding: const EdgeInsets.all(20.0),
+                                      contentPadding: EdgeInsets.all(20.0),
                                       hoverColor: FlutterFlowTheme.of(context)
                                           .customColor1,
                                     ),
@@ -397,14 +397,14 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
                                       if (_model.formKey2.currentState ==
@@ -414,17 +414,17 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                         return;
                                       }
                                       await _model.pageViewController?.nextPage(
-                                        duration: const Duration(milliseconds: 300),
+                                        duration: Duration(milliseconds: 300),
                                         curve: Curves.ease,
                                       );
                                     },
                                     text: 'Next',
                                     options: FFButtonOptions(
                                       height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 16.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
@@ -446,10 +446,10 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 10.0)),
+                              ].divide(SizedBox(width: 10.0)),
                             ),
                           ),
-                        ].divide(const SizedBox(height: 10.0)),
+                        ].divide(SizedBox(height: 10.0)),
                       ),
                     ),
                   ),
@@ -482,7 +482,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                   ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 4.0, 0.0, 24.0),
                               child: Text(
                                 'Expand how users can reach your organization',
@@ -508,7 +508,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                           clipBehavior: Clip.none,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: TextFormField(
                                 controller: _model.addressTextController,
@@ -529,7 +529,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                       Shadow(
                                         color: FlutterFlowTheme.of(context)
                                             .customColor1,
-                                        offset: const Offset(0.0, 2.0),
+                                        offset: Offset(0.0, 2.0),
                                         blurRadius: 40.0,
                                       )
                                     ],
@@ -544,7 +544,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
@@ -575,7 +575,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                   filled: true,
                                   fillColor:
                                       FlutterFlowTheme.of(context).alternate,
-                                  contentPadding: const EdgeInsets.all(20.0),
+                                  contentPadding: EdgeInsets.all(20.0),
                                   hoverColor:
                                       FlutterFlowTheme.of(context).customColor1,
                                 ),
@@ -593,7 +593,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: TextFormField(
                                 controller: _model.supportEmailTextController,
@@ -614,7 +614,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                       Shadow(
                                         color: FlutterFlowTheme.of(context)
                                             .customColor1,
-                                        offset: const Offset(0.0, 2.0),
+                                        offset: Offset(0.0, 2.0),
                                         blurRadius: 40.0,
                                       )
                                     ],
@@ -628,7 +628,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
@@ -659,7 +659,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                   filled: true,
                                   fillColor:
                                       FlutterFlowTheme.of(context).alternate,
-                                  contentPadding: const EdgeInsets.all(20.0),
+                                  contentPadding: EdgeInsets.all(20.0),
                                   hoverColor:
                                       FlutterFlowTheme.of(context).customColor1,
                                 ),
@@ -678,7 +678,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: TextFormField(
                                 controller: _model.privacyPolicyTextController,
@@ -699,7 +699,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                       Shadow(
                                         color: FlutterFlowTheme.of(context)
                                             .customColor1,
-                                        offset: const Offset(0.0, 2.0),
+                                        offset: Offset(0.0, 2.0),
                                         blurRadius: 40.0,
                                       )
                                     ],
@@ -714,7 +714,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
@@ -745,7 +745,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                   filled: true,
                                   fillColor:
                                       FlutterFlowTheme.of(context).alternate,
-                                  contentPadding: const EdgeInsets.all(20.0),
+                                  contentPadding: EdgeInsets.all(20.0),
                                   hoverColor:
                                       FlutterFlowTheme.of(context).customColor1,
                                 ),
@@ -766,30 +766,30 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 20.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     await _model.pageViewController
                                         ?.previousPage(
-                                      duration: const Duration(milliseconds: 300),
+                                      duration: Duration(milliseconds: 300),
                                       curve: Curves.ease,
                                     );
                                   },
                                   text: 'Back',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: const Color(0x00E0E3E7),
+                                    color: Color(0x00E0E3E7),
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
@@ -810,166 +810,193 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    if (_model.formKey1.currentState == null ||
-                                        !_model.formKey1.currentState!
-                                            .validate()) {
-                                      return;
-                                    }
-                                    if ((_model.uploadedLocalFile1.bytes
-                                                ?.isNotEmpty ??
-                                            false)) {
-                                      {
-                                        safeSetState(() =>
-                                            _model.isDataUploading2 = true);
-                                        var selectedUploadedFiles =
-                                            <FFUploadedFile>[];
-                                        var selectedMedia = <SelectedFile>[];
-                                        var downloadUrls = <String>[];
-                                        try {
-                                          selectedUploadedFiles = _model
-                                                  .uploadedLocalFile1
-                                                  .bytes!
-                                                  .isNotEmpty
-                                              ? [_model.uploadedLocalFile1]
-                                              : <FFUploadedFile>[];
-                                          selectedMedia =
-                                              selectedFilesFromUploadedFiles(
-                                            selectedUploadedFiles,
-                                          );
-                                          downloadUrls = (await Future.wait(
-                                            selectedMedia.map(
-                                              (m) async => await uploadData(
-                                                  m.storagePath, m.bytes),
-                                            ),
-                                          ))
-                                              .where((u) => u != null)
-                                              .map((u) => u!)
-                                              .toList();
-                                        } finally {
-                                          _model.isDataUploading2 = false;
+                                    final firestoreBatch =
+                                        FirebaseFirestore.instance.batch();
+                                    try {
+                                      if (_model.formKey1.currentState ==
+                                              null ||
+                                          !_model.formKey1.currentState!
+                                              .validate()) {
+                                        return;
+                                      }
+                                      if ((_model.uploadedLocalFile1.bytes
+                                                  ?.isNotEmpty ??
+                                              false)) {
+                                        {
+                                          safeSetState(() =>
+                                              _model.isDataUploading2 = true);
+                                          var selectedUploadedFiles =
+                                              <FFUploadedFile>[];
+                                          var selectedMedia = <SelectedFile>[];
+                                          var downloadUrls = <String>[];
+                                          try {
+                                            selectedUploadedFiles = _model
+                                                    .uploadedLocalFile1
+                                                    .bytes!
+                                                    .isNotEmpty
+                                                ? [_model.uploadedLocalFile1]
+                                                : <FFUploadedFile>[];
+                                            selectedMedia =
+                                                selectedFilesFromUploadedFiles(
+                                              selectedUploadedFiles,
+                                            );
+                                            downloadUrls = (await Future.wait(
+                                              selectedMedia.map(
+                                                (m) async => await uploadData(
+                                                    m.storagePath, m.bytes),
+                                              ),
+                                            ))
+                                                .where((u) => u != null)
+                                                .map((u) => u!)
+                                                .toList();
+                                          } finally {
+                                            _model.isDataUploading2 = false;
+                                          }
+                                          if (selectedUploadedFiles.length ==
+                                                  selectedMedia.length &&
+                                              downloadUrls.length ==
+                                                  selectedMedia.length) {
+                                            safeSetState(() {
+                                              _model.uploadedLocalFile2 =
+                                                  selectedUploadedFiles.first;
+                                              _model.uploadedFileUrl2 =
+                                                  downloadUrls.first;
+                                            });
+                                          } else {
+                                            safeSetState(() {});
+                                            return;
+                                          }
                                         }
-                                        if (selectedUploadedFiles.length ==
-                                                selectedMedia.length &&
-                                            downloadUrls.length ==
-                                                selectedMedia.length) {
-                                          safeSetState(() {
-                                            _model.uploadedLocalFile2 =
-                                                selectedUploadedFiles.first;
-                                            _model.uploadedFileUrl2 =
-                                                downloadUrls.first;
-                                          });
-                                        } else {
-                                          safeSetState(() {});
-                                          return;
-                                        }
+
+                                        safeSetState(() {
+                                          _model.isDataUploading1 = false;
+                                          _model.uploadedLocalFile1 =
+                                              FFUploadedFile(
+                                                  bytes:
+                                                      Uint8List.fromList([]));
+                                        });
                                       }
 
-                                      safeSetState(() {
-                                        _model.isDataUploading1 = false;
-                                        _model.uploadedLocalFile1 =
-                                            FFUploadedFile(
-                                                bytes: Uint8List.fromList([]));
+                                      var organizationsRecordReference =
+                                          OrganizationsRecord.collection.doc();
+                                      firestoreBatch
+                                          .set(organizationsRecordReference, {
+                                        ...createOrganizationsRecordData(
+                                          email: _model
+                                              .supportEmailTextController.text,
+                                          address:
+                                              _model.addressTextController.text,
+                                          website:
+                                              _model.websiteTextController.text,
+                                          privacyPolicy: _model
+                                              .privacyPolicyTextController.text,
+                                          type: _model.organizationCategoryModel
+                                              .option?.code,
+                                          profile: createProfileStruct(
+                                            displayName: _model
+                                                .organizationNameTextController
+                                                .text,
+                                            photoUrl: _model.uploadedFileUrl2,
+                                            profileType: CollectionProfiles
+                                                .ORGANIZATIONS,
+                                            clearUnsetFields: false,
+                                            create: true,
+                                          ),
+                                        ),
+                                        ...mapToFirestore(
+                                          {
+                                            'created_time':
+                                                FieldValue.serverTimestamp(),
+                                            'edited_time':
+                                                FieldValue.serverTimestamp(),
+                                            'members': [
+                                              getRoledUserFirestoreData(
+                                                updateRoledUserStruct(
+                                                  RoledUserStruct(
+                                                    user: currentUserReference,
+                                                    role: OrganizationRoleCode
+                                                        .OWNER,
+                                                  ),
+                                                  clearUnsetFields: false,
+                                                  create: true,
+                                                ),
+                                                true,
+                                              )
+                                            ],
+                                          },
+                                        ),
                                       });
-                                    }
+                                      _model.organization = OrganizationsRecord
+                                          .getDocumentFromData({
+                                        ...createOrganizationsRecordData(
+                                          email: _model
+                                              .supportEmailTextController.text,
+                                          address:
+                                              _model.addressTextController.text,
+                                          website:
+                                              _model.websiteTextController.text,
+                                          privacyPolicy: _model
+                                              .privacyPolicyTextController.text,
+                                          type: _model.organizationCategoryModel
+                                              .option?.code,
+                                          profile: createProfileStruct(
+                                            displayName: _model
+                                                .organizationNameTextController
+                                                .text,
+                                            photoUrl: _model.uploadedFileUrl2,
+                                            profileType: CollectionProfiles
+                                                .ORGANIZATIONS,
+                                            clearUnsetFields: false,
+                                            create: true,
+                                          ),
+                                        ),
+                                        ...mapToFirestore(
+                                          {
+                                            'created_time': DateTime.now(),
+                                            'edited_time': DateTime.now(),
+                                            'members': [
+                                              getRoledUserFirestoreData(
+                                                updateRoledUserStruct(
+                                                  RoledUserStruct(
+                                                    user: currentUserReference,
+                                                    role: OrganizationRoleCode
+                                                        .OWNER,
+                                                  ),
+                                                  clearUnsetFields: false,
+                                                  create: true,
+                                                ),
+                                                true,
+                                              )
+                                            ],
+                                          },
+                                        ),
+                                      }, organizationsRecordReference);
 
-                                    var organizationsRecordReference =
-                                        OrganizationsRecord.collection.doc();
-                                    await organizationsRecordReference.set({
-                                      ...createOrganizationsRecordData(
-                                        email: _model
-                                            .supportEmailTextController.text,
-                                        displayName: _model
-                                            .organizationNameTextController
-                                            .text,
-                                        photoUrl: _model.uploadedFileUrl2 != ''
-                                            ? _model.uploadedFileUrl2
-                                            : FFAppConstants.orgProfile,
-                                        address:
-                                            _model.addressTextController.text,
-                                        website:
-                                            _model.websiteTextController.text,
-                                        privacyPolicy: _model
-                                            .privacyPolicyTextController.text,
-                                        type: _model.organizationCategoryModel
-                                            .option?.code,
-                                      ),
-                                      ...mapToFirestore(
-                                        {
-                                          'created_time':
-                                              FieldValue.serverTimestamp(),
-                                          'edited_time':
-                                              FieldValue.serverTimestamp(),
-                                          'members': [
-                                            getRoledUserFirestoreData(
-                                              updateRoledUserStruct(
-                                                RoledUserStruct(
-                                                  user: currentUserReference,
-                                                  role: OrganizationRoleCode
-                                                      .OWNER,
-                                                ),
-                                                clearUnsetFields: false,
-                                                create: true,
-                                              ),
-                                              true,
-                                            )
-                                          ],
-                                        },
-                                      ),
-                                    });
-                                    _model.organization = OrganizationsRecord
-                                        .getDocumentFromData({
-                                      ...createOrganizationsRecordData(
-                                        email: _model
-                                            .supportEmailTextController.text,
-                                        displayName: _model
-                                            .organizationNameTextController
-                                            .text,
-                                        photoUrl: _model.uploadedFileUrl2 != ''
-                                            ? _model.uploadedFileUrl2
-                                            : FFAppConstants.orgProfile,
-                                        address:
-                                            _model.addressTextController.text,
-                                        website:
-                                            _model.websiteTextController.text,
-                                        privacyPolicy: _model
-                                            .privacyPolicyTextController.text,
-                                        type: _model.organizationCategoryModel
-                                            .option?.code,
-                                      ),
-                                      ...mapToFirestore(
-                                        {
-                                          'created_time': DateTime.now(),
-                                          'edited_time': DateTime.now(),
-                                          'members': [
-                                            getRoledUserFirestoreData(
-                                              updateRoledUserStruct(
-                                                RoledUserStruct(
-                                                  user: currentUserReference,
-                                                  role: OrganizationRoleCode
-                                                      .OWNER,
-                                                ),
-                                                clearUnsetFields: false,
-                                                create: true,
-                                              ),
-                                              true,
-                                            )
-                                          ],
-                                        },
-                                      ),
-                                    }, organizationsRecordReference);
-                                    Navigator.pop(context);
+                                      firestoreBatch.update(
+                                          _model.organization!.reference,
+                                          createOrganizationsRecordData(
+                                            profile: createProfileStruct(
+                                              uid: _model
+                                                  .organization?.reference.id,
+                                              clearUnsetFields: false,
+                                            ),
+                                          ));
+                                      Navigator.pop(context);
+                                    } finally {
+                                      await firestoreBatch.commit();
+                                    }
 
                                     safeSetState(() {});
                                   },
                                   text: 'Create Organization',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -985,10 +1012,10 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 10.0)),
+                            ].divide(SizedBox(width: 10.0)),
                           ),
                         ),
-                      ].divide(const SizedBox(height: 10.0)),
+                      ].divide(SizedBox(height: 10.0)),
                     ),
                   ),
                 ],
@@ -997,7 +1024,7 @@ class _CreateOrganizationWidgetState extends State<CreateOrganizationWidget> {
           ),
         ),
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
           child: Text(
             'New Organization',
             textAlign: TextAlign.start,

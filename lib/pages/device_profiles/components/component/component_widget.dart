@@ -15,11 +15,13 @@ class ComponentWidget extends StatefulWidget {
     double? totalHeight,
     required this.block,
     required this.spacing,
-  }) : totalHeight = totalHeight ?? 100.0;
+    required this.varList,
+  }) : this.totalHeight = totalHeight ?? 100.0;
 
   final double totalHeight;
   final BlockComponentStruct? block;
   final double? spacing;
+  final List<DeviceVariableStruct>? varList;
 
   @override
   State<ComponentWidget> createState() => _ComponentWidgetState();
@@ -70,7 +72,7 @@ class _ComponentWidgetState extends State<ComponentWidget> {
                 color: FlutterFlowTheme.of(context).alternate,
               ),
             ),
-            alignment: const AlignmentDirectional(-1.0, -1.0),
+            alignment: AlignmentDirectional(-1.0, -1.0),
             child: Wrap(
               spacing: 0.0,
               runSpacing: 0.0,
@@ -94,14 +96,14 @@ class _ComponentWidgetState extends State<ComponentWidget> {
                     Transform.scale(
                       scaleX: widget.totalHeight / 100.0,
                       scaleY: widget.totalHeight / 100.0,
-                      alignment: const AlignmentDirectional(-1.0, -1.0),
+                      alignment: AlignmentDirectional(-1.0, -1.0),
                       child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Container(
                           width: functions.getBlockWidth(
                               100.0, widget.block!.size, widget.spacing!),
                           height: 100.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Builder(
                             builder: (context) {
                               if (widget.block?.size == 'QUARTER') {
@@ -113,6 +115,7 @@ class _ComponentWidgetState extends State<ComponentWidget> {
                                       block: widget.block!,
                                       graphIndex: 0,
                                       orientation: GraphOrientation.HORIZONTAL,
+                                      varList: widget.varList!,
                                     ),
                                   ),
                                 );
@@ -125,6 +128,7 @@ class _ComponentWidgetState extends State<ComponentWidget> {
                                       block: widget.block!,
                                       graphIndex: 0,
                                       orientation: GraphOrientation.HORIZONTAL,
+                                      varList: widget.varList!,
                                     ),
                                   ),
                                 );

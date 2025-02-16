@@ -43,7 +43,7 @@ class _WholeWidgetState extends State<WholeWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(10.0),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

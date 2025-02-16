@@ -67,8 +67,8 @@ class _ValueTrendWidgetState extends State<ValueTrendWidget> {
               children: [
                 Flexible(
                   child: Container(
-                    decoration: const BoxDecoration(),
-                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    decoration: BoxDecoration(),
+                    alignment: AlignmentDirectional(-1.0, 0.0),
                     child: AutoSizeText(
                       valueOrDefault<String>(
                         widget.variable?.info.display,
@@ -89,7 +89,7 @@ class _ValueTrendWidgetState extends State<ValueTrendWidget> {
                   ),
                 ),
                 Container(
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -160,7 +160,7 @@ class _ValueTrendWidgetState extends State<ValueTrendWidget> {
                                   ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 5.0)),
+                    ].divide(SizedBox(width: 5.0)),
                   ),
                 ),
               ],
@@ -170,8 +170,8 @@ class _ValueTrendWidgetState extends State<ValueTrendWidget> {
           return Container(
             width: MediaQuery.sizeOf(context).width * 1.0,
             height: MediaQuery.sizeOf(context).height * 1.0,
-            decoration: const BoxDecoration(),
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            decoration: BoxDecoration(),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

@@ -85,7 +85,7 @@ class RoledUserStruct extends FFFirebaseStruct {
           ParamType.Enum,
           false,
         ),
-        firestoreUtilData: const FirestoreUtilData(
+        firestoreUtilData: FirestoreUtilData(
           clearUnsetFields: false,
           create: true,
         ),

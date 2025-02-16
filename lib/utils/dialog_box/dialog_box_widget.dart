@@ -43,7 +43,7 @@ class _DialogBoxWidgetState extends State<DialogBoxWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(
+      constraints: BoxConstraints(
         maxHeight: 600.0,
       ),
       decoration: BoxDecoration(
@@ -55,9 +55,9 @@ class _DialogBoxWidgetState extends State<DialogBoxWidget> {
         ),
       ),
       child: Align(
-        alignment: const AlignmentDirectional(0.0, 0.0),
+        alignment: AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: EdgeInsets.all(30.0),
           child: Builder(builder: (_) {
             return widget.widget!();
           }),

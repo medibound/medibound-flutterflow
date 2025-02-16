@@ -89,7 +89,7 @@ class ConstraintStruct extends FFFirebaseStruct {
           ParamType.String,
           true,
         ),
-        firestoreUtilData: const FirestoreUtilData(
+        firestoreUtilData: FirestoreUtilData(
           clearUnsetFields: false,
           create: true,
         ),

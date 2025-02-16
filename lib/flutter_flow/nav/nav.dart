@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -77,41 +76,76 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const HomePageWidget() : const LoginPageWidget(),
+          appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const HomePageWidget() : const LoginPageWidget(),
+              appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
         ),
         FFRoute(
           name: 'HomePage',
-          path: '/organizations',
+          path: '/dashboard',
           requireAuth: true,
-          builder: (context, params) => const HomePageWidget(),
+          builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
           name: 'LoginPage',
           path: '/login',
-          builder: (context, params) => const LoginPageWidget(),
+          builder: (context, params) => LoginPageWidget(),
         ),
         FFRoute(
           name: 'SignUpPage',
           path: '/sign-up',
-          builder: (context, params) => const SignUpPageWidget(),
+          builder: (context, params) => SignUpPageWidget(),
         ),
         FFRoute(
           name: 'Test',
           path: '/custom',
           requireAuth: true,
-          builder: (context, params) => const TestWidget(),
+          builder: (context, params) => TestWidget(),
         ),
         FFRoute(
           name: 'DeviceProfilesPage',
-          path: '/devices_profiles',
+          path: '/devices-profiles',
           requireAuth: true,
-          builder: (context, params) => const DeviceProfilesPageWidget(),
+          builder: (context, params) => DeviceProfilesPageWidget(),
+        ),
+        FFRoute(
+          name: 'ManageDeviceProfilesPage',
+          path: '/devices-profiles/manage',
+          requireAuth: true,
+          asyncParams: {
+            'deviceProfile':
+                getDoc(['device_profiles'], DeviceProfilesRecord.fromSnapshot),
+          },
+          builder: (context, params) => ManageDeviceProfilesPageWidget(
+            deviceProfile: params.getParam(
+              'deviceProfile',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'RecoverAccountPage',
+          path: '/recovery',
+          builder: (context, params) => RecoverAccountPageWidget(
+            email: params.getParam(
+              'email',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ResetPasswordPage',
+          path: '/reset_password',
+          builder: (context, params) => ResetPasswordPageWidget(
+            email: params.getParam(
+              'email',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -302,9 +336,8 @@ class FFRoute {
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   child: Center(
                     child: Image.asset(
-                      'assets/images/medibound.svg',
-                      width: 50.0,
-                      height: 50.0,
+                      'assets/images/medibound.png',
+                      height: 75.0,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -351,7 +384,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(
+  static TransitionInfo appDefault() => TransitionInfo(
         hasTransition: true,
         transitionType: PageTransitionType.fade,
         duration: Duration(milliseconds: 300),

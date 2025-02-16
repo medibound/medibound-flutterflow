@@ -52,14 +52,14 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
-      child: SizedBox(
+      alignment: AlignmentDirectional(0.0, 0.0),
+      child: Container(
         width: widget.size,
         height: widget.size,
         child: Stack(
           children: [
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Builder(
                 builder: (context) {
                   if (widget.uploadedImage != null &&
@@ -68,7 +68,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                       width: widget.size,
                       height: widget.size,
                       clipBehavior: Clip.antiAlias,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
                       ),
                       child: Image.memory(
@@ -81,12 +81,12 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                       width: widget.size,
                       height: widget.size,
                       clipBehavior: Clip.antiAlias,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
                       ),
                       child: CachedNetworkImage(
-                        fadeInDuration: const Duration(milliseconds: 500),
-                        fadeOutDuration: const Duration(milliseconds: 500),
+                        fadeInDuration: Duration(milliseconds: 500),
+                        fadeOutDuration: Duration(milliseconds: 500),
                         imageUrl: widget.defaultImage!,
                         fit: BoxFit.cover,
                       ),
@@ -98,15 +98,15 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
             Opacity(
               opacity: 0.5,
               child: Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: FlutterFlowIconButton(
                   borderColor: Colors.transparent,
                   borderRadius: widget.size,
                   buttonSize: widget.size,
-                  fillColor: const Color(0x00001C14),
+                  fillColor: Color(0x00001C14),
                   hoverColor: FlutterFlowTheme.of(context).primaryBackground,
                   hoverIconColor: FlutterFlowTheme.of(context).primaryText,
-                  icon: const FaIcon(
+                  icon: FaIcon(
                     FontAwesomeIcons.upload,
                     color: Color(0x00D9FFF6),
                     size: 24.0,

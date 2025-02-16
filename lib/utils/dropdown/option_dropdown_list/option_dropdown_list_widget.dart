@@ -5,6 +5,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/dropdown/component_profile_tile/component_profile_tile_widget.dart';
+import '/utils/empty/empty_widget.dart';
 import '/utils/loading/loading_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -24,8 +25,8 @@ class OptionDropdownListWidget extends StatefulWidget {
   });
 
   final double? width;
-  final Future Function(DropdownStruct option)? action;
-  final List<DropdownStruct>? optionsList;
+  final Future Function(CodedValueStruct option)? action;
+  final List<CodedValueStruct>? optionsList;
   final Options? optionType;
   final String? label;
 
@@ -52,12 +53,12 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (widget.optionType == null) {
         _model.compOptionsList =
-            widget.optionsList!.toList().cast<DropdownStruct>();
+            widget.optionsList!.toList().cast<CodedValueStruct>();
         safeSetState(() {});
       } else if (widget.optionType == Options.UNITS) {
       } else {
         _model.compOptionsList =
-            widget.optionsList!.toList().cast<DropdownStruct>();
+            widget.optionsList!.toList().cast<CodedValueStruct>();
         safeSetState(() {});
       }
     });
@@ -84,7 +85,7 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
           width: widget.width! > 600.0 ? 600.0 : widget.width,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -97,14 +98,14 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (widget.optionType != null)
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(10.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10.0),
                       child: Container(
@@ -116,12 +117,12 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                           focusNode: _model.searchFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.searchTextController',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () async {
                               if (widget.optionType == null) {
                                 _model.compOptionsList = widget.optionsList!
                                     .toList()
-                                    .cast<DropdownStruct>();
+                                    .cast<CodedValueStruct>();
                                 safeSetState(() {});
                               } else if (widget.optionType == Options.UNITS) {
                                 _model.isLoading = true;
@@ -161,7 +162,7 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                                               )!
                                               .toList())
                                       .toList()
-                                      .cast<DropdownStruct>();
+                                      .cast<CodedValueStruct>();
                                   safeSetState(() {});
                                 }
                               }
@@ -184,7 +185,7 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                                 Shadow(
                                   color:
                                       FlutterFlowTheme.of(context).customColor1,
-                                  offset: const Offset(0.0, 2.0),
+                                  offset: Offset(0.0, 2.0),
                                   blurRadius: 40.0,
                                 )
                               ],
@@ -203,7 +204,7 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                             focusedErrorBorder: InputBorder.none,
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context).alternate,
-                            contentPadding: const EdgeInsets.all(15.0),
+                            contentPadding: EdgeInsets.all(15.0),
                             hoverColor:
                                 FlutterFlowTheme.of(context).customColor1,
                             suffixIcon: _model
@@ -215,7 +216,7 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                                         _model.compOptionsList = widget
                                             .optionsList!
                                             .toList()
-                                            .cast<DropdownStruct>();
+                                            .cast<CodedValueStruct>();
                                         safeSetState(() {});
                                       } else if (widget.optionType ==
                                           Options.UNITS) {
@@ -263,7 +264,7 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                                                       )!
                                                       .toList())
                                               .toList()
-                                              .cast<DropdownStruct>();
+                                              .cast<CodedValueStruct>();
                                           safeSetState(() {});
                                         }
                                       }
@@ -271,7 +272,7 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                                       safeSetState(() {});
                                       safeSetState(() {});
                                     },
-                                    child: const Icon(
+                                    child: Icon(
                                       Icons.clear,
                                       size: 22,
                                     ),
@@ -292,7 +293,7 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                   ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 10.0),
+                      EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 10.0),
                   child: Text(
                     'Tap to select',
                     style: FlutterFlowTheme.of(context).labelSmall.override(
@@ -306,10 +307,10 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                     if (_model.isLoading == false) {
                       return ClipRRect(
                         child: Container(
-                          constraints: const BoxConstraints(
+                          constraints: BoxConstraints(
                             maxHeight: 250.0,
                           ),
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Builder(
                             builder: (context) {
                               final lists =
@@ -324,7 +325,7 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                                   final listsItem = lists[listsIndex];
                                   return Container(
                                     height: 50.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -341,6 +342,8 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                                             'Key6mw_${listsIndex}_of_${lists.length}'),
                                         display: listsItem.display,
                                         subtitle: listsItem.description,
+                                        color: listsItem.color,
+                                        widget: () => EmptyWidget(),
                                       ),
                                     ),
                                   );
@@ -352,7 +355,7 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                       );
                     } else {
                       return Container(
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -360,7 +363,7 @@ class _OptionDropdownListWidgetState extends State<OptionDropdownListWidget> {
                             wrapWithModel(
                               model: _model.loadingModel,
                               updateCallback: () => safeSetState(() {}),
-                              child: const LoadingWidget(),
+                              child: LoadingWidget(),
                             ),
                           ],
                         ),

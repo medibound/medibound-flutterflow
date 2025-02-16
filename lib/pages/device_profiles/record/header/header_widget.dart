@@ -12,10 +12,12 @@ class HeaderWidget extends StatefulWidget {
     super.key,
     required this.header,
     required this.headerWidth,
+    required this.varList,
   });
 
   final List<BlockComponentStruct>? header;
   final double? headerWidth;
+  final List<DeviceVariableStruct>? varList;
 
   @override
   State<HeaderWidget> createState() => _HeaderWidgetState();
@@ -48,7 +50,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Wrap(
         spacing: 10.0,
         runSpacing: 0.0,
@@ -66,16 +68,16 @@ class _HeaderWidgetState extends State<HeaderWidget> {
               color: FlutterFlowTheme.of(context).alternate,
               borderRadius: BorderRadius.circular(10.0),
             ),
-            alignment: const AlignmentDirectional(-1.0, 0.0),
+            alignment: AlignmentDirectional(-1.0, 0.0),
             child: Padding(
-              padding: const EdgeInsets.all(7.5),
+              padding: EdgeInsets.all(7.5),
               child: Builder(
                 builder: (context) {
                   final headerComponents =
                       widget.header!.toList().take(4).toList();
                   if (headerComponents.isEmpty) {
                     return Center(
-                      child: SizedBox(
+                      child: Container(
                         width: double.infinity,
                         height: 100.0,
                         child: EmptyListWidget(
@@ -95,12 +97,12 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemCount: headerComponents.length,
-                    separatorBuilder: (_, __) => const SizedBox(width: 7.5),
+                    separatorBuilder: (_, __) => SizedBox(width: 7.5),
                     itemBuilder: (context, headerComponentsIndex) {
                       final headerComponentsItem =
                           headerComponents[headerComponentsIndex];
                       return Stack(
-                        alignment: const AlignmentDirectional(-1.0, -1.0),
+                        alignment: AlignmentDirectional(-1.0, -1.0),
                         children: [
                           ComponentWidget(
                             key: Key(
@@ -108,6 +110,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                             totalHeight: ((widget.headerWidth!) - 37.5) / 4,
                             block: headerComponentsItem,
                             spacing: 7.5,
+                            varList: widget.varList!,
                           ),
                         ],
                       );

@@ -17,10 +17,12 @@ class BodyBuilderSectionWidget extends StatefulWidget {
     super.key,
     required this.bodySectionCallback,
     required this.bodySection,
+    required this.varList,
   });
 
   final Future Function(String id)? bodySectionCallback;
   final BodySectionStruct? bodySection;
+  final List<DeviceVariableStruct>? varList;
 
   @override
   State<BodyBuilderSectionWidget> createState() =>
@@ -78,7 +80,7 @@ class _BodyBuilderSectionWidgetState extends State<BodyBuilderSectionWidget> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: const AlignmentDirectional(1.0, 0.0),
+      alignment: AlignmentDirectional(1.0, 0.0),
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
@@ -87,7 +89,7 @@ class _BodyBuilderSectionWidgetState extends State<BodyBuilderSectionWidget> {
               borderRadius: BorderRadius.circular(10.0),
               child: Container(
                 width: functions.getBlockWidth(100.0, 'SECTION', 10.0),
-                constraints: const BoxConstraints(
+                constraints: BoxConstraints(
                   minHeight: 200.0,
                 ),
                 decoration: BoxDecoration(
@@ -96,19 +98,19 @@ class _BodyBuilderSectionWidgetState extends State<BodyBuilderSectionWidget> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 10.0, 10.0),
+                      EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 10.0, 10.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 5.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 5.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController1,
                           focusNode: _model.textFieldFocusNode1,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController1',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () async {
                               _model.updateSectionStruct(
                                 (e) => e..title = _model.textController1.text,
@@ -160,13 +162,13 @@ class _BodyBuilderSectionWidgetState extends State<BodyBuilderSectionWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 5.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 5.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController2,
                           focusNode: _model.textFieldFocusNode2,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController2',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () async {
                               _model.updateSectionStruct(
                                 (e) =>
@@ -221,14 +223,14 @@ class _BodyBuilderSectionWidgetState extends State<BodyBuilderSectionWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             10.0, 10.0, 5.0, 10.0),
                         child: TextFormField(
                           controller: _model.textController3,
                           focusNode: _model.textFieldFocusNode3,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController3',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () async {
                               _model.updateSectionStruct(
                                 (e) => e..body = _model.textController3.text,
@@ -288,7 +290,7 @@ class _BodyBuilderSectionWidgetState extends State<BodyBuilderSectionWidget> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: DragTarget<BlockComponentStruct>(
                             onAcceptWithDetails: (details) async {
                               _model.updateSectionStruct(
@@ -307,7 +309,7 @@ class _BodyBuilderSectionWidgetState extends State<BodyBuilderSectionWidget> {
                             builder: (context, _, __) {
                               return Container(
                                 width: double.infinity,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Builder(
                                   builder: (context) {
                                     final components =
@@ -315,7 +317,7 @@ class _BodyBuilderSectionWidgetState extends State<BodyBuilderSectionWidget> {
                                             [];
                                     if (components.isEmpty) {
                                       return Center(
-                                        child: SizedBox(
+                                        child: Container(
                                           width: double.infinity,
                                           height: 105.0,
                                           child: EmptyListWidget(
@@ -346,14 +348,14 @@ class _BodyBuilderSectionWidgetState extends State<BodyBuilderSectionWidget> {
                                           (componentsIndex) {
                                         final componentsItem =
                                             components[componentsIndex];
-                                        return SizedBox(
+                                        return Container(
                                           height: 105.0,
                                           child: Stack(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 -1.0, -1.0),
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 5.0, 0.0, 0.0),
                                                 child: ComponentWidget(
@@ -362,6 +364,7 @@ class _BodyBuilderSectionWidgetState extends State<BodyBuilderSectionWidget> {
                                                   totalHeight: 100.0,
                                                   block: componentsItem,
                                                   spacing: 10.0,
+                                                  varList: widget.varList!,
                                                 ),
                                               ),
                                               InkWell(
@@ -396,7 +399,7 @@ class _BodyBuilderSectionWidgetState extends State<BodyBuilderSectionWidget> {
                                                       color: FlutterFlowTheme
                                                               .of(context)
                                                           .secondaryBackground,
-                                                      boxShadow: const [
+                                                      boxShadow: [
                                                         BoxShadow(
                                                           blurRadius: 10.0,
                                                           color:
@@ -420,7 +423,7 @@ class _BodyBuilderSectionWidgetState extends State<BodyBuilderSectionWidget> {
                                                     ),
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: FaIcon(
                                                         FontAwesomeIcons.minus,

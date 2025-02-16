@@ -56,9 +56,9 @@ class _TestWidgetState extends State<TestWidget> {
                 FlutterFlowTheme.of(context).secondaryBackground,
                 FlutterFlowTheme.of(context).primaryBackground
               ],
-              stops: const [0.0, 1.0],
-              begin: const AlignmentDirectional(0.0, -1.0),
-              end: const AlignmentDirectional(0, 1.0),
+              stops: [0.0, 1.0],
+              begin: AlignmentDirectional(0.0, -1.0),
+              end: AlignmentDirectional(0, 1.0),
             ),
           ),
           child: Row(
@@ -69,14 +69,14 @@ class _TestWidgetState extends State<TestWidget> {
                 child: Container(
                   width: 625.0,
                   height: MediaQuery.sizeOf(context).height * 1.0,
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(10.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -88,8 +88,8 @@ class _TestWidgetState extends State<TestWidget> {
                                 text: 'Button',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: const EdgeInsets.all(20.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsets.all(20.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -102,7 +102,7 @@ class _TestWidgetState extends State<TestWidget> {
                                       Shadow(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
-                                        offset: const Offset(0.0, 4.0),
+                                        offset: Offset(0.0, 4.0),
                                         blurRadius: 40.0,
                                       )
                                     ],
@@ -120,9 +120,9 @@ class _TestWidgetState extends State<TestWidget> {
                                 text: 'Button',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).alternate,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -153,11 +153,11 @@ class _TestWidgetState extends State<TestWidget> {
                                 text: 'Log Out',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: const Color(0x00E0E3E7),
+                                  color: Color(0x00E0E3E7),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
@@ -176,7 +176,7 @@ class _TestWidgetState extends State<TestWidget> {
                                   hoverElevation: 0.0,
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 10.0)),
+                            ].divide(SizedBox(width: 10.0)),
                           ),
                         ),
                         TextFormField(
@@ -197,7 +197,7 @@ class _TestWidgetState extends State<TestWidget> {
                                 Shadow(
                                   color:
                                       FlutterFlowTheme.of(context).customColor1,
-                                  offset: const Offset(0.0, 2.0),
+                                  offset: Offset(0.0, 2.0),
                                   blurRadius: 40.0,
                                 )
                               ],
@@ -211,7 +211,7 @@ class _TestWidgetState extends State<TestWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 2.0,
                               ),
@@ -240,7 +240,7 @@ class _TestWidgetState extends State<TestWidget> {
                             ),
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context).alternate,
-                            contentPadding: const EdgeInsets.all(20.0),
+                            contentPadding: EdgeInsets.all(20.0),
                             hoverColor:
                                 FlutterFlowTheme.of(context).customColor1,
                           ),
@@ -256,7 +256,7 @@ class _TestWidgetState extends State<TestWidget> {
                         FlutterFlowDropDown<String>(
                           controller: _model.dropDownValueController ??=
                               FormFieldController<String>(null),
-                          options: const ['Option 1', 'Option 2', 'Option 3'],
+                          options: ['Option 1', 'Option 2', 'Option 3'],
                           onChanged: (val) =>
                               safeSetState(() => _model.dropDownValue = val),
                           textStyle:
@@ -275,14 +275,14 @@ class _TestWidgetState extends State<TestWidget> {
                           borderColor: Colors.transparent,
                           borderWidth: 0.0,
                           borderRadius: 10.0,
-                          margin: const EdgeInsetsDirectional.fromSTEB(
+                          margin: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           hidesUnderline: true,
                           isOverButton: false,
                           isSearchable: false,
                           isMultiSelect: false,
                         ),
-                      ].divide(const SizedBox(height: 20.0)),
+                      ].divide(SizedBox(height: 20.0)),
                     ),
                   ),
                 ),

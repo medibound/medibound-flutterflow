@@ -45,7 +45,7 @@ class _ColumnWidgetState extends State<ColumnWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
       height: MediaQuery.sizeOf(context).height * 1.0,
       child: custom_widgets.ColumnGraph(

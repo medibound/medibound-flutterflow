@@ -12,8 +12,8 @@ class MenuTileWidget extends StatefulWidget {
     this.icon,
     bool? isActive,
     this.color,
-  })  : title = title ?? 'Title',
-        isActive = isActive ?? false;
+  })  : this.title = title ?? 'Title',
+        this.isActive = isActive ?? false;
 
   final Future Function()? onClick;
   final String title;
@@ -52,25 +52,15 @@ class _MenuTileWidgetState extends State<MenuTileWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: MouseRegion(
               opaque: false,
               cursor: SystemMouseCursors.basic ?? MouseCursor.defer,
-              onEnter: ((event) async {
-                safeSetState(() => _model.mouseRegionHovered = true);
-                _model.onHover = true;
-                safeSetState(() {});
-              }),
-              onExit: ((event) async {
-                safeSetState(() => _model.mouseRegionHovered = false);
-                _model.onHover = false;
-                safeSetState(() {});
-              }),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -82,7 +72,7 @@ class _MenuTileWidgetState extends State<MenuTileWidget> {
                   }
                 },
                 child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 100),
+                  duration: Duration(milliseconds: 100),
                   curve: Curves.easeInOut,
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -101,7 +91,7 @@ class _MenuTileWidgetState extends State<MenuTileWidget> {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: EdgeInsets.all(15.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -131,21 +121,31 @@ class _MenuTileWidgetState extends State<MenuTileWidget> {
                               Shadow(
                                 color: valueOrDefault<Color>(
                                   widget.isActive
-                                      ? const Color(0x2F000000)
+                                      ? Color(0x2F000000)
                                       : Colors.transparent,
                                   Colors.transparent,
                                 ),
-                                offset: const Offset(0.0, 2.0),
+                                offset: Offset(0.0, 2.0),
                                 blurRadius: 10.0,
                               )
                             ],
                           ),
                         ),
-                      ].divide(const SizedBox(width: 10.0)),
+                      ].divide(SizedBox(width: 10.0)),
                     ),
                   ),
                 ),
               ),
+              onEnter: ((event) async {
+                safeSetState(() => _model.mouseRegionHovered = true);
+                _model.onHover = true;
+                safeSetState(() {});
+              }),
+              onExit: ((event) async {
+                safeSetState(() => _model.mouseRegionHovered = false);
+                _model.onHover = false;
+                safeSetState(() {});
+              }),
             ),
           ),
         ],

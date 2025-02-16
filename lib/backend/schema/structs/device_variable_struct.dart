@@ -9,13 +9,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class DeviceVariableStruct extends FFFirebaseStruct {
   DeviceVariableStruct({
-    DropdownStruct? info,
+    CodedValueStruct? info,
     bool? isList,
     bool? isRanged,
     RangeStruct? range,
     String? type,
     String? unit,
     VariableDataStruct? data,
+    String? preset,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _info = info,
         _isList = isList,
@@ -24,15 +25,16 @@ class DeviceVariableStruct extends FFFirebaseStruct {
         _type = type,
         _unit = unit,
         _data = data,
+        _preset = preset,
         super(firestoreUtilData);
 
   // "info" field.
-  DropdownStruct? _info;
-  DropdownStruct get info => _info ?? DropdownStruct();
-  set info(DropdownStruct? val) => _info = val;
+  CodedValueStruct? _info;
+  CodedValueStruct get info => _info ?? CodedValueStruct();
+  set info(CodedValueStruct? val) => _info = val;
 
-  void updateInfo(Function(DropdownStruct) updateFn) {
-    updateFn(_info ??= DropdownStruct());
+  void updateInfo(Function(CodedValueStruct) updateFn) {
+    updateFn(_info ??= CodedValueStruct());
   }
 
   bool hasInfo() => _info != null;
@@ -87,11 +89,18 @@ class DeviceVariableStruct extends FFFirebaseStruct {
 
   bool hasData() => _data != null;
 
+  // "preset" field.
+  String? _preset;
+  String get preset => _preset ?? '';
+  set preset(String? val) => _preset = val;
+
+  bool hasPreset() => _preset != null;
+
   static DeviceVariableStruct fromMap(Map<String, dynamic> data) =>
       DeviceVariableStruct(
-        info: data['info'] is DropdownStruct
+        info: data['info'] is CodedValueStruct
             ? data['info']
-            : DropdownStruct.maybeFromMap(data['info']),
+            : CodedValueStruct.maybeFromMap(data['info']),
         isList: data['is_list'] as bool?,
         isRanged: data['is_ranged'] as bool?,
         range: data['range'] is RangeStruct
@@ -102,6 +111,7 @@ class DeviceVariableStruct extends FFFirebaseStruct {
         data: data['data'] is VariableDataStruct
             ? data['data']
             : VariableDataStruct.maybeFromMap(data['data']),
+        preset: data['preset'] as String?,
       );
 
   static DeviceVariableStruct? maybeFromMap(dynamic data) => data is Map
@@ -116,6 +126,7 @@ class DeviceVariableStruct extends FFFirebaseStruct {
         'type': _type,
         'unit': _unit,
         'data': _data?.toMap(),
+        'preset': _preset,
       }.withoutNulls;
 
   @override
@@ -148,6 +159,10 @@ class DeviceVariableStruct extends FFFirebaseStruct {
           _data,
           ParamType.DataStruct,
         ),
+        'preset': serializeParam(
+          _preset,
+          ParamType.String,
+        ),
       }.withoutNulls;
 
   static DeviceVariableStruct fromSerializableMap(Map<String, dynamic> data) =>
@@ -156,7 +171,7 @@ class DeviceVariableStruct extends FFFirebaseStruct {
           data['info'],
           ParamType.DataStruct,
           false,
-          structBuilder: DropdownStruct.fromSerializableMap,
+          structBuilder: CodedValueStruct.fromSerializableMap,
         ),
         isList: deserializeParam(
           data['is_list'],
@@ -190,6 +205,11 @@ class DeviceVariableStruct extends FFFirebaseStruct {
           false,
           structBuilder: VariableDataStruct.fromSerializableMap,
         ),
+        preset: deserializeParam(
+          data['preset'],
+          ParamType.String,
+          false,
+        ),
       );
 
   static DeviceVariableStruct fromAlgoliaData(Map<String, dynamic> data) =>
@@ -198,7 +218,7 @@ class DeviceVariableStruct extends FFFirebaseStruct {
           data['info'],
           ParamType.DataStruct,
           false,
-          structBuilder: DropdownStruct.fromAlgoliaData,
+          structBuilder: CodedValueStruct.fromAlgoliaData,
         ),
         isList: convertAlgoliaParam(
           data['is_list'],
@@ -232,7 +252,12 @@ class DeviceVariableStruct extends FFFirebaseStruct {
           false,
           structBuilder: VariableDataStruct.fromAlgoliaData,
         ),
-        firestoreUtilData: const FirestoreUtilData(
+        preset: convertAlgoliaParam(
+          data['preset'],
+          ParamType.String,
+          false,
+        ),
+        firestoreUtilData: FirestoreUtilData(
           clearUnsetFields: false,
           create: true,
         ),
@@ -250,35 +275,38 @@ class DeviceVariableStruct extends FFFirebaseStruct {
         range == other.range &&
         type == other.type &&
         unit == other.unit &&
-        data == other.data;
+        data == other.data &&
+        preset == other.preset;
   }
 
   @override
   int get hashCode => const ListEquality()
-      .hash([info, isList, isRanged, range, type, unit, data]);
+      .hash([info, isList, isRanged, range, type, unit, data, preset]);
 }
 
 DeviceVariableStruct createDeviceVariableStruct({
-  DropdownStruct? info,
+  CodedValueStruct? info,
   bool? isList,
   bool? isRanged,
   RangeStruct? range,
   String? type,
   String? unit,
   VariableDataStruct? data,
+  String? preset,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
   bool delete = false,
 }) =>
     DeviceVariableStruct(
-      info: info ?? (clearUnsetFields ? DropdownStruct() : null),
+      info: info ?? (clearUnsetFields ? CodedValueStruct() : null),
       isList: isList,
       isRanged: isRanged,
       range: range ?? (clearUnsetFields ? RangeStruct() : null),
       type: type,
       unit: unit,
       data: data ?? (clearUnsetFields ? VariableDataStruct() : null),
+      preset: preset,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
@@ -337,7 +365,7 @@ Map<String, dynamic> getDeviceVariableFirestoreData(
   final firestoreData = mapToFirestore(deviceVariable.toMap());
 
   // Handle nested data for "info" field.
-  addDropdownStructData(
+  addCodedValueStructData(
     firestoreData,
     deviceVariable.hasInfo() ? deviceVariable.info : null,
     'info',

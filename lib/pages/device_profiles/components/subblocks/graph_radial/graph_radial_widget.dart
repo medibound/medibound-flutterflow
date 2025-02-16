@@ -48,7 +48,7 @@ class _GraphRadialWidgetState extends State<GraphRadialWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -72,9 +72,9 @@ class _GraphRadialWidgetState extends State<GraphRadialWidget> {
           Expanded(
             flex: 5,
             child: Stack(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               children: [
-                SizedBox(
+                Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,
                   height: MediaQuery.sizeOf(context).height * 1.0,
                   child: custom_widgets.RadialGraph(
@@ -85,7 +85,7 @@ class _GraphRadialWidgetState extends State<GraphRadialWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(2.5, 2.5, 2.5, 2.5),
+                  padding: EdgeInsetsDirectional.fromSTEB(2.5, 2.5, 2.5, 2.5),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -139,7 +139,7 @@ class _GraphRadialWidgetState extends State<GraphRadialWidget> {
               ],
             ),
           ),
-        ].divide(const SizedBox(height: 2.5)),
+        ].divide(SizedBox(height: 2.5)),
       ),
     );
   }

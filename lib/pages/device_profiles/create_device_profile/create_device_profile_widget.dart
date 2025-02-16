@@ -1,12 +1,11 @@
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
-import '/backend/schema/structs/index.dart';
-import '/components/record_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/device_profiles/builder/body_builder/body_builder_widget.dart';
 import '/pages/device_profiles/builder/header_builder/header_builder_widget.dart';
+import '/pages/device_profiles/builder/record_viewer/record_viewer_widget.dart';
 import '/pages/device_profiles/builder/select_component/select_component_widget.dart';
 import '/pages/device_profiles/variables/create_device_variable/create_device_variable_widget.dart';
 import '/utils/dropdown/option_dropdown/option_dropdown_widget.dart';
@@ -14,6 +13,7 @@ import '/utils/dropdown/profile_dropdown/profile_dropdown_widget.dart';
 import '/utils/variable_list_tile/variable_list_tile_widget.dart';
 import 'package:styled_divider/styled_divider.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -72,7 +72,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
     context.watch<FFAppState>();
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 310),
+      duration: Duration(milliseconds: 310),
       curve: Curves.linear,
       width: _model.windowWidth,
       height: _model.windowHeight,
@@ -85,19 +85,19 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(30.0),
+        padding: EdgeInsets.all(30.0),
         child: Stack(
           children: [
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                child: SizedBox(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                child: Container(
                   width: double.infinity,
                   child: PageView(
                     physics: const NeverScrollableScrollPhysics(),
                     controller: _model.pageViewController ??=
-                        PageController(initialPage: 2),
+                        PageController(initialPage: 0),
                     onPageChanged: (_) async {
                       await Future.delayed(const Duration(milliseconds: 200));
                       _model.windowWidth =
@@ -107,7 +107,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                     scrollDirection: Axis.horizontal,
                     children: [
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Form(
                           key: _model.formKey5,
                           autovalidateMode: AutovalidateMode.disabled,
@@ -137,7 +137,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 24.0),
                                     child: Text(
                                       'Let\'s get started by filling out the form below.',
@@ -165,7 +165,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                   clipBehavior: Clip.none,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller:
@@ -189,7 +189,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .customColor1,
-                                                offset: const Offset(0.0, 2.0),
+                                                offset: Offset(0.0, 2.0),
                                                 blurRadius: 40.0,
                                               )
                                             ],
@@ -204,7 +204,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 2.0,
                                             ),
@@ -246,7 +246,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                           fillColor:
                                               FlutterFlowTheme.of(context)
                                                   .alternate,
-                                          contentPadding: const EdgeInsets.all(20.0),
+                                          contentPadding: EdgeInsets.all(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
                                                   .customColor1,
@@ -267,7 +267,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller:
@@ -291,7 +291,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .customColor1,
-                                                offset: const Offset(0.0, 2.0),
+                                                offset: Offset(0.0, 2.0),
                                                 blurRadius: 40.0,
                                               )
                                             ],
@@ -307,7 +307,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 2.0,
                                             ),
@@ -349,7 +349,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                           fillColor:
                                               FlutterFlowTheme.of(context)
                                                   .alternate,
-                                          contentPadding: const EdgeInsets.all(20.0),
+                                          contentPadding: EdgeInsets.all(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
                                                   .customColor1,
@@ -373,13 +373,13 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                       updateCallback: () => safeSetState(() {}),
                                       child: ProfileDropdownWidget(
                                         width: MediaQuery.sizeOf(context).width,
-                                        label: 'Owner Orgnization',
+                                        label: 'Owner Organization',
                                         collectionType:
                                             CollectionProfiles.ORGANIZATIONS,
                                       ),
                                     ),
                                     wrapWithModel(
-                                      model: _model.optionDropdownModel1,
+                                      model: _model.typeModel,
                                       updateCallback: () => safeSetState(() {}),
                                       child: OptionDropdownWidget(
                                         width: MediaQuery.sizeOf(context).width,
@@ -392,14 +392,14 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           if (_model.formKey5.currentState ==
@@ -411,7 +411,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                           await _model.pageViewController
                                               ?.nextPage(
                                             duration:
-                                                const Duration(milliseconds: 300),
+                                                Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
                                         },
@@ -419,10 +419,10 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .alternate,
@@ -447,15 +447,15 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 10.0)),
+                                  ].divide(SizedBox(width: 10.0)),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 10.0)),
+                            ].divide(SizedBox(height: 10.0)),
                           ),
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Form(
                           key: _model.formKey3,
                           autovalidateMode: AutovalidateMode.disabled,
@@ -485,7 +485,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 24.0),
                                     child: Text(
                                       'Provide the following information regarding your new device',
@@ -513,7 +513,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                   clipBehavior: Clip.none,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller:
@@ -537,7 +537,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .customColor1,
-                                                offset: const Offset(0.0, 2.0),
+                                                offset: Offset(0.0, 2.0),
                                                 blurRadius: 40.0,
                                               )
                                             ],
@@ -553,7 +553,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 2.0,
                                             ),
@@ -595,7 +595,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                           fillColor:
                                               FlutterFlowTheme.of(context)
                                                   .alternate,
-                                          contentPadding: const EdgeInsets.all(20.0),
+                                          contentPadding: EdgeInsets.all(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
                                                   .customColor1,
@@ -616,7 +616,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller:
@@ -640,7 +640,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .customColor1,
-                                                offset: const Offset(0.0, 2.0),
+                                                offset: Offset(0.0, 2.0),
                                                 blurRadius: 40.0,
                                               )
                                             ],
@@ -655,7 +655,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 2.0,
                                             ),
@@ -697,7 +697,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                           fillColor:
                                               FlutterFlowTheme.of(context)
                                                   .alternate,
-                                          contentPadding: const EdgeInsets.all(20.0),
+                                          contentPadding: EdgeInsets.all(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
                                                   .customColor1,
@@ -717,7 +717,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.udiTextController,
@@ -741,7 +741,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .customColor1,
-                                                offset: const Offset(0.0, 2.0),
+                                                offset: Offset(0.0, 2.0),
                                                 blurRadius: 40.0,
                                               )
                                             ],
@@ -757,7 +757,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 2.0,
                                             ),
@@ -799,7 +799,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                           fillColor:
                                               FlutterFlowTheme.of(context)
                                                   .alternate,
-                                          contentPadding: const EdgeInsets.all(20.0),
+                                          contentPadding: EdgeInsets.all(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
                                                   .customColor1,
@@ -819,7 +819,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                       ),
                                     ),
                                     wrapWithModel(
-                                      model: _model.optionDropdownModel2,
+                                      model: _model.modeModel,
                                       updateCallback: () => safeSetState(() {}),
                                       child: OptionDropdownWidget(
                                         width: MediaQuery.sizeOf(context).width,
@@ -845,20 +845,20 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           await _model.pageViewController
                                               ?.previousPage(
                                             duration:
-                                                const Duration(milliseconds: 300),
+                                                Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
                                         },
@@ -866,12 +866,12 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
-                                          color: const Color(0x00E0E3E7),
+                                          color: Color(0x00E0E3E7),
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleSmall
@@ -897,7 +897,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           if (_model.formKey3.currentState ==
@@ -909,7 +909,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                           await _model.pageViewController
                                               ?.nextPage(
                                             duration:
-                                                const Duration(milliseconds: 300),
+                                                Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
                                         },
@@ -917,10 +917,10 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .alternate,
@@ -945,15 +945,15 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 10.0)),
+                                  ].divide(SizedBox(width: 10.0)),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 10.0)),
+                            ].divide(SizedBox(height: 10.0)),
                           ),
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Form(
                           key: _model.formKey2,
                           autovalidateMode: AutovalidateMode.disabled,
@@ -989,7 +989,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                             ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 4.0),
                                         child: Text(
                                           'Create Variables That Will Be Transferred from Devices to Users',
@@ -1016,11 +1016,11 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: SizedBox(
+                                              child: Container(
                                                 height: 500.0,
                                                 width: 500.0,
                                                 child:
@@ -1038,18 +1038,18 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         );
                                       },
                                       text: 'New Variable',
-                                      icon: const FaIcon(
+                                      icon: FaIcon(
                                         FontAwesomeIcons.plus,
                                         size: 16.0,
                                       ),
                                       options: FFButtonOptions(
                                         height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: const Color(0x00E0E3E7),
+                                        color: Color(0x00E0E3E7),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -1088,7 +1088,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                   children: [
                                     Container(
                                       height: 275.0,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Builder(
                                         builder: (context) {
                                           final variables =
@@ -1100,7 +1100,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                             scrollDirection: Axis.vertical,
                                             itemCount: variables.length,
                                             separatorBuilder: (_, __) =>
-                                                const SizedBox(height: 10.0),
+                                                SizedBox(height: 10.0),
                                             itemBuilder:
                                                 (context, variablesIndex) {
                                               final variablesItem =
@@ -1123,20 +1123,20 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           await _model.pageViewController
                                               ?.previousPage(
                                             duration:
-                                                const Duration(milliseconds: 300),
+                                                Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
                                         },
@@ -1144,12 +1144,12 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
-                                          color: const Color(0x00E0E3E7),
+                                          color: Color(0x00E0E3E7),
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleSmall
@@ -1175,7 +1175,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           if (_model.formKey2.currentState ==
@@ -1187,7 +1187,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                           await _model.pageViewController
                                               ?.nextPage(
                                             duration:
-                                                const Duration(milliseconds: 300),
+                                                Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
                                         },
@@ -1195,10 +1195,10 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .alternate,
@@ -1223,15 +1223,15 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 10.0)),
+                                  ].divide(SizedBox(width: 10.0)),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 10.0)),
+                            ].divide(SizedBox(height: 10.0)),
                           ),
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Form(
                           key: _model.formKey1,
                           autovalidateMode: AutovalidateMode.disabled,
@@ -1242,7 +1242,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                 flex: 3,
                                 child: ClipRRect(
                                   child: Container(
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -1283,7 +1283,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 4.0),
                                                     child: AutoSizeText(
@@ -1307,7 +1307,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         Expanded(
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, -1.0),
+                                                AlignmentDirectional(0.0, -1.0),
                                             child: SingleChildScrollView(
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.min,
@@ -1319,8 +1319,10 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                         .headerBuilderModel,
                                                     updateCallback: () =>
                                                         safeSetState(() {}),
-                                                    child:
-                                                        const HeaderBuilderWidget(),
+                                                    child: HeaderBuilderWidget(
+                                                      varList:
+                                                          _model.variableList,
+                                                    ),
                                                   ),
                                                   StyledDivider(
                                                     thickness: 1.0,
@@ -1336,17 +1338,20 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                     updateCallback: () =>
                                                         safeSetState(() {}),
                                                     updateOnChange: true,
-                                                    child: const BodyBuilderWidget(),
+                                                    child: BodyBuilderWidget(
+                                                      varList:
+                                                          _model.variableList,
+                                                    ),
                                                   ),
                                                 ].divide(
-                                                    const SizedBox(height: 10.0)),
+                                                    SizedBox(height: 10.0)),
                                               ),
                                             ),
                                           ),
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1354,14 +1359,14 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     await _model
                                                         .pageViewController
                                                         ?.previousPage(
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 300),
                                                       curve: Curves.ease,
                                                     );
@@ -1370,14 +1375,14 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
-                                                    color: const Color(0x00E0E3E7),
+                                                    color: Color(0x00E0E3E7),
                                                     textStyle: FlutterFlowTheme
                                                             .of(context)
                                                         .titleSmall
@@ -1406,7 +1411,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
@@ -1421,7 +1426,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                     await _model
                                                         .pageViewController
                                                         ?.nextPage(
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 300),
                                                       curve: Curves.ease,
                                                     );
@@ -1430,11 +1435,11 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -1464,10 +1469,10 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(height: 10.0)),
+                                      ].divide(SizedBox(height: 10.0)),
                                     ),
                                   ),
                                 ),
@@ -1483,12 +1488,12 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                   variablesList: _model.variableList,
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 15.0)),
+                            ].divide(SizedBox(width: 15.0)),
                           ),
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Form(
                           key: _model.formKey4,
                           autovalidateMode: AutovalidateMode.disabled,
@@ -1518,7 +1523,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 24.0),
                                     child: Text(
                                       'Take a look at your masterpiece!',
@@ -1535,94 +1540,40 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                               ),
                               Flexible(
                                 child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 1.0),
-                                  child: ClipRRect(
-                                    child: Container(
-                                      width: double.infinity,
-                                      decoration: const BoxDecoration(),
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 50.0, 0.0, 0.0),
-                                        child: Container(
-                                          width: 400.0,
-                                          height: MediaQuery.sizeOf(context)
-                                                  .height *
-                                              1.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                blurRadius: 40.0,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                offset: const Offset(
-                                                  0.0,
-                                                  -20.0,
-                                                ),
-                                              )
-                                            ],
-                                            borderRadius: const BorderRadius.only(
-                                              bottomLeft: Radius.circular(0.0),
-                                              bottomRight: Radius.circular(0.0),
-                                              topLeft: Radius.circular(40.0),
-                                              topRight: Radius.circular(40.0),
-                                            ),
-                                            shape: BoxShape.rectangle,
-                                          ),
-                                          child: Container(
-                                            decoration: const BoxDecoration(),
-                                            child: wrapWithModel(
-                                              model: _model.recordModel,
-                                              updateCallback: () =>
-                                                  safeSetState(() {}),
-                                              child: RecordWidget(
-                                                recordWidth: 400.0,
-                                                record: RecordStruct(
-                                                  info: DropdownStruct(
-                                                    display: 'Example Record',
-                                                  ),
-                                                  sections: _model
-                                                      .bodyBuilderModel
-                                                      .bodySections,
-                                                  header: _model
-                                                      .headerBuilderModel
-                                                      .header,
-                                                  organization: _model
-                                                      .profileDropdownModel
-                                                      .profile,
-                                                  device: ProfileStruct(
-                                                    displayName: _model
-                                                        .deviceNameTextController
-                                                        .text,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                                  alignment: AlignmentDirectional(0.0, 1.0),
+                                  child: wrapWithModel(
+                                    model: _model.recordViewerModel,
+                                    updateCallback: () => safeSetState(() {}),
+                                    child: RecordViewerWidget(
+                                      header: _model.headerBuilderModel.header,
+                                      sections:
+                                          _model.bodyBuilderModel.bodySections,
+                                      profile: ProfileStruct(
+                                        displayName: _model
+                                            .deviceNameTextController.text,
+                                        photoUrl: _model.profileDropdownModel
+                                            .profile?.photoUrl,
                                       ),
+                                      varList: _model.variableList,
                                     ),
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           await _model.pageViewController
                                               ?.previousPage(
                                             duration:
-                                                const Duration(milliseconds: 300),
+                                                Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
                                         },
@@ -1630,12 +1581,12 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
-                                          color: const Color(0x00E0E3E7),
+                                          color: Color(0x00E0E3E7),
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .titleSmall
@@ -1661,30 +1612,245 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          if (_model.formKey4.currentState ==
-                                                  null ||
-                                              !_model.formKey4.currentState!
-                                                  .validate()) {
-                                            return;
+                                          final firestoreBatch =
+                                              FirebaseFirestore.instance
+                                                  .batch();
+                                          try {
+                                            if (_model.formKey4.currentState ==
+                                                    null ||
+                                                !_model.formKey4.currentState!
+                                                    .validate()) {
+                                              return;
+                                            }
+                                            _model.organization =
+                                                await queryOrganizationsRecordOnce(
+                                              queryBuilder:
+                                                  (organizationsRecord) =>
+                                                      organizationsRecord.where(
+                                                'profile.uid',
+                                                isEqualTo: _model
+                                                    .profileDropdownModel
+                                                    .profile
+                                                    ?.uid,
+                                              ),
+                                              singleRecord: true,
+                                            ).then((s) => s.firstOrNull);
+
+                                            var recordTemplateRecordReference =
+                                                RecordTemplateRecord.collection
+                                                    .doc();
+                                            firestoreBatch.set(
+                                                recordTemplateRecordReference, {
+                                              ...createRecordTemplateRecordData(
+                                                info: createCodedValueStruct(
+                                                  display:
+                                                      '${_model.deviceNameTextController.text} Record',
+                                                  clearUnsetFields: false,
+                                                  create: true,
+                                                ),
+                                                source: updateSourceStruct(
+                                                  SourceStruct(
+                                                    sourceType:
+                                                        CollectionSources
+                                                            .DEVICES,
+                                                  ),
+                                                  clearUnsetFields: false,
+                                                  create: true,
+                                                ),
+                                              ),
+                                              ...mapToFirestore(
+                                                {
+                                                  'header':
+                                                      getBlockComponentListFirestoreData(
+                                                    _model.headerBuilderModel
+                                                        .header,
+                                                  ),
+                                                  'sections':
+                                                      getBodySectionListFirestoreData(
+                                                    _model.bodyBuilderModel
+                                                        .bodySections,
+                                                  ),
+                                                  'created_time': FieldValue
+                                                      .serverTimestamp(),
+                                                  'edited_time': FieldValue
+                                                      .serverTimestamp(),
+                                                  'variables':
+                                                      getDeviceVariableListFirestoreData(
+                                                    _model.variableList,
+                                                  ),
+                                                },
+                                              ),
+                                            });
+                                            _model.recordTemp =
+                                                RecordTemplateRecord
+                                                    .getDocumentFromData({
+                                              ...createRecordTemplateRecordData(
+                                                info: createCodedValueStruct(
+                                                  display:
+                                                      '${_model.deviceNameTextController.text} Record',
+                                                  clearUnsetFields: false,
+                                                  create: true,
+                                                ),
+                                                source: updateSourceStruct(
+                                                  SourceStruct(
+                                                    sourceType:
+                                                        CollectionSources
+                                                            .DEVICES,
+                                                  ),
+                                                  clearUnsetFields: false,
+                                                  create: true,
+                                                ),
+                                              ),
+                                              ...mapToFirestore(
+                                                {
+                                                  'header':
+                                                      getBlockComponentListFirestoreData(
+                                                    _model.headerBuilderModel
+                                                        .header,
+                                                  ),
+                                                  'sections':
+                                                      getBodySectionListFirestoreData(
+                                                    _model.bodyBuilderModel
+                                                        .bodySections,
+                                                  ),
+                                                  'created_time':
+                                                      DateTime.now(),
+                                                  'edited_time': DateTime.now(),
+                                                  'variables':
+                                                      getDeviceVariableListFirestoreData(
+                                                    _model.variableList,
+                                                  ),
+                                                },
+                                              ),
+                                            }, recordTemplateRecordReference);
+
+                                            firestoreBatch.update(
+                                                _model.recordTemp!.reference,
+                                                createRecordTemplateRecordData(
+                                                  info: createCodedValueStruct(
+                                                    code: _model.recordTemp
+                                                        ?.reference.id,
+                                                    clearUnsetFields: false,
+                                                  ),
+                                                ));
+
+                                            var deviceProfilesRecordReference =
+                                                DeviceProfilesRecord.collection
+                                                    .doc();
+                                            firestoreBatch.set(
+                                                deviceProfilesRecordReference, {
+                                              ...createDeviceProfilesRecordData(
+                                                mode: _model
+                                                    .modeModel.option?.code,
+                                                manualPath: _model
+                                                    .manualLinkTextController
+                                                    .text,
+                                                modelNumber: _model
+                                                    .modelNumberTextController
+                                                    .text,
+                                                uniqueDeviceIdentifier: _model
+                                                    .udiTextController.text,
+                                                transferType: _model
+                                                    .transferTypeModel
+                                                    .option
+                                                    ?.code,
+                                                type: _model
+                                                    .typeModel.option?.code,
+                                                recordTemplate: _model
+                                                    .recordTemp?.reference,
+                                                info: createCodedValueStruct(
+                                                  display: _model
+                                                      .deviceNameTextController
+                                                      .text,
+                                                  description: _model
+                                                      .descriptionTextController
+                                                      .text,
+                                                  clearUnsetFields: false,
+                                                  create: true,
+                                                ),
+                                                organization: _model
+                                                    .organization?.reference,
+                                              ),
+                                              ...mapToFirestore(
+                                                {
+                                                  'created_time': FieldValue
+                                                      .serverTimestamp(),
+                                                  'edited_time': FieldValue
+                                                      .serverTimestamp(),
+                                                },
+                                              ),
+                                            });
+                                            _model.deviceProfile =
+                                                DeviceProfilesRecord
+                                                    .getDocumentFromData({
+                                              ...createDeviceProfilesRecordData(
+                                                mode: _model
+                                                    .modeModel.option?.code,
+                                                manualPath: _model
+                                                    .manualLinkTextController
+                                                    .text,
+                                                modelNumber: _model
+                                                    .modelNumberTextController
+                                                    .text,
+                                                uniqueDeviceIdentifier: _model
+                                                    .udiTextController.text,
+                                                transferType: _model
+                                                    .transferTypeModel
+                                                    .option
+                                                    ?.code,
+                                                type: _model
+                                                    .typeModel.option?.code,
+                                                recordTemplate: _model
+                                                    .recordTemp?.reference,
+                                                info: createCodedValueStruct(
+                                                  display: _model
+                                                      .deviceNameTextController
+                                                      .text,
+                                                  description: _model
+                                                      .descriptionTextController
+                                                      .text,
+                                                  clearUnsetFields: false,
+                                                  create: true,
+                                                ),
+                                                organization: _model
+                                                    .organization?.reference,
+                                              ),
+                                              ...mapToFirestore(
+                                                {
+                                                  'created_time':
+                                                      DateTime.now(),
+                                                  'edited_time': DateTime.now(),
+                                                },
+                                              ),
+                                            }, deviceProfilesRecordReference);
+
+                                            firestoreBatch.update(
+                                                _model.deviceProfile!.reference,
+                                                createDeviceProfilesRecordData(
+                                                  info: createCodedValueStruct(
+                                                    code: _model.deviceProfile
+                                                        ?.reference.id,
+                                                    clearUnsetFields: false,
+                                                  ),
+                                                ));
+                                            Navigator.pop(context);
+                                          } finally {
+                                            await firestoreBatch.commit();
                                           }
-                                          await _model.pageViewController
-                                              ?.nextPage(
-                                            duration:
-                                                const Duration(milliseconds: 300),
-                                            curve: Curves.ease,
-                                          );
+
+                                          safeSetState(() {});
                                         },
                                         text: 'Create Device Profile',
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -1703,10 +1869,10 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 10.0)),
+                                  ].divide(SizedBox(width: 10.0)),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 10.0)),
+                            ].divide(SizedBox(height: 10.0)),
                           ),
                         ),
                       ),
@@ -1716,7 +1882,7 @@ class _CreateDeviceProfileWidgetState extends State<CreateDeviceProfileWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
               child: Text(
                 'New Device Profile',
                 textAlign: TextAlign.start,

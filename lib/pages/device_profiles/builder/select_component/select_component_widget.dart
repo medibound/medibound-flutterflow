@@ -1,4 +1,4 @@
-import '/backend/schema/structs/index.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -8,6 +8,7 @@ import '/utils/dropdown/option_dropdown/option_dropdown_widget.dart';
 import '/utils/empty_list/empty_list_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'select_component_model.dart';
@@ -62,18 +63,35 @@ class _SelectComponentWidgetState extends State<SelectComponentWidget> {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          wrapWithModel(
-            model: _model.variableSelectedForCompModel,
-            updateCallback: () => safeSetState(() {}),
-            updateOnChange: true,
-            child: OptionDropdownWidget(
-              width: functions.getBlockWidth(100.0, 'HALF', 10.0),
-              label: 'Variable',
-              disabled: false,
-              optionsList: functions
-                  .deviceVariablesToDropdowns(widget.variablesList?.toList()),
-              onSelected: (optionSelected) async {},
-            ),
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              wrapWithModel(
+                model: _model.variableSelectedForCompModel,
+                updateCallback: () => safeSetState(() {}),
+                updateOnChange: true,
+                child: OptionDropdownWidget(
+                  width: functions.getBlockWidth(100.0, 'HALF', 10.0),
+                  label: 'Variable',
+                  disabled: false,
+                  optionsList: functions.deviceVariablesToDropdowns(
+                      widget.variablesList?.toList()),
+                  onSelected: (optionSelected) async {},
+                ),
+              ),
+              wrapWithModel(
+                model: _model.colorSelectedForCompModel,
+                updateCallback: () => safeSetState(() {}),
+                updateOnChange: true,
+                child: OptionDropdownWidget(
+                  width: functions.getBlockWidth(100.0, 'HALF', 10.0),
+                  label: 'Color',
+                  disabled: false,
+                  optionsList: FFAppState().BlockColors,
+                  onSelected: (optionSelected) async {},
+                ),
+              ),
+            ],
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -81,9 +99,9 @@ class _SelectComponentWidgetState extends State<SelectComponentWidget> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: FlutterFlowChoiceChips(
-                    options: const [
+                    options: [
                       ChipData('QUARTER', Icons.square_rounded),
                       ChipData('HALF', Icons.rectangle_rounded),
                       ChipData('FULL', FontAwesomeIcons.expandArrowsAlt)
@@ -106,7 +124,7 @@ class _SelectComponentWidgetState extends State<SelectComponentWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     unselectedChipStyle: ChipStyle(
-                      backgroundColor: const Color(0x00000000),
+                      backgroundColor: Color(0x00000000),
                       textStyle: FlutterFlowTheme.of(context)
                           .bodyMedium
                           .override(
@@ -137,137 +155,215 @@ class _SelectComponentWidgetState extends State<SelectComponentWidget> {
           ),
           Flexible(
             child: Container(
-              decoration: const BoxDecoration(),
+              decoration: BoxDecoration(),
               child: Builder(
                 builder: (context) {
                   if (_model.variableSelectedForCompModel.option != null) {
-                    return Builder(
-                      builder: (context) {
-                        final subblocks = FFAppState()
-                            .Subblocks
-                            .where((e) =>
-                                (e.sizes.contains(_model.sizeValue) == true) &&
-                                (e.types.contains(functions.twoToArrayString(
-                                        widget.variablesList!
-                                            .where((e) =>
-                                                e.info.code ==
-                                                _model
-                                                    .variableSelectedForCompModel
-                                                    .option
-                                                    ?.code)
-                                            .toList()
-                                            .firstOrNull!
-                                            .type,
-                                        widget.variablesList!
-                                            .where((e) =>
-                                                e.info.code ==
-                                                _model
-                                                    .variableSelectedForCompModel
-                                                    .option
-                                                    ?.code)
-                                            .toList()
-                                            .firstOrNull!
-                                            .isList)) ==
-                                    true))
-                            .toList();
-                        if (subblocks.isEmpty) {
-                          return SizedBox(
-                            width: double.infinity,
-                            height: 200.0,
-                            child: EmptyListWidget(
-                              text:
-                                  'No Variable Selected or No Available Components',
-                              icon: Icon(
-                                Icons.layers_clear_rounded,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
+                    return StreamBuilder<List<SubBlocksRecord>>(
+                      stream: querySubBlocksRecord(
+                        queryBuilder: (subBlocksRecord) =>
+                            subBlocksRecord.where(
+                          'types',
+                          arrayContains:
+                              '${widget.variablesList?.where((e) => e.info.code == _model.variableSelectedForCompModel.option?.code).toList().firstOrNull?.type}${widget.variablesList!.where((e) => e.info.code == _model.variableSelectedForCompModel.option?.code).toList().firstOrNull!.isList ? '_ARRAY' : ''}',
+                        ),
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 25.0,
+                              height: 25.0,
+                              child: SpinKitPulse(
+                                color: FlutterFlowTheme.of(context).primary,
+                                size: 25.0,
                               ),
                             ),
                           );
                         }
+                        List<SubBlocksRecord> containerSubBlocksRecordList =
+                            snapshot.data!;
 
-                        return ListView.separated(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: subblocks.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 10.0),
-                          itemBuilder: (context, subblocksIndex) {
-                            final subblocksItem = subblocks[subblocksIndex];
-                            return Column(
-                              key: ValueKey(subblocksItem.info.code),
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Draggable<BlockComponentStruct>(
-                                  data: BlockComponentStruct(
-                                    info: subblocksItem.info,
-                                    size: _model.sizeValue,
-                                    color:
-                                        FlutterFlowTheme.of(context).tertiary,
-                                    subBlock: subblocksItem.info.code,
-                                    variables: widget.variablesList
-                                        ?.where((e) =>
-                                            e.info.code ==
-                                            _model.variableSelectedForCompModel
-                                                .option?.code)
-                                        .toList(),
+                        return Container(
+                          decoration: BoxDecoration(),
+                          child: Builder(
+                            builder: (context) {
+                              final sizedSubBlocks =
+                                  containerSubBlocksRecordList
+                                      .where((e) =>
+                                          (e.sizes
+                                              .where(
+                                                  (e) => e == _model.sizeValue)
+                                              .toList()
+                                              .isNotEmpty) ==
+                                          true)
+                                      .toList();
+                              if (sizedSubBlocks.isEmpty) {
+                                return Container(
+                                  width: double.infinity,
+                                  height: 200.0,
+                                  child: EmptyListWidget(
+                                    text:
+                                        'No Variable Selected or No Available Components',
+                                    icon: Icon(
+                                      Icons.layers_clear_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                    ),
+                                    height: 200.0,
                                   ),
-                                  feedback: Material(
-                                    type: MaterialType.transparency,
-                                    child: ComponentWidget(
-                                      key: Key(
-                                          'Keycot_${subblocksIndex}_of_${subblocks.length}'),
-                                      totalHeight: 100.0,
-                                      block: BlockComponentStruct(
-                                        info: subblocksItem.info,
-                                        size: _model.sizeValue,
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiary,
-                                        subBlock: subblocksItem.info.code,
-                                        variables: widget.variablesList
-                                            ?.where((e) =>
-                                                e.info.code ==
-                                                _model
-                                                    .variableSelectedForCompModel
-                                                    .option
-                                                    ?.code)
-                                            .toList(),
+                                );
+                              }
+
+                              return ListView.separated(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: sizedSubBlocks.length,
+                                separatorBuilder: (_, __) =>
+                                    SizedBox(height: 10.0),
+                                itemBuilder: (context, sizedSubBlocksIndex) {
+                                  final sizedSubBlocksItem =
+                                      sizedSubBlocks[sizedSubBlocksIndex];
+                                  return Column(
+                                    key: ValueKey(sizedSubBlocksItem.info.code),
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Draggable<BlockComponentStruct>(
+                                        data: BlockComponentStruct(
+                                          info: sizedSubBlocksItem.info,
+                                          size: _model.sizeValue,
+                                          color: valueOrDefault<Color>(
+                                            _model.colorSelectedForCompModel
+                                                        .option !=
+                                                    null
+                                                ? valueOrDefault<Color>(
+                                                    _model
+                                                        .colorSelectedForCompModel
+                                                        .option
+                                                        ?.color,
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary,
+                                                  )
+                                                : FlutterFlowTheme.of(context)
+                                                    .tertiary,
+                                            FlutterFlowTheme.of(context)
+                                                .tertiary,
+                                          ),
+                                          subBlock:
+                                              sizedSubBlocksItem.info.code,
+                                          variableIds: widget.variablesList
+                                              ?.where((e) =>
+                                                  e.info.code ==
+                                                  _model
+                                                      .variableSelectedForCompModel
+                                                      .option
+                                                      ?.code)
+                                              .toList()
+                                              .map((e) => e.info.code)
+                                              .toList(),
+                                        ),
+                                        feedback: Material(
+                                          type: MaterialType.transparency,
+                                          child: ComponentWidget(
+                                            key: Key(
+                                                'Keycot_${sizedSubBlocksIndex}_of_${sizedSubBlocks.length}'),
+                                            totalHeight: 100.0,
+                                            block: BlockComponentStruct(
+                                              info: sizedSubBlocksItem.info,
+                                              size: _model.sizeValue,
+                                              color: valueOrDefault<Color>(
+                                                _model.colorSelectedForCompModel
+                                                            .option !=
+                                                        null
+                                                    ? valueOrDefault<Color>(
+                                                        _model
+                                                            .colorSelectedForCompModel
+                                                            .option
+                                                            ?.color,
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .tertiary,
+                                                      )
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
+                                                FlutterFlowTheme.of(context)
+                                                    .tertiary,
+                                              ),
+                                              subBlock:
+                                                  sizedSubBlocksItem.info.code,
+                                              variableIds: widget.variablesList
+                                                  ?.where((e) =>
+                                                      e.info.code ==
+                                                      _model
+                                                          .variableSelectedForCompModel
+                                                          .option
+                                                          ?.code)
+                                                  .toList()
+                                                  .map((e) => e.info.code)
+                                                  .toList(),
+                                            ),
+                                            spacing: 10.0,
+                                            varList: widget.variablesList!,
+                                          ),
+                                        ),
+                                        child: ComponentWidget(
+                                          key: Key(
+                                              'Keycot_${sizedSubBlocksIndex}_of_${sizedSubBlocks.length}'),
+                                          totalHeight: 100.0,
+                                          block: BlockComponentStruct(
+                                            info: sizedSubBlocksItem.info,
+                                            size: _model.sizeValue,
+                                            color: valueOrDefault<Color>(
+                                              _model.colorSelectedForCompModel
+                                                          .option !=
+                                                      null
+                                                  ? valueOrDefault<Color>(
+                                                      _model
+                                                          .colorSelectedForCompModel
+                                                          .option
+                                                          ?.color,
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .tertiary,
+                                                    )
+                                                  : FlutterFlowTheme.of(context)
+                                                      .tertiary,
+                                              FlutterFlowTheme.of(context)
+                                                  .tertiary,
+                                            ),
+                                            subBlock:
+                                                sizedSubBlocksItem.info.code,
+                                            variableIds: widget.variablesList
+                                                ?.where((e) =>
+                                                    e.info.code ==
+                                                    _model
+                                                        .variableSelectedForCompModel
+                                                        .option
+                                                        ?.code)
+                                                .toList()
+                                                .map((e) => e.info.code)
+                                                .toList(),
+                                          ),
+                                          spacing: 10.0,
+                                          varList: widget.variablesList!,
+                                        ),
                                       ),
-                                      spacing: 10.0,
-                                    ),
-                                  ),
-                                  child: ComponentWidget(
-                                    key: Key(
-                                        'Keycot_${subblocksIndex}_of_${subblocks.length}'),
-                                    totalHeight: 100.0,
-                                    block: BlockComponentStruct(
-                                      info: subblocksItem.info,
-                                      size: _model.sizeValue,
-                                      color:
-                                          FlutterFlowTheme.of(context).tertiary,
-                                      subBlock: subblocksItem.info.code,
-                                      variables: widget.variablesList
-                                          ?.where((e) =>
-                                              e.info.code ==
-                                              _model
-                                                  .variableSelectedForCompModel
-                                                  .option
-                                                  ?.code)
-                                          .toList(),
-                                    ),
-                                    spacing: 10.0,
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         );
                       },
                     );
                   } else {
                     return Container(
                       height: 200.0,
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: wrapWithModel(
                         model: _model.emptyListModel,
                         updateCallback: () => safeSetState(() {}),
@@ -286,7 +382,7 @@ class _SelectComponentWidgetState extends State<SelectComponentWidget> {
               ),
             ),
           ),
-        ].divide(const SizedBox(height: 10.0)),
+        ].divide(SizedBox(height: 10.0)),
       ),
     );
   }

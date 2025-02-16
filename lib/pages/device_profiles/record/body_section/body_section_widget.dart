@@ -14,10 +14,12 @@ class BodySectionWidget extends StatefulWidget {
     super.key,
     required this.bodySection,
     required this.bodySectionWidth,
+    required this.varList,
   });
 
   final BodySectionStruct? bodySection;
   final double? bodySectionWidth;
+  final List<DeviceVariableStruct>? varList;
 
   @override
   State<BodySectionWidget> createState() => _BodySectionWidgetState();
@@ -50,7 +52,7 @@ class _BodySectionWidgetState extends State<BodySectionWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -64,7 +66,7 @@ class _BodySectionWidgetState extends State<BodySectionWidget> {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(7.5),
+                  padding: EdgeInsets.all(7.5),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -73,7 +75,7 @@ class _BodySectionWidgetState extends State<BodySectionWidget> {
                       if (widget.bodySection?.title != null &&
                           widget.bodySection?.title != '')
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               5.0, 5.0, 5.0, 0.0),
                           child: AutoSizeText(
                             valueOrDefault<String>(
@@ -92,7 +94,7 @@ class _BodySectionWidgetState extends State<BodySectionWidget> {
                       if (widget.bodySection?.subtitle != null &&
                           widget.bodySection?.subtitle != '')
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               5.0, 0.0, 5.0, 0.0),
                           child: AutoSizeText(
                             valueOrDefault<String>(
@@ -113,7 +115,7 @@ class _BodySectionWidgetState extends State<BodySectionWidget> {
                       if (widget.bodySection?.body != null &&
                           widget.bodySection?.body != '')
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               5.0, 10.0, 5.0, 10.0),
                           child: AutoSizeText(
                             valueOrDefault<String>(
@@ -134,12 +136,12 @@ class _BodySectionWidgetState extends State<BodySectionWidget> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Container(
                             width: double.infinity,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 0.0),
                               child: Builder(
                                 builder: (context) {
@@ -149,7 +151,7 @@ class _BodySectionWidgetState extends State<BodySectionWidget> {
                                       [];
                                   if (components.isEmpty) {
                                     return Center(
-                                      child: SizedBox(
+                                      child: Container(
                                         width: double.infinity,
                                         height: 105.0,
                                         child: EmptyListWidget(
@@ -178,13 +180,13 @@ class _BodySectionWidgetState extends State<BodySectionWidget> {
                                         (componentsIndex) {
                                       final componentsItem =
                                           components[componentsIndex];
-                                      return SizedBox(
+                                      return Container(
                                         height:
                                             ((widget.bodySectionWidth!) - 25) /
                                                 4,
                                         child: Stack(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, -1.0),
+                                              AlignmentDirectional(-1.0, -1.0),
                                           children: [
                                             ComponentWidget(
                                               key: Key(
@@ -195,6 +197,7 @@ class _BodySectionWidgetState extends State<BodySectionWidget> {
                                                       4,
                                               block: componentsItem,
                                               spacing: 7.5,
+                                              varList: widget.varList!,
                                             ),
                                           ],
                                         ),
@@ -207,7 +210,7 @@ class _BodySectionWidgetState extends State<BodySectionWidget> {
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(height: 0.0)),
+                    ].divide(SizedBox(height: 0.0)),
                   ),
                 ),
               ),

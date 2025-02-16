@@ -45,7 +45,7 @@ class _LineWidgetState extends State<LineWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: double.infinity,
       height: double.infinity,
       child: custom_widgets.SplineAreaGraph(

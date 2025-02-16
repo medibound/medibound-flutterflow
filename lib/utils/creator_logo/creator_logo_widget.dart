@@ -10,7 +10,7 @@ class CreatorLogoWidget extends StatefulWidget {
   const CreatorLogoWidget({
     super.key,
     bool? textVisible,
-  }) : textVisible = textVisible ?? true;
+  }) : this.textVisible = textVisible ?? true;
 
   final bool textVisible;
 
@@ -48,7 +48,7 @@ class _CreatorLogoWidgetState extends State<CreatorLogoWidget> {
       spacing: 10.0,
       runSpacing: 0.0,
       alignment: WrapAlignment.start,
-      crossAxisAlignment: WrapCrossAlignment.start,
+      crossAxisAlignment: WrapCrossAlignment.center,
       direction: Axis.horizontal,
       runAlignment: WrapAlignment.start,
       verticalDirection: VerticalDirection.down,
@@ -57,8 +57,8 @@ class _CreatorLogoWidgetState extends State<CreatorLogoWidget> {
         Container(
           width: 40.0,
           height: 50.0,
-          decoration: const BoxDecoration(),
-          alignment: const AlignmentDirectional(0.0, 0.0),
+          decoration: BoxDecoration(),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: SvgPicture.asset(
@@ -76,7 +76,8 @@ class _CreatorLogoWidgetState extends State<CreatorLogoWidget> {
           false,
         ))
           Column(
-            mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -89,24 +90,31 @@ class _CreatorLogoWidgetState extends State<CreatorLogoWidget> {
                       lineHeight: 1.0,
                     ),
               ),
-              GradientText(
-                'creator',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Rubik',
-                      color: FlutterFlowTheme.of(context).secondary,
-                      fontSize: 34.0,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.w600,
-                      lineHeight: 0.9,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    child: GradientText(
+                      'creator',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Rubik',
+                            color: FlutterFlowTheme.of(context).secondary,
+                            fontSize: 34.0,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w600,
+                            lineHeight: 1.0,
+                          ),
+                      colors: [
+                        FlutterFlowTheme.of(context).primary,
+                        FlutterFlowTheme.of(context).secondary
+                      ],
+                      gradientDirection: GradientDirection.ttb,
+                      gradientType: GradientType.linear,
                     ),
-                colors: [
-                  FlutterFlowTheme.of(context).primary,
-                  FlutterFlowTheme.of(context).secondary
+                  ),
                 ],
-                gradientDirection: GradientDirection.ttb,
-                gradientType: GradientType.linear,
               ),
-            ].divide(const SizedBox(height: 0.0)),
+            ].divide(SizedBox(height: 0.0)),
           ),
       ],
     );

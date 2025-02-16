@@ -94,7 +94,7 @@ class VariableDataStruct extends FFFirebaseStruct {
           ParamType.double,
           true,
         ),
-        firestoreUtilData: const FirestoreUtilData(
+        firestoreUtilData: FirestoreUtilData(
           clearUnsetFields: false,
           create: true,
         ),

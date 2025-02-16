@@ -13,7 +13,12 @@ import 'body_builder_model.dart';
 export 'body_builder_model.dart';
 
 class BodyBuilderWidget extends StatefulWidget {
-  const BodyBuilderWidget({super.key});
+  const BodyBuilderWidget({
+    super.key,
+    required this.varList,
+  });
+
+  final List<DeviceVariableStruct>? varList;
 
   @override
   State<BodyBuilderWidget> createState() => _BodyBuilderWidgetState();
@@ -64,7 +69,7 @@ class _BodyBuilderWidgetState extends State<BodyBuilderWidget>
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(),
+      decoration: BoxDecoration(),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -72,7 +77,7 @@ class _BodyBuilderWidgetState extends State<BodyBuilderWidget>
           children: [
             Container(
               height: 40.0,
-              decoration: const BoxDecoration(),
+              decoration: BoxDecoration(),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -99,17 +104,17 @@ class _BodyBuilderWidgetState extends State<BodyBuilderWidget>
                       safeSetState(() {});
                     },
                     text: 'Add Section',
-                    icon: const FaIcon(
+                    icon: FaIcon(
                       FontAwesomeIcons.plus,
                       size: 14.0,
                     ),
                     options: FFButtonOptions(
                       height: 40.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: const Color(0x00E0E3E7),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: Color(0x00E0E3E7),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Rubik',
@@ -131,7 +136,7 @@ class _BodyBuilderWidgetState extends State<BodyBuilderWidget>
             Flexible(
               child: ClipRRect(
                 child: Container(
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Builder(
                     builder: (context) {
                       final sections = _model.bodySections.toList();
@@ -145,11 +150,11 @@ class _BodyBuilderWidgetState extends State<BodyBuilderWidget>
                         itemBuilder: (context, sectionsIndex) {
                           final sectionsItem = sections[sectionsIndex];
                           return Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 5.0, 30.0, 5.0),
                             child: ClipRRect(
                               child: Container(
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -166,6 +171,7 @@ class _BodyBuilderWidgetState extends State<BodyBuilderWidget>
                                           'Key7wc_${sectionsItem.id}',
                                         ),
                                         bodySection: sectionsItem,
+                                        varList: widget.varList!,
                                         bodySectionCallback: (id) async {
                                           _model.updateBodySectionsAtIndex(
                                             sectionsIndex,
@@ -197,9 +203,9 @@ class _BodyBuilderWidgetState extends State<BodyBuilderWidget>
                                                   .firstOrNull
                                                   ?.id)
                                             Container(
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(10.0),
+                                                padding: EdgeInsets.all(10.0),
                                                 child: FaIcon(
                                                   FontAwesomeIcons.arrowUp,
                                                   color: FlutterFlowTheme.of(
@@ -220,9 +226,9 @@ class _BodyBuilderWidgetState extends State<BodyBuilderWidget>
                                               safeSetState(() {});
                                             },
                                             child: Container(
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(10.0),
+                                                padding: EdgeInsets.all(10.0),
                                                 child: FaIcon(
                                                   FontAwesomeIcons
                                                       .solidTrashAlt,
@@ -243,9 +249,9 @@ class _BodyBuilderWidgetState extends State<BodyBuilderWidget>
                                                   .firstOrNull
                                                   ?.id)
                                             Container(
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(10.0),
+                                                padding: EdgeInsets.all(10.0),
                                                 child: FaIcon(
                                                   FontAwesomeIcons.arrowDown,
                                                   color: FlutterFlowTheme.of(
@@ -255,7 +261,7 @@ class _BodyBuilderWidgetState extends State<BodyBuilderWidget>
                                                 ),
                                               ),
                                             ),
-                                        ].divide(const SizedBox(height: 25.0)),
+                                        ].divide(SizedBox(height: 25.0)),
                                       ),
                                     ),
                                   ],
@@ -271,7 +277,7 @@ class _BodyBuilderWidgetState extends State<BodyBuilderWidget>
                 ),
               ),
             ),
-          ].divide(const SizedBox(height: 10.0)),
+          ].divide(SizedBox(height: 10.0)),
         ),
       ),
     );

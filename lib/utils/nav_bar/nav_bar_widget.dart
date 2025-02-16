@@ -14,7 +14,7 @@ class NavBarWidget extends StatefulWidget {
   const NavBarWidget({
     super.key,
     int? page,
-  }) : page = page ?? 1;
+  }) : this.page = page ?? 1;
 
   final int page;
 
@@ -49,7 +49,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(10.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15.0),
         child: BackdropFilter(
@@ -76,9 +76,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                 children: [
                   Expanded(
                     child: Container(
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 30.0, 20.0, 0.0),
                         child: SingleChildScrollView(
                           child: Column(
@@ -88,7 +88,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                               wrapWithModel(
                                 model: _model.creatorLogoModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: const CreatorLogoWidget(
+                                child: CreatorLogoWidget(
                                   textVisible: true,
                                 ),
                               ),
@@ -100,7 +100,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(10.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -109,15 +109,16 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                             width: 90.0,
                                             height: 90.0,
                                             clipBehavior: Clip.antiAlias,
-                                            decoration: const BoxDecoration(
+                                            decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
                                             child: CachedNetworkImage(
                                               fadeInDuration:
-                                                  const Duration(milliseconds: 1300),
+                                                  Duration(milliseconds: 1300),
                                               fadeOutDuration:
-                                                  const Duration(milliseconds: 1300),
-                                              imageUrl: currentUserPhoto,
+                                                  Duration(milliseconds: 1300),
+                                              imageUrl: currentUserDocument!
+                                                  .profile.photoUrl,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -177,13 +178,13 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                             ),
                                           ],
                                         ),
-                                      ].divide(const SizedBox(height: 10.0)),
+                                      ].divide(SizedBox(height: 10.0)),
                                     ),
                                   ),
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, -1.0),
+                                alignment: AlignmentDirectional(-1.0, -1.0),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
                                   shrinkWrap: true,
@@ -194,9 +195,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                       updateCallback: () => safeSetState(() {}),
                                       updateOnChange: true,
                                       child: MenuTileWidget(
-                                        title: 'My Organizations',
-                                        icon: FaIcon(
-                                          FontAwesomeIcons.hospitalUser,
+                                        title: 'Launch Center',
+                                        icon: Icon(
+                                          FFIcons.klogo,
                                           color: widget.page == 1
                                               ? FlutterFlowTheme.of(context)
                                                   .secondary
@@ -210,7 +211,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                             'HomePage',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  const TransitionInfo(
+                                                  TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -221,78 +222,8 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 10.0, 10.0, 0.0),
-                                      child: Text(
-                                        'Care Utilities',
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelSmall
-                                            .override(
-                                              fontFamily: 'Rubik',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                    ),
-                                    wrapWithModel(
-                                      model: _model.menuTileModel2,
-                                      updateCallback: () => safeSetState(() {}),
-                                      updateOnChange: true,
-                                      child: MenuTileWidget(
-                                        title: 'Patient History',
-                                        icon: Icon(
-                                          Icons.people,
-                                          color: widget.page == 4
-                                              ? FlutterFlowTheme.of(context)
-                                                  .secondary
-                                              : FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                          size: 18.0,
-                                        ),
-                                        isActive: widget.page == 4,
-                                        onClick: () async {},
-                                      ),
-                                    ),
-                                    wrapWithModel(
-                                      model: _model.menuTileModel3,
-                                      updateCallback: () => safeSetState(() {}),
-                                      updateOnChange: true,
-                                      child: MenuTileWidget(
-                                        title: 'Owned Devices',
-                                        icon: FaIcon(
-                                          FontAwesomeIcons.layerGroup,
-                                          color: widget.page == 4
-                                              ? FlutterFlowTheme.of(context)
-                                                  .secondary
-                                              : FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                          size: 16.0,
-                                        ),
-                                        isActive: widget.page == 4,
-                                        onClick: () async {},
-                                      ),
-                                    ),
-                                    wrapWithModel(
-                                      model: _model.menuTileModel4,
-                                      updateCallback: () => safeSetState(() {}),
-                                      updateOnChange: true,
-                                      child: MenuTileWidget(
-                                        title: 'Record Manager',
-                                        icon: FaIcon(
-                                          FontAwesomeIcons.folderOpen,
-                                          color: widget.page == 4
-                                              ? FlutterFlowTheme.of(context)
-                                                  .secondary
-                                              : FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                          size: 16.0,
-                                        ),
-                                        isActive: widget.page == 4,
-                                        onClick: () async {},
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 10.0, 10.0, 0.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 10.0, 10.0, 10.0),
                                       child: Text(
                                         'Developer Resources',
                                         style: FlutterFlowTheme.of(context)
@@ -304,7 +235,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                       ),
                                     ),
                                     wrapWithModel(
-                                      model: _model.menuTileModel5,
+                                      model: _model.menuTileModel2,
                                       updateCallback: () => safeSetState(() {}),
                                       updateOnChange: true,
                                       child: MenuTileWidget(
@@ -324,7 +255,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                             'DeviceProfilesPage',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  const TransitionInfo(
+                                                  TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -334,28 +265,148 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                         },
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 5.0)),
+                                    wrapWithModel(
+                                      model: _model.menuTileModel3,
+                                      updateCallback: () => safeSetState(() {}),
+                                      updateOnChange: true,
+                                      child: MenuTileWidget(
+                                        title: 'App Editor',
+                                        icon: Icon(
+                                          Icons.edit_square,
+                                          color: widget.page == 3
+                                              ? FlutterFlowTheme.of(context)
+                                                  .secondary
+                                              : FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          size: 18.0,
+                                        ),
+                                        isActive: widget.page == 3,
+                                        onClick: () async {},
+                                      ),
+                                    ),
+                                    wrapWithModel(
+                                      model: _model.menuTileModel4,
+                                      updateCallback: () => safeSetState(() {}),
+                                      updateOnChange: true,
+                                      child: MenuTileWidget(
+                                        title: 'Agent Manager',
+                                        icon: FaIcon(
+                                          FontAwesomeIcons.solidComments,
+                                          color: widget.page == 4
+                                              ? FlutterFlowTheme.of(context)
+                                                  .secondary
+                                              : FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          size: 18.0,
+                                        ),
+                                        isActive: widget.page == 4,
+                                        onClick: () async {
+                                          context.pushNamed(
+                                            'DeviceProfilesPage',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                              ),
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 10.0, 10.0, 10.0),
+                                      child: Text(
+                                        'Care Utilities',
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelSmall
+                                            .override(
+                                              fontFamily: 'Rubik',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                    wrapWithModel(
+                                      model: _model.menuTileModel5,
+                                      updateCallback: () => safeSetState(() {}),
+                                      updateOnChange: true,
+                                      child: MenuTileWidget(
+                                        title: 'Patient History',
+                                        icon: Icon(
+                                          Icons.people,
+                                          color: widget.page == 5
+                                              ? FlutterFlowTheme.of(context)
+                                                  .secondary
+                                              : FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          size: 18.0,
+                                        ),
+                                        isActive: widget.page == 5,
+                                        onClick: () async {},
+                                      ),
+                                    ),
+                                    wrapWithModel(
+                                      model: _model.menuTileModel6,
+                                      updateCallback: () => safeSetState(() {}),
+                                      updateOnChange: true,
+                                      child: MenuTileWidget(
+                                        title: 'Owned Devices',
+                                        icon: Icon(
+                                          FFIcons.krecords,
+                                          color: widget.page == 6
+                                              ? FlutterFlowTheme.of(context)
+                                                  .secondary
+                                              : FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          size: 16.0,
+                                        ),
+                                        isActive: widget.page == 6,
+                                        onClick: () async {},
+                                      ),
+                                    ),
+                                    wrapWithModel(
+                                      model: _model.menuTileModel7,
+                                      updateCallback: () => safeSetState(() {}),
+                                      updateOnChange: true,
+                                      child: MenuTileWidget(
+                                        title: 'Record Storage',
+                                        icon: FaIcon(
+                                          FontAwesomeIcons.folderOpen,
+                                          color: widget.page == 7
+                                              ? FlutterFlowTheme.of(context)
+                                                  .secondary
+                                              : FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          size: 16.0,
+                                        ),
+                                        isActive: widget.page == 7,
+                                        onClick: () async {},
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 40.0)),
+                            ].divide(SizedBox(height: 20.0)),
                           ),
                         ),
                       ),
                     ),
                   ),
                   Container(
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 1.0),
+                            alignment: AlignmentDirectional(0.0, 1.0),
                             child: wrapWithModel(
-                              model: _model.menuTileModel6,
+                              model: _model.menuTileModel8,
                               updateCallback: () => safeSetState(() {}),
                               updateOnChange: true,
                               child: MenuTileWidget(

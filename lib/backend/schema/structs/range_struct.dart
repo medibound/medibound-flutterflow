@@ -83,7 +83,7 @@ class RangeStruct extends FFFirebaseStruct {
           ParamType.double,
           false,
         ),
-        firestoreUtilData: const FirestoreUtilData(
+        firestoreUtilData: FirestoreUtilData(
           clearUnsetFields: false,
           create: true,
         ),

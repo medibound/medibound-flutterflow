@@ -10,10 +10,12 @@ class EmptyListWidget extends StatefulWidget {
     super.key,
     required this.text,
     required this.icon,
+    this.height,
   });
 
   final String? text;
   final Widget? icon;
+  final double? height;
 
   @override
   State<EmptyListWidget> createState() => _EmptyListWidgetState();
@@ -48,17 +50,17 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
     return ClipRRect(
       child: Container(
         width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(),
+        height: widget.height != null ? widget.height : double.infinity,
+        decoration: BoxDecoration(),
         child: Align(
-          alignment: const AlignmentDirectional(0.0, 0.0),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: Container(
-            constraints: const BoxConstraints(
+            constraints: BoxConstraints(
               maxWidth: 300.0,
             ),
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(),
             child: Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Wrap(
                 spacing: 10.0,
                 runSpacing: 10.0,

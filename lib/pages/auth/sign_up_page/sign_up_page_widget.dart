@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -72,8 +73,8 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 640.0.ms,
-            begin: const Offset(10.0, 10.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(10.0, 10.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -104,7 +105,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
         body: Stack(
           children: [
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
@@ -114,12 +115,12 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                       FlutterFlowTheme.of(context).customColor2,
                       FlutterFlowTheme.of(context).primaryBackground
                     ],
-                    stops: const [0.0, 1.0],
-                    begin: const AlignmentDirectional(-1.0, -1.0),
-                    end: const AlignmentDirectional(1.0, 1.0),
+                    stops: [0.0, 1.0],
+                    begin: AlignmentDirectional(-1.0, -1.0),
+                    end: AlignmentDirectional(1.0, 1.0),
                   ),
                 ),
-                alignment: const AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Wrap(
                   spacing: 0.0,
                   runSpacing: 0.0,
@@ -131,11 +132,11 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                   clipBehavior: Clip.none,
                   children: [
                     Container(
-                      constraints: const BoxConstraints(
+                      constraints: BoxConstraints(
                         maxWidth: 440.0,
                       ),
-                      decoration: const BoxDecoration(),
-                      child: SizedBox(
+                      decoration: BoxDecoration(),
+                      child: Container(
                         height: 490.0,
                         child: Stack(
                           children: [
@@ -149,7 +150,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                   key: _model.formKey3,
                                   autovalidateMode: AutovalidateMode.disabled,
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -170,7 +171,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 4.0, 0.0, 24.0),
                                           child: Text(
                                             'Let\'s get started by filling out the form below.',
@@ -185,7 +186,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: TextFormField(
                                             controller:
@@ -208,7 +209,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .customColor1,
-                                                    offset: const Offset(0.0, 2.0),
+                                                    offset: Offset(0.0, 2.0),
                                                     blurRadius: 40.0,
                                                   )
                                                 ],
@@ -223,7 +224,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                         letterSpacing: 0.0,
                                                       ),
                                               enabledBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -266,7 +267,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .alternate,
                                               contentPadding:
-                                                  const EdgeInsets.all(20.0),
+                                                  EdgeInsets.all(20.0),
                                               hoverColor:
                                                   FlutterFlowTheme.of(context)
                                                       .customColor1,
@@ -289,7 +290,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -297,7 +298,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                 MainAxisAlignment.center,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
@@ -312,7 +313,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                     await _model
                                                         .pageViewController
                                                         ?.nextPage(
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 300),
                                                       curve: Curves.ease,
                                                     );
@@ -321,11 +322,11 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -360,14 +361,14 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               context.pushNamed(
                                                 'LoginPage',
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -378,12 +379,12 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                             text: 'Already A User?',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 16.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color: const Color(0x00E0E3E7),
+                                              color: Color(0x00E0E3E7),
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall
@@ -409,7 +410,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(height: 10.0)),
+                                      ].divide(SizedBox(height: 10.0)),
                                     ),
                                   ),
                                 ),
@@ -417,7 +418,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                   key: _model.formKey4,
                                   autovalidateMode: AutovalidateMode.disabled,
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -438,7 +439,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 4.0, 0.0, 24.0),
                                           child: Text(
                                             'Let\'s get started by filling out the form below.',
@@ -457,7 +458,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                             Flexible(
                                               flex: 3,
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: TextFormField(
@@ -485,7 +486,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                                   .of(context)
                                                               .customColor1,
                                                           offset:
-                                                              const Offset(0.0, 2.0),
+                                                              Offset(0.0, 2.0),
                                                           blurRadius: 40.0,
                                                         )
                                                       ],
@@ -501,7 +502,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                         ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
-                                                      borderSide: const BorderSide(
+                                                      borderSide: BorderSide(
                                                         color:
                                                             Color(0x00000000),
                                                         width: 2.0,
@@ -555,7 +556,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                                 context)
                                                             .alternate,
                                                     contentPadding:
-                                                        const EdgeInsets.all(20.0),
+                                                        EdgeInsets.all(20.0),
                                                     hoverColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -583,7 +584,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                             Flexible(
                                               flex: 2,
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: TextFormField(
@@ -611,7 +612,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                                   .of(context)
                                                               .customColor1,
                                                           offset:
-                                                              const Offset(0.0, 2.0),
+                                                              Offset(0.0, 2.0),
                                                           blurRadius: 40.0,
                                                         )
                                                       ],
@@ -627,7 +628,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                         ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
-                                                      borderSide: const BorderSide(
+                                                      borderSide: BorderSide(
                                                         color:
                                                             Color(0x00000000),
                                                         width: 2.0,
@@ -681,7 +682,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                                 context)
                                                             .alternate,
                                                     contentPadding:
-                                                        const EdgeInsets.all(20.0),
+                                                        EdgeInsets.all(20.0),
                                                     hoverColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -706,11 +707,11 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                 ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 15.0)),
+                                          ].divide(SizedBox(width: 15.0)),
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: TextFormField(
                                             controller:
@@ -733,7 +734,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .customColor1,
-                                                    offset: const Offset(0.0, 2.0),
+                                                    offset: Offset(0.0, 2.0),
                                                     blurRadius: 40.0,
                                                   )
                                                 ],
@@ -748,7 +749,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                         letterSpacing: 0.0,
                                                       ),
                                               enabledBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -791,7 +792,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .alternate,
                                               contentPadding:
-                                                  const EdgeInsets.all(20.0),
+                                                  EdgeInsets.all(20.0),
                                               hoverColor:
                                                   FlutterFlowTheme.of(context)
                                                       .customColor1,
@@ -815,7 +816,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                           model: _model.birthDateModel,
                                           updateCallback: () =>
                                               safeSetState(() {}),
-                                          child: const DatePickerWidget(
+                                          child: DatePickerWidget(
                                             label: 'Birth Date',
                                           ),
                                         ),
@@ -833,7 +834,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -841,14 +842,14 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                 MainAxisAlignment.center,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     await _model
                                                         .pageViewController
                                                         ?.previousPage(
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 300),
                                                       curve: Curves.ease,
                                                     );
@@ -857,14 +858,14 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
-                                                    color: const Color(0x00E0E3E7),
+                                                    color: Color(0x00E0E3E7),
                                                     textStyle: FlutterFlowTheme
                                                             .of(context)
                                                         .titleSmall
@@ -893,7 +894,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
@@ -913,7 +914,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                     await _model
                                                         .pageViewController
                                                         ?.nextPage(
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 300),
                                                       curve: Curves.ease,
                                                     );
@@ -922,11 +923,11 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -956,10 +957,10 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(height: 10.0)),
+                                      ].divide(SizedBox(height: 10.0)),
                                     ),
                                   ),
                                 ),
@@ -967,7 +968,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                   key: _model.formKey1,
                                   autovalidateMode: AutovalidateMode.disabled,
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -988,7 +989,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 4.0, 0.0, 24.0),
                                           child: Text(
                                             'Enhance your profile (optional)',
@@ -1078,7 +1079,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1086,14 +1087,14 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                 MainAxisAlignment.center,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     await _model
                                                         .pageViewController
                                                         ?.previousPage(
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 300),
                                                       curve: Curves.ease,
                                                     );
@@ -1102,14 +1103,14 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
-                                                    color: const Color(0x00E0E3E7),
+                                                    color: Color(0x00E0E3E7),
                                                     textStyle: FlutterFlowTheme
                                                             .of(context)
                                                         .titleSmall
@@ -1138,7 +1139,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
@@ -1153,7 +1154,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                     await _model
                                                         .pageViewController
                                                         ?.nextPage(
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 300),
                                                       curve: Curves.ease,
                                                     );
@@ -1162,11 +1163,11 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -1196,10 +1197,10 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(height: 10.0)),
+                                      ].divide(SizedBox(height: 10.0)),
                                     ),
                                   ),
                                 ),
@@ -1207,7 +1208,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                   key: _model.formKey2,
                                   autovalidateMode: AutovalidateMode.disabled,
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -1228,7 +1229,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 4.0, 0.0, 24.0),
                                           child: Text(
                                             'Let\'s get started by filling out the form below.',
@@ -1243,7 +1244,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: TextFormField(
                                             controller:
@@ -1267,7 +1268,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .customColor1,
-                                                    offset: const Offset(0.0, 2.0),
+                                                    offset: Offset(0.0, 2.0),
                                                     blurRadius: 40.0,
                                                   )
                                                 ],
@@ -1282,7 +1283,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                         letterSpacing: 0.0,
                                                       ),
                                               enabledBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1325,7 +1326,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .alternate,
                                               contentPadding:
-                                                  const EdgeInsets.all(20.0),
+                                                  EdgeInsets.all(20.0),
                                               hoverColor:
                                                   FlutterFlowTheme.of(context)
                                                       .customColor1,
@@ -1364,7 +1365,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: TextFormField(
                                             controller: _model
@@ -1389,7 +1390,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .customColor1,
-                                                    offset: const Offset(0.0, 2.0),
+                                                    offset: Offset(0.0, 2.0),
                                                     blurRadius: 40.0,
                                                   )
                                                 ],
@@ -1404,7 +1405,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                         letterSpacing: 0.0,
                                                       ),
                                               enabledBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 2.0,
                                                 ),
@@ -1447,7 +1448,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .alternate,
                                               contentPadding:
-                                                  const EdgeInsets.all(20.0),
+                                                  EdgeInsets.all(20.0),
                                               hoverColor:
                                                   FlutterFlowTheme.of(context)
                                                       .customColor1,
@@ -1486,7 +1487,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1494,14 +1495,14 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                 MainAxisAlignment.center,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     await _model
                                                         .pageViewController
                                                         ?.previousPage(
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 300),
                                                       curve: Curves.ease,
                                                     );
@@ -1510,14 +1511,14 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
-                                                    color: const Color(0x00E0E3E7),
+                                                    color: Color(0x00E0E3E7),
                                                     textStyle: FlutterFlowTheme
                                                             .of(context)
                                                         .titleSmall
@@ -1546,200 +1547,247 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
-                                                    Function() navigate =
+                                                    Function() _navigate =
                                                         () {};
-                                                    if (_model.formKey2
-                                                                .currentState ==
-                                                            null ||
-                                                        !_model.formKey2
-                                                            .currentState!
-                                                            .validate()) {
-                                                      return;
-                                                    }
-                                                    GoRouter.of(context)
-                                                        .prepareAuthEvent();
-                                                    if (_model
-                                                            .passwordTextController
-                                                            .text !=
-                                                        _model
-                                                            .confirmPasswordTextController
-                                                            .text) {
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                        const SnackBar(
-                                                          content: Text(
-                                                            'Passwords don\'t match!',
-                                                          ),
-                                                        ),
-                                                      );
-                                                      return;
-                                                    }
-
-                                                    final user = await authManager
-                                                        .createAccountWithEmail(
-                                                      context,
-                                                      _model.emailTextController
-                                                          .text,
-                                                      _model
-                                                          .passwordTextController
-                                                          .text,
-                                                    );
-                                                    if (user == null) {
-                                                      return;
-                                                    }
-
-                                                    await UsersRecord.collection
-                                                        .doc(user.uid)
-                                                        .update({
-                                                      ...createUsersRecordData(
-                                                        email: _model
-                                                            .emailTextController
-                                                            .text,
-                                                        displayName:
-                                                            '${_model.firstNameTextController.text} ${_model.lastNameTextController.text}',
-                                                        photoUrl: FFAppConstants
-                                                            .userProfile,
-                                                        birthDate: _model
-                                                            .birthDateModel
-                                                            .date,
-                                                        familyName: _model
-                                                            .lastNameTextController
-                                                            .text,
-                                                        phoneNumber: '',
-                                                        gender: _model
-                                                            .optionDropdownModel
-                                                            .option
-                                                            ?.code,
-                                                      ),
-                                                      ...mapToFirestore(
-                                                        {
-                                                          'created_time': FieldValue
-                                                              .serverTimestamp(),
-                                                          'givenNames': (String
-                                                                      first,
-                                                                  String middle) {
-                                                            return [
-                                                              first,
-                                                              middle
-                                                            ];
-                                                          }(
-                                                              _model
-                                                                  .firstNameTextController
-                                                                  .text,
-                                                              _model
-                                                                  .middleNameTextController
-                                                                  .text),
-                                                        },
-                                                      ),
-                                                    });
-
-                                                    navigate = () =>
-                                                        context.goNamedAuth(
-                                                            'HomePage',
-                                                            context.mounted);
-                                                    if ((_model
-                                                                .uploadedLocalFile1
-                                                                .bytes
-                                                                ?.isNotEmpty ??
-                                                            false)) {
-                                                      {
-                                                        safeSetState(() => _model
-                                                                .isDataUploading2 =
-                                                            true);
-                                                        var selectedUploadedFiles =
-                                                            <FFUploadedFile>[];
-                                                        var selectedMedia =
-                                                            <SelectedFile>[];
-                                                        var downloadUrls =
-                                                            <String>[];
-                                                        try {
-                                                          selectedUploadedFiles = _model
-                                                                  .uploadedLocalFile1
-                                                                  .bytes!
-                                                                  .isNotEmpty
-                                                              ? [
-                                                                  _model
-                                                                      .uploadedLocalFile1
-                                                                ]
-                                                              : <FFUploadedFile>[];
-                                                          selectedMedia =
-                                                              selectedFilesFromUploadedFiles(
-                                                            selectedUploadedFiles,
-                                                          );
-                                                          downloadUrls =
-                                                              (await Future
-                                                                      .wait(
-                                                            selectedMedia.map(
-                                                              (m) async =>
-                                                                  await uploadData(
-                                                                      m.storagePath,
-                                                                      m.bytes),
+                                                    final firestoreBatch =
+                                                        FirebaseFirestore
+                                                            .instance
+                                                            .batch();
+                                                    try {
+                                                      if (_model.formKey2
+                                                                  .currentState ==
+                                                              null ||
+                                                          !_model.formKey2
+                                                              .currentState!
+                                                              .validate()) {
+                                                        return;
+                                                      }
+                                                      GoRouter.of(context)
+                                                          .prepareAuthEvent();
+                                                      if (_model
+                                                              .passwordTextController
+                                                              .text !=
+                                                          _model
+                                                              .confirmPasswordTextController
+                                                              .text) {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Passwords don\'t match!',
                                                             ),
-                                                          ))
-                                                                  .where((u) =>
-                                                                      u != null)
-                                                                  .map(
-                                                                      (u) => u!)
-                                                                  .toList();
-                                                        } finally {
-                                                          _model.isDataUploading2 =
-                                                              false;
-                                                        }
-                                                        if (selectedUploadedFiles
-                                                                    .length ==
-                                                                selectedMedia
-                                                                    .length &&
-                                                            downloadUrls
-                                                                    .length ==
-                                                                selectedMedia
-                                                                    .length) {
-                                                          safeSetState(() {
-                                                            _model.uploadedLocalFile2 =
-                                                                selectedUploadedFiles
-                                                                    .first;
-                                                            _model.uploadedFileUrl2 =
-                                                                downloadUrls
-                                                                    .first;
-                                                          });
-                                                        } else {
-                                                          safeSetState(() {});
-                                                          return;
-                                                        }
+                                                          ),
+                                                        );
+                                                        return;
                                                       }
 
-                                                      await currentUserReference!
-                                                          .update(
-                                                              createUsersRecordData(
-                                                        photoUrl: _model
-                                                            .uploadedFileUrl2,
-                                                      ));
-                                                      safeSetState(() {
-                                                        _model.isDataUploading1 =
-                                                            false;
-                                                        _model.uploadedLocalFile1 =
-                                                            FFUploadedFile(
-                                                                bytes: Uint8List
-                                                                    .fromList(
-                                                                        []));
+                                                      final user = await authManager
+                                                          .createAccountWithEmail(
+                                                        context,
+                                                        _model
+                                                            .emailTextController
+                                                            .text,
+                                                        _model
+                                                            .passwordTextController
+                                                            .text,
+                                                      );
+                                                      if (user == null) {
+                                                        return;
+                                                      }
+
+                                                      await UsersRecord
+                                                          .collection
+                                                          .doc(user.uid)
+                                                          .update({
+                                                        ...createUsersRecordData(
+                                                          email: _model
+                                                              .emailTextController
+                                                              .text,
+                                                          photoUrl:
+                                                              FFAppConstants
+                                                                  .userProfile,
+                                                          birthDate: _model
+                                                              .birthDateModel
+                                                              .date,
+                                                          familyName: _model
+                                                              .lastNameTextController
+                                                              .text,
+                                                          phoneNumber: '',
+                                                          gender: _model
+                                                              .optionDropdownModel
+                                                              .option
+                                                              ?.code,
+                                                          profile:
+                                                              createProfileStruct(
+                                                            displayName:
+                                                                '${_model.firstNameTextController.text} ${_model.lastNameTextController.text}',
+                                                            profileType:
+                                                                CollectionProfiles
+                                                                    .USERS,
+                                                            clearUnsetFields:
+                                                                false,
+                                                            create: true,
+                                                          ),
+                                                        ),
+                                                        ...mapToFirestore(
+                                                          {
+                                                            'created_time':
+                                                                FieldValue
+                                                                    .serverTimestamp(),
+                                                            'givenNames': (String
+                                                                        first,
+                                                                    String middle) {
+                                                              return [
+                                                                first,
+                                                                middle
+                                                              ];
+                                                            }(
+                                                                _model
+                                                                    .firstNameTextController
+                                                                    .text,
+                                                                _model
+                                                                    .middleNameTextController
+                                                                    .text),
+                                                          },
+                                                        ),
                                                       });
+
+                                                      _navigate = () =>
+                                                          context.goNamedAuth(
+                                                              'HomePage',
+                                                              context.mounted);
+                                                      if ((_model
+                                                                  .uploadedLocalFile1
+                                                                  .bytes
+                                                                  ?.isNotEmpty ??
+                                                              false)) {
+                                                        {
+                                                          safeSetState(() =>
+                                                              _model.isDataUploading2 =
+                                                                  true);
+                                                          var selectedUploadedFiles =
+                                                              <FFUploadedFile>[];
+                                                          var selectedMedia =
+                                                              <SelectedFile>[];
+                                                          var downloadUrls =
+                                                              <String>[];
+                                                          try {
+                                                            selectedUploadedFiles = _model
+                                                                    .uploadedLocalFile1
+                                                                    .bytes!
+                                                                    .isNotEmpty
+                                                                ? [
+                                                                    _model
+                                                                        .uploadedLocalFile1
+                                                                  ]
+                                                                : <FFUploadedFile>[];
+                                                            selectedMedia =
+                                                                selectedFilesFromUploadedFiles(
+                                                              selectedUploadedFiles,
+                                                            );
+                                                            downloadUrls =
+                                                                (await Future
+                                                                        .wait(
+                                                              selectedMedia.map(
+                                                                (m) async =>
+                                                                    await uploadData(
+                                                                        m.storagePath,
+                                                                        m.bytes),
+                                                              ),
+                                                            ))
+                                                                    .where((u) =>
+                                                                        u !=
+                                                                        null)
+                                                                    .map((u) =>
+                                                                        u!)
+                                                                    .toList();
+                                                          } finally {
+                                                            _model.isDataUploading2 =
+                                                                false;
+                                                          }
+                                                          if (selectedUploadedFiles
+                                                                      .length ==
+                                                                  selectedMedia
+                                                                      .length &&
+                                                              downloadUrls
+                                                                      .length ==
+                                                                  selectedMedia
+                                                                      .length) {
+                                                            safeSetState(() {
+                                                              _model.uploadedLocalFile2 =
+                                                                  selectedUploadedFiles
+                                                                      .first;
+                                                              _model.uploadedFileUrl2 =
+                                                                  downloadUrls
+                                                                      .first;
+                                                            });
+                                                          } else {
+                                                            safeSetState(() {});
+                                                            return;
+                                                          }
+                                                        }
+
+                                                        firestoreBatch.update(
+                                                            currentUserReference!,
+                                                            createUsersRecordData(
+                                                              profile:
+                                                                  createProfileStruct(
+                                                                photoUrl: _model
+                                                                    .uploadedFileUrl2,
+                                                                uid:
+                                                                    currentUserReference
+                                                                        ?.id,
+                                                                clearUnsetFields:
+                                                                    false,
+                                                              ),
+                                                            ));
+                                                        safeSetState(() {
+                                                          _model.isDataUploading1 =
+                                                              false;
+                                                          _model.uploadedLocalFile1 =
+                                                              FFUploadedFile(
+                                                                  bytes: Uint8List
+                                                                      .fromList(
+                                                                          []));
+                                                        });
+                                                      } else {
+                                                        firestoreBatch.update(
+                                                            currentUserReference!,
+                                                            createUsersRecordData(
+                                                              profile:
+                                                                  createProfileStruct(
+                                                                photoUrl:
+                                                                    FFAppConstants
+                                                                        .userProfile,
+                                                                uid:
+                                                                    currentUserReference
+                                                                        ?.id,
+                                                                clearUnsetFields:
+                                                                    false,
+                                                              ),
+                                                            ));
+                                                      }
+                                                    } finally {
+                                                      await firestoreBatch
+                                                          .commit();
                                                     }
 
-                                                    navigate();
+                                                    _navigate();
                                                   },
                                                   text: 'Create Account',
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -1761,17 +1809,17 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(height: 10.0)),
+                                      ].divide(SizedBox(height: 10.0)),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.0, 1.0),
+                              alignment: AlignmentDirectional(0.0, 1.0),
                               child: smooth_page_indicator.SmoothPageIndicator(
                                 controller: _model.pageViewController ??=
                                     PageController(initialPage: 0),
@@ -1781,7 +1829,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                   await _model.pageViewController!
                                       .animateToPage(
                                     i,
-                                    duration: const Duration(milliseconds: 500),
+                                    duration: Duration(milliseconds: 500),
                                     curve: Curves.ease,
                                   );
                                   safeSetState(() {});
@@ -1811,7 +1859,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                   animationsMap['containerOnPageLoadAnimation']!),
             ),
             Container(
-              decoration: const BoxDecoration(),
+              decoration: BoxDecoration(),
               child: Visibility(
                 visible: responsiveVisibility(
                   context: context,
@@ -1819,7 +1867,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                   tablet: false,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(30.0),
+                  padding: EdgeInsets.all(30.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -1861,7 +1909,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                           fit: BoxFit.contain,
                         ),
                       ),
-                    ].divide(const SizedBox(width: 15.0)),
+                    ].divide(SizedBox(width: 15.0)),
                   ),
                 ),
               ),

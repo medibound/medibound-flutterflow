@@ -66,7 +66,7 @@ class _CreateDeviceVariableWidgetState
     context.watch<FFAppState>();
 
     return Container(
-      constraints: const BoxConstraints(
+      constraints: BoxConstraints(
         maxWidth: 660.0,
         maxHeight: 600.0,
       ),
@@ -79,14 +79,14 @@ class _CreateDeviceVariableWidgetState
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(30.0),
+        padding: EdgeInsets.all(30.0),
         child: Stack(
           children: [
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                child: SizedBox(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                child: Container(
                   width: double.infinity,
                   child: PageView(
                     physics: const NeverScrollableScrollPhysics(),
@@ -95,7 +95,7 @@ class _CreateDeviceVariableWidgetState
                     scrollDirection: Axis.horizontal,
                     children: [
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Form(
                           key: _model.formKey2,
                           autovalidateMode: AutovalidateMode.disabled,
@@ -125,7 +125,7 @@ class _CreateDeviceVariableWidgetState
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 4.0),
                                     child: Text(
                                       'Define a variable',
@@ -153,7 +153,7 @@ class _CreateDeviceVariableWidgetState
                                   clipBehavior: Clip.none,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller:
@@ -177,7 +177,7 @@ class _CreateDeviceVariableWidgetState
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .customColor1,
-                                                offset: const Offset(0.0, 2.0),
+                                                offset: Offset(0.0, 2.0),
                                                 blurRadius: 40.0,
                                               )
                                             ],
@@ -193,7 +193,7 @@ class _CreateDeviceVariableWidgetState
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 2.0,
                                             ),
@@ -235,7 +235,7 @@ class _CreateDeviceVariableWidgetState
                                           fillColor:
                                               FlutterFlowTheme.of(context)
                                                   .alternate,
-                                          contentPadding: const EdgeInsets.all(20.0),
+                                          contentPadding: EdgeInsets.all(20.0),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
                                                   .customColor1,
@@ -325,7 +325,7 @@ class _CreateDeviceVariableWidgetState
                                     if ((_model.variableTypeModel.option !=
                                             null) &&
                                         (_model.variableTypeModel.option !=
-                                            DropdownStruct(
+                                            CodedValueStruct(
                                               display: '',
                                               description: '',
                                               code: '',
@@ -351,7 +351,7 @@ class _CreateDeviceVariableWidgetState
                                                               ?.code) ||
                                                       (e.type == 'CUSTOM'))
                                                   .toList()),
-                                          initialOption: DropdownStruct(
+                                          initialOption: CodedValueStruct(
                                             display: '',
                                             description: '',
                                             code: '',
@@ -413,7 +413,7 @@ class _CreateDeviceVariableWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -426,7 +426,7 @@ class _CreateDeviceVariableWidgetState
                                             'STRING') {
                                           return Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 if (_model.formKey2
@@ -440,7 +440,7 @@ class _CreateDeviceVariableWidgetState
                                                 await widget.variableCallback
                                                     ?.call(
                                                   DeviceVariableStruct(
-                                                    info: DropdownStruct(
+                                                    info: CodedValueStruct(
                                                       display: _model
                                                           .variableNameTextController
                                                           .text,
@@ -474,11 +474,11 @@ class _CreateDeviceVariableWidgetState
                                               text: 'Add Variable',
                                               options: FFButtonOptions(
                                                 height: 40.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 16.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -510,7 +510,7 @@ class _CreateDeviceVariableWidgetState
                                             'NUMBER') {
                                           return Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 if (_model.formKey2
@@ -523,7 +523,7 @@ class _CreateDeviceVariableWidgetState
                                                 }
                                                 await _model.pageViewController
                                                     ?.nextPage(
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 300),
                                                   curve: Curves.ease,
                                                 );
@@ -531,11 +531,11 @@ class _CreateDeviceVariableWidgetState
                                               text: 'Confirm Details',
                                               options: FFButtonOptions(
                                                 height: 40.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 16.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -575,15 +575,15 @@ class _CreateDeviceVariableWidgetState
                                         }
                                       },
                                     ),
-                                  ].divide(const SizedBox(width: 10.0)),
+                                  ].divide(SizedBox(width: 10.0)),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 10.0)),
+                            ].divide(SizedBox(height: 10.0)),
                           ),
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: FutureBuilder<ApiCallResponse>(
                           future: APIForUCUMGroup.getUCUMSingleUnitCall.call(
                             terms: FFAppState()
@@ -643,7 +643,7 @@ class _CreateDeviceVariableWidgetState
                                             ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 4.0),
                                         child: Text(
                                           'Some constraints may be applied from preset',
@@ -759,7 +759,7 @@ class _CreateDeviceVariableWidgetState
                                                               : 0.7,
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     10.0,
@@ -800,7 +800,7 @@ class _CreateDeviceVariableWidgetState
                                                                           context)
                                                                       .customColor1,
                                                                   offset:
-                                                                      const Offset(
+                                                                      Offset(
                                                                           0.0,
                                                                           2.0),
                                                                   blurRadius:
@@ -824,7 +824,7 @@ class _CreateDeviceVariableWidgetState
                                                             enabledBorder:
                                                                 OutlineInputBorder(
                                                               borderSide:
-                                                                  const BorderSide(
+                                                                  BorderSide(
                                                                 color: Color(
                                                                     0x00000000),
                                                                 width: 2.0,
@@ -882,7 +882,7 @@ class _CreateDeviceVariableWidgetState
                                                                         context)
                                                                     .alternate,
                                                             contentPadding:
-                                                                const EdgeInsets.all(
+                                                                EdgeInsets.all(
                                                                     20.0),
                                                             hoverColor:
                                                                 FlutterFlowTheme.of(
@@ -928,7 +928,7 @@ class _CreateDeviceVariableWidgetState
                                                               : 0.7,
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     10.0,
@@ -969,7 +969,7 @@ class _CreateDeviceVariableWidgetState
                                                                           context)
                                                                       .customColor1,
                                                                   offset:
-                                                                      const Offset(
+                                                                      Offset(
                                                                           0.0,
                                                                           2.0),
                                                                   blurRadius:
@@ -993,7 +993,7 @@ class _CreateDeviceVariableWidgetState
                                                             enabledBorder:
                                                                 OutlineInputBorder(
                                                               borderSide:
-                                                                  const BorderSide(
+                                                                  BorderSide(
                                                                 color: Color(
                                                                     0x00000000),
                                                                 width: 2.0,
@@ -1051,7 +1051,7 @@ class _CreateDeviceVariableWidgetState
                                                                         context)
                                                                     .alternate,
                                                             contentPadding:
-                                                                const EdgeInsets.all(
+                                                                EdgeInsets.all(
                                                                     20.0),
                                                             hoverColor:
                                                                 FlutterFlowTheme.of(
@@ -1089,7 +1089,7 @@ class _CreateDeviceVariableWidgetState
                                                       ),
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(width: 15.0)),
+                                                ].divide(SizedBox(width: 15.0)),
                                               ),
                                               wrapWithModel(
                                                 model: _model.unitModel,
@@ -1152,7 +1152,7 @@ class _CreateDeviceVariableWidgetState
                                                                   )!
                                                                   .toList())
                                                           .firstOrNull
-                                                      : DropdownStruct(
+                                                      : CodedValueStruct(
                                                           display: '',
                                                           description: '',
                                                           code: '',
@@ -1183,7 +1183,7 @@ class _CreateDeviceVariableWidgetState
                                           'NUMBER') {
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1191,14 +1191,14 @@ class _CreateDeviceVariableWidgetState
                                                 MainAxisAlignment.center,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     await _model
                                                         .pageViewController
                                                         ?.previousPage(
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 300),
                                                       curve: Curves.ease,
                                                     );
@@ -1207,14 +1207,14 @@ class _CreateDeviceVariableWidgetState
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
-                                                    color: const Color(0x00E0E3E7),
+                                                    color: Color(0x00E0E3E7),
                                                     textStyle: FlutterFlowTheme
                                                             .of(context)
                                                         .titleSmall
@@ -1243,7 +1243,7 @@ class _CreateDeviceVariableWidgetState
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
@@ -1259,7 +1259,7 @@ class _CreateDeviceVariableWidgetState
                                                         .variableCallback
                                                         ?.call(
                                                       DeviceVariableStruct(
-                                                        info: DropdownStruct(
+                                                        info: CodedValueStruct(
                                                           display: _model
                                                               .variableNameTextController
                                                               .text,
@@ -1302,6 +1302,10 @@ class _CreateDeviceVariableWidgetState
                                                             double.tryParse(_model
                                                                 .lowerBoundTextController
                                                                 .text)),
+                                                        preset: _model
+                                                            .presetIntegrationModel
+                                                            .option
+                                                            ?.code,
                                                       ),
                                                     );
                                                     Navigator.pop(context);
@@ -1310,11 +1314,11 @@ class _CreateDeviceVariableWidgetState
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -1344,7 +1348,7 @@ class _CreateDeviceVariableWidgetState
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                         );
                                       } else {
@@ -1359,7 +1363,7 @@ class _CreateDeviceVariableWidgetState
                                       }
                                     },
                                   ),
-                                ].divide(const SizedBox(height: 10.0)),
+                                ].divide(SizedBox(height: 10.0)),
                               ),
                             );
                           },
@@ -1371,7 +1375,7 @@ class _CreateDeviceVariableWidgetState
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
               child: Text(
                 'New Device Variable',
                 textAlign: TextAlign.start,

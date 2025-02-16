@@ -73,7 +73,7 @@ class _HsplitWidgetState extends State<HsplitWidget> {
             }),
           ),
         ),
-      ].divide(const SizedBox(height: 10.0)),
+      ].divide(SizedBox(height: 10.0)),
     );
   }
 }

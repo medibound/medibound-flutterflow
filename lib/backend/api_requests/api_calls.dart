@@ -31,7 +31,7 @@ class GetUCUMUnitsCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Get UCUM Units',
-      apiUrl: '$baseUrl/search',
+      apiUrl: '${baseUrl}/search',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -88,7 +88,7 @@ class GetUCUMSingleUnitCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Get UCUM Single Unit',
-      apiUrl: '$baseUrl/search',
+      apiUrl: '${baseUrl}/search',
       callType: ApiCallType.GET,
       headers: {},
       params: {
