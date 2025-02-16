@@ -10,10 +10,10 @@ import 'schema/organizations_record.dart';
 import 'schema/device_profiles_record.dart';
 import 'schema/device_record.dart';
 import 'schema/sub_blocks_record.dart';
-import 'schema/records_record.dart';
 import 'schema/record_template_record.dart';
 import 'schema/messages_record.dart';
 import 'schema/message_record.dart';
+import 'schema/records_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -27,10 +27,10 @@ export 'schema/organizations_record.dart';
 export 'schema/device_profiles_record.dart';
 export 'schema/device_record.dart';
 export 'schema/sub_blocks_record.dart';
-export 'schema/records_record.dart';
 export 'schema/record_template_record.dart';
 export 'schema/messages_record.dart';
 export 'schema/message_record.dart';
+export 'schema/records_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -220,46 +220,6 @@ Future<List<SubBlocksRecord>> querySubBlocksRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query RecordsRecords (as a Stream and as a Future).
-Future<int> queryRecordsRecordCount({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      RecordsRecord.collection(parent),
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<RecordsRecord>> queryRecordsRecord({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      RecordsRecord.collection(parent),
-      RecordsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<RecordsRecord>> queryRecordsRecordOnce({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      RecordsRecord.collection(parent),
-      RecordsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
 /// Functions to query RecordTemplateRecords (as a Stream and as a Future).
 Future<int> queryRecordTemplateRecordCount({
   Query Function(Query)? queryBuilder,
@@ -369,6 +329,43 @@ Future<List<MessageRecord>> queryMessageRecordOnce({
     queryCollectionOnce(
       MessageRecord.collection(parent),
       MessageRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query RecordsRecords (as a Stream and as a Future).
+Future<int> queryRecordsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      RecordsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<RecordsRecord>> queryRecordsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      RecordsRecord.collection,
+      RecordsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<RecordsRecord>> queryRecordsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      RecordsRecord.collection,
+      RecordsRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

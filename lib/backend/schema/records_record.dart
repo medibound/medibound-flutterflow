@@ -30,12 +30,10 @@ class RecordsRecord extends FirestoreRecord {
   DocumentReference? get template => _template;
   bool hasTemplate() => _template != null;
 
-  // "observation" field.
-  List<DeviceVariableStruct>? _observation;
-  List<DeviceVariableStruct> get observation => _observation ?? const [];
-  bool hasObservation() => _observation != null;
-
-  DocumentReference get parentReference => reference.parent.parent!;
+  // "data" field.
+  List<DeviceVariableStruct>? _data;
+  List<DeviceVariableStruct> get data => _data ?? const [];
+  bool hasData() => _data != null;
 
   void _initializeFields() {
     _info = snapshotData['info'] is CodedValueStruct
@@ -43,19 +41,14 @@ class RecordsRecord extends FirestoreRecord {
         : CodedValueStruct.maybeFromMap(snapshotData['info']);
     _owner = snapshotData['owner'] as DocumentReference?;
     _template = snapshotData['template'] as DocumentReference?;
-    _observation = getStructList(
-      snapshotData['observation'],
+    _data = getStructList(
+      snapshotData['data'],
       DeviceVariableStruct.fromMap,
     );
   }
 
-  static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
-      parent != null
-          ? parent.collection('records')
-          : FirebaseFirestore.instance.collectionGroup('records');
-
-  static DocumentReference createDoc(DocumentReference parent, {String? id}) =>
-      parent.collection('records').doc(id);
+  static CollectionReference get collection =>
+      FirebaseFirestore.instance.collection('records');
 
   static Stream<RecordsRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => RecordsRecord.fromSnapshot(s));
@@ -116,12 +109,12 @@ class RecordsRecordDocumentEquality implements Equality<RecordsRecord> {
     return e1?.info == e2?.info &&
         e1?.owner == e2?.owner &&
         e1?.template == e2?.template &&
-        listEquality.equals(e1?.observation, e2?.observation);
+        listEquality.equals(e1?.data, e2?.data);
   }
 
   @override
-  int hash(RecordsRecord? e) => const ListEquality()
-      .hash([e?.info, e?.owner, e?.template, e?.observation]);
+  int hash(RecordsRecord? e) =>
+      const ListEquality().hash([e?.info, e?.owner, e?.template, e?.data]);
 
   @override
   bool isValidKey(Object? o) => o is RecordsRecord;
